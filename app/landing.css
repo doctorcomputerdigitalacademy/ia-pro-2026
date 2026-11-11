@@ -1,0 +1,1194 @@
+/* ==========================================================================
+   LANDING IA PRO 2026 — styles spécifiques
+   Couleurs : uniquement via les variables de app/globals.css (@theme).
+   ========================================================================== */
+
+@layer components {
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-page); /* fond unique, identique sur toute la page */
+  color: var(--color-ink);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+@media (max-width: 720px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+/* Typographie DM Sans, à la manière d'oskool : titres gras et serrés */
+.lp-h1,
+.lp-h2,
+.lp-h3 {
+  text-wrap: balance;
+  color: var(--color-ink);
+}
+/* Titres de section et sous-titres : Satoshi */
+.lp-h2,
+.lp-h3,
+.lp-sub {
+  font-family: var(--font-satoshi), var(--font-dm-sans), system-ui, sans-serif;
+}
+.lp-h1 {
+  font-size: clamp(34px, 6.2vw, 72px);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+}
+.lp-h2 {
+  font-size: clamp(30px, 4.2vw, 46px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+}
+.lp-h3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+
+/* Surtitre (sans tiret) */
+.lp-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-montserrat), var(--font-dm-sans), sans-serif;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+@media (min-width: 768px) {
+  .lp-eyebrow {
+    font-size: 17px;
+  }
+}
+
+
+/* Sections : aucun fond propre, séparation par l'espacement seulement */
+.lp-section {
+  padding-top: 56px;
+  background: transparent;
+}
+@media (min-width: 768px) {
+  .lp-section {
+    padding-top: 72px;
+  }
+}
+/* Deux bandes de couleur qui se suivent : espacement réduit */
+.lp-section:has(> .lp-band) + .lp-section:has(> .lp-band) {
+  padding-top: 12px;
+}
+
+/* ------------------------------------------------------------------ cartes */
+.lp-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 24px;
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--color-primary) 5%, transparent),
+    0 12px 32px -18px color-mix(in srgb, var(--color-primary) 22%, transparent);
+}
+.lp-card--hover {
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease,
+    box-shadow 0.3s ease;
+}
+@media (hover: hover) {
+  .lp-card--hover:hover {
+    transform: translateY(-4px) scale(1.01);
+    border-color: var(--color-line-strong);
+    box-shadow:
+      0 1px 2px color-mix(in srgb, var(--color-primary) 6%, transparent),
+      0 22px 44px -20px color-mix(in srgb, var(--color-primary) 34%, transparent);
+  }
+}
+
+/* ==========================================================================
+   ICÔNES — style glassmorphisme
+   Une pastille colorée (::before) passe derrière une plaque de verre dépoli
+   (::after, backdrop-filter). L'icône est posée sur le verre.
+   .lp-icon-tile : grande tuile · .lp-icon-chip : petite pastille (listes, infos)
+   ========================================================================== */
+.lp-icon-tile,
+.lp-icon-chip {
+  --glass-tint: var(--color-primary);
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  color: var(--glass-tint);
+}
+.lp-icon-tile > svg,
+.lp-icon-chip > svg {
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 1px 0 color-mix(in srgb, var(--color-surface) 80%, transparent));
+}
+/* pastille colorée derrière le verre */
+.lp-icon-tile::before,
+.lp-icon-chip::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  top: -12%;
+  right: -14%;
+  width: 74%;
+  height: 74%;
+  border-radius: 32%;
+  transform: rotate(14deg);
+  background: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--glass-tint), var(--color-surface) 35%),
+    var(--glass-tint)
+  );
+  box-shadow: 0 6px 14px -4px color-mix(in srgb, var(--glass-tint) 55%, transparent);
+}
+/* plaque de verre dépoli */
+.lp-icon-tile::after,
+.lp-icon-chip::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    150deg,
+    color-mix(in srgb, var(--color-surface) 78%, transparent) 0%,
+    color-mix(in srgb, var(--color-surface) 46%, transparent) 100%
+  );
+  -webkit-backdrop-filter: blur(7px) saturate(180%);
+  backdrop-filter: blur(7px) saturate(180%);
+  border: 1px solid color-mix(in srgb, var(--color-surface) 85%, transparent);
+  box-shadow:
+    inset 0 1px 1px color-mix(in srgb, var(--color-surface) 95%, transparent),
+    inset 0 -10px 18px -12px color-mix(in srgb, var(--glass-tint) 30%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--glass-tint) 10%, transparent),
+    0 12px 26px -14px color-mix(in srgb, var(--glass-tint) 55%, transparent);
+}
+.lp-icon-tile--secondary {
+  --glass-tint: var(--color-secondary);
+}
+
+.lp-icon-chip {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+}
+.lp-icon-chip::before {
+  width: 70%;
+  height: 70%;
+  box-shadow: 0 3px 8px -2px color-mix(in srgb, var(--glass-tint) 55%, transparent);
+}
+.lp-icon-chip::after {
+  -webkit-backdrop-filter: blur(4px) saturate(180%);
+  backdrop-filter: blur(4px) saturate(180%);
+  box-shadow:
+    inset 0 1px 1px color-mix(in srgb, var(--color-surface) 95%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--glass-tint) 12%, transparent),
+    0 6px 14px -8px color-mix(in srgb, var(--glass-tint) 55%, transparent);
+}
+.lp-icon-chip--sm {
+  width: 26px;
+  height: 26px;
+  border-radius: 9px;
+}
+
+/* ------------------------------------------------------------------ badge */
+.lp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 16px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-soft);
+}
+@media (max-width: 640px) {
+  .lp-badge {
+    border-radius: 16px;
+    padding: 8px 14px;
+    font-size: 11.5px;
+    line-height: 1.35;
+    letter-spacing: 0.06em;
+    text-align: left;
+  }
+}
+.lp-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-secondary);
+}
+.lp-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: lp-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes lp-ping {
+  75%,
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   BOUTON D'ACTION — pilule rouge pleine, halo lumineux, prix dans une pastille blanche.
+   Pour changer le style de TOUS les CTA, modifier uniquement ce bloc.
+   La couleur de base vient de --cta-base (par défaut : couleur secondaire).
+   ========================================================================== */
+.pb-ai-button {
+  --cta-base: var(--color-secondary);
+  --cta-dark: color-mix(in srgb, var(--cta-base), var(--color-ink) 22%);
+  --cta-glow: color-mix(in srgb, var(--cta-base) 45%, transparent);
+  --cta-ring: color-mix(in srgb, var(--cta-base) 16%, transparent);
+  --cta-ring-hover: color-mix(in srgb, var(--cta-base) 22%, transparent);
+  --cta-glow-hover: color-mix(in srgb, var(--cta-base) 60%, transparent);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  padding: 18px 40px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
+
+  color: var(--color-surface);
+  font-family: var(--font-cta);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+
+  background: var(--cta-base);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--color-surface) 35%, transparent),
+    inset 0 -3px 0 var(--cta-dark),
+    0 0 0 5px var(--cta-ring),
+    0 14px 32px -10px var(--cta-glow);
+
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+.pb-ai-button > span {
+  position: relative;
+}
+.pb-ai-sparkle {
+  display: none;
+}
+.pb-ai-button:hover {
+  transform: translateY(-2px);
+  background: color-mix(in srgb, var(--cta-base), var(--color-surface) 6%);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--color-surface) 35%, transparent),
+    inset 0 -3px 0 var(--cta-dark),
+    0 0 0 8px var(--cta-ring-hover),
+    0 20px 40px -12px var(--cta-glow-hover);
+}
+.pb-ai-button:active {
+  transform: translateY(0) scale(0.98);
+}
+.pb-ai-button:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 6px;
+}
+
+/* Variante compacte (header) */
+.pb-ai-button--sm {
+  padding: 11px 22px;
+  font-size: 15px;
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--color-surface) 35%, transparent),
+    inset 0 -2px 0 var(--cta-dark),
+    0 0 0 3px var(--cta-ring),
+    0 8px 18px -8px var(--cta-glow);
+}
+
+/* Mobile : le bouton prend la largeur disponible et le texte peut passer à la ligne */
+@media (max-width: 640px) {
+  .pb-ai-button:not(.pb-ai-button--sm):not(.pb-ai-button--bar) {
+    width: 100%;
+    max-width: 440px;
+    padding: 17px 24px;
+    font-size: 17px;
+    text-wrap: balance;
+  }
+  .pb-ai-button:not(.pb-ai-button--sm):not(.pb-ai-button--bar) .pb-ai-sparkle {
+    display: none;
+  }
+}
+
+/* Prix affiché dans chaque bouton (pastille en verre) */
+.pb-ai-button--priced {
+  padding: 10px 10px 10px 40px;
+  gap: 14px;
+}
+.pb-ai-price {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+  font-size: 0.9em;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--cta-base);
+  background: var(--color-surface);
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--cta-dark) 35%, transparent);
+}
+.pb-ai-button--sm.pb-ai-button--priced {
+  padding: 6px 6px 6px 20px;
+  gap: 10px;
+}
+.pb-ai-button--sm .pb-ai-price {
+  padding: 6px 11px;
+  font-size: 13.5px;
+}
+@media (max-width: 640px) {
+  .pb-ai-button--priced:not(.pb-ai-button--sm):not(.pb-ai-button--bar) {
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px 18px 12px;
+  }
+}
+
+/* Variante empilée : libellé puis prix (colonnes étroites) */
+.pb-ai-button.pb-ai-button--stack {
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 20px 12px;
+  font-size: 17px;
+  text-wrap: balance;
+}
+
+/* Barre d'action fixe en bas d'écran (mobile) */
+.lp-sticky-cta {
+  position: fixed;
+  z-index: 60;
+  left: 12px;
+  right: 12px;
+  bottom: calc(10px + env(safe-area-inset-bottom));
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-surface) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-surface) 90%, transparent);
+  box-shadow:
+    0 0 0 1px var(--color-line),
+    0 16px 40px -16px color-mix(in srgb, var(--color-primary) 45%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+}
+.pb-ai-button--bar {
+  width: 100%;
+  justify-content: space-between;
+  padding: 7px 7px 7px 18px;
+  font-size: 14.5px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  text-wrap: nowrap;
+  gap: 10px;
+  box-shadow:
+    inset 0 -2px 0 var(--cta-dark),
+    0 8px 20px -8px var(--cta-glow);
+}
+.pb-ai-button--bar .pb-ai-sparkle {
+  display: none;
+}
+.pb-ai-button--bar .pb-ai-price {
+  padding: 8px 12px;
+  font-size: 13.5px;
+}
+.pb-ai-button--bar:hover {
+  transform: none;
+}
+
+/* Pulsation subtile des CTA principaux */
+.pb-ai-button--pulse {
+  animation: lp-cta-pulse 2.6s ease-in-out infinite;
+}
+.pb-ai-button--pulse:hover,
+.pb-ai-button--pulse:focus-visible {
+  animation: none;
+}
+@keyframes lp-cta-pulse {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--color-surface) 35%, transparent),
+      inset 0 -3px 0 var(--cta-dark),
+      0 0 0 5px var(--cta-ring),
+      0 14px 32px -10px var(--cta-glow);
+  }
+  50% {
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--color-surface) 35%, transparent),
+      inset 0 -3px 0 var(--cta-dark),
+      0 0 0 11px color-mix(in srgb, var(--cta-base) 8%, transparent),
+      0 16px 38px -10px var(--cta-glow-hover);
+  }
+}
+
+/* ==========================================================================
+   HERO — boîte de sélection animée (reprise de la référence)
+   ========================================================================== */
+.lp-select {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+.lp-select__box {
+  position: absolute;
+  inset: 0.04em -0.14em -0.04em -0.14em;
+  border: 2px solid var(--color-primary);
+  background: var(--color-primary-soft);
+  pointer-events: none;
+  opacity: 0;
+  animation: lp-select-box 5s 1.2s ease infinite alternate both;
+}
+.lp-select__box i {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--color-surface);
+  border: 2px solid var(--color-primary);
+}
+.lp-select__box i:nth-child(1) { top: -6px; left: -6px; }
+.lp-select__box i:nth-child(2) { top: -6px; right: -6px; }
+.lp-select__box i:nth-child(3) { bottom: -6px; left: -6px; }
+.lp-select__box i:nth-child(4) { bottom: -6px; right: -6px; }
+
+@keyframes lp-select-box {
+  0%, 60% { opacity: 0; }
+  65%, 100% { opacity: 1; }
+}
+
+.lp-select__cursor {
+  position: absolute;
+  left: calc(100% + 0.05em);
+  top: calc(100% - 4px);
+  display: flex;
+  align-items: flex-start;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1;
+  pointer-events: none;
+  opacity: 0;
+  color: var(--color-secondary);
+  animation: lp-select-cursor 5s 1.2s ease infinite alternate both;
+}
+.lp-select__cursor span {
+  margin: 20px 0 0 -4px;
+  padding: 5px 9px;
+  border-radius: 4px 999px 999px;
+  background: var(--color-secondary);
+  color: #fff;
+  white-space: nowrap;
+}
+@keyframes lp-select-cursor {
+  0% { opacity: 0; transform: translate3d(240px, 60px, 0) scale(1); }
+  30% { opacity: 1; transform: translate3d(90px, 30px, 0) scale(1); }
+  60% { opacity: 1; transform: translateZ(0) scale(1); }
+  65% { opacity: 1; transform: translateZ(0) scale(0.88); }
+  70% { opacity: 1; transform: translateZ(0) scale(1); }
+  100% { opacity: 1; transform: translate3d(28px, 22px, 0) scale(1); }
+}
+/* Tablette et mobile : trajet plus court, le curseur reste dans l'écran */
+@media (max-width: 1023px) {
+  .lp-select__cursor {
+    left: auto;
+    right: 18%;
+    top: calc(100% - 10px);
+    font-size: 12px;
+    animation-name: lp-select-cursor-sm;
+  }
+  .lp-select__cursor svg {
+    width: 14px;
+    height: 14px;
+  }
+  .lp-select__cursor span {
+    margin: 16px 0 0 -3px;
+    padding: 4px 8px;
+  }
+}
+@keyframes lp-select-cursor-sm {
+  0% { opacity: 0; transform: translate3d(36px, 64px, 0) scale(1); }
+  30% { opacity: 1; transform: translate3d(18px, 30px, 0) scale(1); }
+  60% { opacity: 1; transform: translateZ(0) scale(1); }
+  65% { opacity: 1; transform: translateZ(0) scale(0.86); }
+  70% { opacity: 1; transform: translateZ(0) scale(1); }
+  100% { opacity: 1; transform: translate3d(10px, 6px, 0) scale(1); }
+}
+/* Titre du Hero un peu plus compact pour garder la vidéo visible */
+.lp-h1--hero {
+  font-size: clamp(32px, 5.2vw, 60px);
+}
+@media (max-width: 400px) {
+  .lp-h1--hero {
+    font-size: 31px;
+  }
+}
+
+/* Mot rotatif */
+.lp-rotating {
+  display: inline-flex;
+  overflow: hidden;
+  padding: 2px 14px;
+  border-radius: 10px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   VSL — bouton play animé
+   ========================================================================== */
+.lp-play {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  /* bouton en verre teinté : dégradé + reflet + anneau dépoli */
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--color-surface) 35%, transparent), transparent 55%) padding-box,
+    linear-gradient(160deg, color-mix(in srgb, var(--color-secondary), var(--color-surface) 22%), var(--color-secondary)) padding-box,
+    color-mix(in srgb, var(--color-surface) 55%, transparent) border-box;
+  border: 6px solid transparent;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: var(--color-surface);
+  box-shadow:
+    inset 0 1px 2px color-mix(in srgb, var(--color-surface) 70%, transparent),
+    0 14px 36px color-mix(in srgb, var(--color-secondary) 40%, transparent);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lp-play::before,
+.lp-play::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  border: 2px solid var(--color-secondary);
+  animation: lp-play-ring 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+.lp-play::after {
+  animation-delay: 1.2s;
+}
+@keyframes lp-play-ring {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+.lp-vsl:hover .lp-play {
+  transform: scale(1.08);
+}
+@media (max-width: 640px) {
+  .lp-play {
+    width: 60px;
+    height: 60px;
+  }
+  .lp-play svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* Grille décorative du lecteur vidéo */
+.lp-vsl__grid {
+  background-image:
+    linear-gradient(var(--color-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+
+/* ==========================================================================
+   Divers
+   ========================================================================== */
+.lp-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  transform-origin: 0 50%;
+}
+
+.lp-ring-text {
+  animation: lp-spin 18s linear infinite;
+  transform-origin: 50% 50%;
+}
+@keyframes lp-spin {
+  to { transform: rotate(360deg); }
+}
+
+.lp-attention {
+  animation: lp-attention 3.2s ease-in-out infinite;
+}
+@keyframes lp-attention {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-secondary) 0%, transparent); }
+  50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-secondary) 10%, transparent); }
+}
+
+.lp-placeholder {
+  border: 2px dashed var(--color-line-strong);
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-primary-soft) 0 10px,
+    transparent 10px 20px
+  );
+  color: var(--color-primary);
+}
+
+.lp-split-parent {
+  perspective: 600px;
+}
+.lp-split-char {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
+}
+
+/* Aucun débordement horizontal, même pendant les animations */
+.lp-root {
+  overflow-x: clip;
+}
+
+/* Liens d'évitement / focus */
+.lp-focus:focus-visible,
+.lp-root a:focus-visible,
+.lp-root button:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* ==========================================================================
+   Mouvement réduit : on coupe toutes les animations décoratives
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .lp-dot::after,
+  .pb-ai-button--pulse,
+  .lp-play::before,
+  .lp-play::after,
+  .lp-ring-text,
+  .lp-attention {
+    animation: none !important;
+  }
+  .lp-select__box,
+  .lp-select__cursor {
+    animation: none !important;
+  }
+  .lp-select__box {
+    opacity: 1;
+  }
+  .lp-select__cursor {
+    display: none;
+  }
+  .lp-card--hover,
+  .pb-ai-button {
+    transition: none;
+  }
+}
+
+
+/* ==========================================================================
+   TÉMOIGNAGES — carrousel infini sur deux lignes
+   ========================================================================== */
+.lp-marquee {
+  --marquee-gap: 16px;
+  --marquee-duration: 70s;
+  display: flex;
+  overflow: hidden;
+  gap: var(--marquee-gap);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.lp-marquee__track {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--marquee-gap);
+  min-width: 100%;
+  animation: lp-marquee-left var(--marquee-duration) linear infinite;
+}
+.lp-marquee--reverse .lp-marquee__track {
+  animation-name: lp-marquee-right;
+}
+@media (hover: hover) {
+  .lp-marquee:hover .lp-marquee__track {
+    animation-play-state: paused;
+  }
+}
+@keyframes lp-marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - var(--marquee-gap))); }
+}
+@keyframes lp-marquee-right {
+  from { transform: translateX(calc(-100% - var(--marquee-gap))); }
+  to { transform: translateX(0); }
+}
+.lp-testimonial {
+  width: min(360px, 82vw);
+  flex-shrink: 0;
+}
+@media (max-width: 640px) {
+  .lp-marquee {
+    --marquee-gap: 12px;
+    --marquee-duration: 55s;
+  }
+}
+
+/* ==========================================================================
+   HERO — grille de points interactive (comme la référence)
+   ========================================================================== */
+.lp-hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(90% 80% at 50% 40%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(90% 80% at 50% 40%, #000 30%, transparent 100%);
+}
+
+/* Panneau du Hero : dégradé bleu profond -> bleu lumineux, lueur rouge, fondu vers le fond de page */
+.lp-hero-panel {
+  position: absolute;
+  z-index: -1;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 0;
+  overflow: hidden;
+  border-radius: 32px;
+  background: var(--color-primary); /* fond uni bleu */
+}
+@media (max-width: 640px) {
+  .lp-hero-panel {
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    border-radius: 24px;
+  }
+}
+/* Deuxième ligne du titre : bleu très clair sur le panneau, comme oskool */
+.lp-hero-accent {
+  font-weight: 500;
+  color: color-mix(in srgb, var(--color-surface), var(--color-primary-bright) 22%);
+}
+.lp-hero .lp-select__box {
+  border-color: var(--color-surface);
+  background: color-mix(in srgb, var(--color-surface) 14%, transparent);
+}
+.lp-hero .lp-select__box i {
+  background: var(--color-primary);
+  border-color: var(--color-surface);
+}
+.lp-hero .lp-rotating {
+  background: var(--color-surface);
+  border-color: transparent;
+  box-shadow: 0 8px 24px -10px color-mix(in srgb, var(--color-ink) 50%, transparent);
+}
+.lp-badge--glass {
+  background: color-mix(in srgb, var(--color-surface) 14%, transparent);
+  border-color: color-mix(in srgb, var(--color-surface) 32%, transparent);
+  color: var(--color-surface);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+/* Vidéo du Hero : contour lumineux comme la vidéo d'oskool */
+.lp-hero .lp-vsl {
+  border: 6px solid color-mix(in srgb, var(--color-surface) 55%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-primary-bright) 45%, transparent),
+    0 30px 70px -30px color-mix(in srgb, var(--color-primary) 70%, transparent);
+}
+.lp-hero-bg canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================================================
+   PROGRAMME — accordéon des modules
+   ========================================================================== */
+.lp-acc-item {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.3s ease;
+}
+.lp-acc-item[data-open="true"] {
+  border-color: var(--color-primary-line);
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--color-primary) 6%, transparent),
+    0 22px 44px -22px color-mix(in srgb, var(--color-primary) 34%, transparent);
+}
+.lp-acc-toggle {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--color-line-strong);
+  color: var(--color-primary);
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+.lp-acc-item[data-open="true"] .lp-acc-toggle {
+  transform: rotate(45deg);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .lp-marquee__track {
+    animation: none !important;
+  }
+  .lp-marquee__track[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+
+/* ==========================================================================
+   CHEMIN — « Ce que vous pourriez accomplir »
+   Le tracé (SVG) est calculé en JS à partir de la position des cartes.
+   ========================================================================== */
+.lp-path {
+  --path-row-gap: 64px;
+  padding: 0 26px;
+}
+@media (min-width: 640px) {
+  .lp-path {
+    --path-row-gap: 76px;
+    padding: 0 64px;
+  }
+}
+.lp-path__svg {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+.lp-path__road {
+  fill: none;
+  stroke: color-mix(in srgb, var(--color-path) 13%, var(--color-surface));
+  stroke-width: 14;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.lp-path__dash {
+  fill: none;
+  stroke: color-mix(in srgb, var(--color-path) 30%, var(--color-surface));
+  stroke-width: 2;
+  stroke-dasharray: 2 10;
+  stroke-linecap: round;
+}
+.lp-path__trail {
+  fill: none;
+  stroke: var(--color-path);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--color-path) 55%, transparent));
+}
+.lp-path__stub {
+  stroke: color-mix(in srgb, var(--color-path) 22%, var(--color-surface));
+  stroke-width: 3;
+  stroke-dasharray: 3 4;
+  transition: stroke 0.4s ease;
+}
+.lp-path__stub.is-on {
+  stroke: var(--color-path);
+  stroke-dasharray: none;
+}
+.lp-path__start {
+  fill: var(--color-surface);
+  stroke: var(--color-path);
+  stroke-width: 4;
+}
+.lp-path__start-label {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, calc(-100% - 14px));
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--color-path);
+  color: var(--color-surface);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+@media (max-width: 639px) {
+  .lp-path__start-label {
+    transform: translate(-10%, calc(-100% - 14px));
+  }
+}
+.lp-path__traveler {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.lp-path__traveler span {
+  position: absolute;
+  left: -13px;
+  top: -13px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-path);
+  border: 4px solid var(--color-surface);
+  box-shadow:
+    0 0 0 6px color-mix(in srgb, var(--color-path) 22%, transparent),
+    0 6px 16px color-mix(in srgb, var(--color-path) 55%, transparent);
+  animation: lp-traveler 1.8s ease-in-out infinite;
+}
+@keyframes lp-traveler {
+  0%, 100% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-path) 22%, transparent), 0 6px 16px color-mix(in srgb, var(--color-path) 55%, transparent); }
+  50% { box-shadow: 0 0 0 12px color-mix(in srgb, var(--color-path) 8%, transparent), 0 6px 16px color-mix(in srgb, var(--color-path) 55%, transparent); }
+}
+
+.lp-path__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: var(--path-row-gap);
+  padding-top: calc(var(--path-row-gap) / 2 + 26px);
+}
+@media (min-width: 640px) {
+  .lp-path__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 22px;
+  }
+  .lp-path__item {
+    grid-row: var(--r2);
+    grid-column: var(--c2);
+  }
+}
+@media (min-width: 1024px) {
+  .lp-path__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .lp-path__item {
+    grid-row: var(--r4);
+    grid-column: var(--c4);
+  }
+}
+.lp-path__item {
+  position: relative;
+}
+.lp-path__card {
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lp-path__item[data-on="true"] .lp-path__card {
+  border-color: color-mix(in srgb, var(--color-path) 45%, transparent);
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--color-path) 8%, transparent),
+    0 18px 40px -22px color-mix(in srgb, var(--color-path) 55%, transparent);
+}
+/* Numéro d'étape posé sur le bord haut de la carte */
+.lp-path__step {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 26px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--color-surface);
+  border: 2px solid color-mix(in srgb, var(--color-path) 30%, var(--color-surface));
+  color: var(--color-ink-soft);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease;
+}
+.lp-path__item[data-on="true"] .lp-path__step {
+  background: var(--color-path);
+  border-color: var(--color-path);
+  color: var(--color-surface);
+}
+
+/* Point d'arrivée */
+.lp-path__arrival {
+  position: relative;
+  z-index: 1;
+  max-width: 940px;
+  margin: var(--path-row-gap) auto 0;
+}
+.lp-path__flag {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 3px solid color-mix(in srgb, var(--color-path) 35%, var(--color-surface));
+  color: var(--color-path);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lp-path__arrival[data-on="true"] .lp-path__flag {
+  background: var(--color-path);
+  border-color: var(--color-path);
+  color: var(--color-surface);
+  box-shadow: 0 0 0 10px color-mix(in srgb, var(--color-path) 16%, transparent);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+.lp-path__arrival > .lp-card {
+  transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+.lp-path__arrival[data-on="true"] > .lp-card {
+  border-color: color-mix(in srgb, var(--color-path) 40%, transparent);
+}
+.lp-eyebrow--path {
+  color: var(--color-path);
+}
+
+.lp-icon-chip--path {
+  --glass-tint: var(--color-path);
+}
+@media (prefers-reduced-motion: reduce) {
+  .lp-path__traveler span {
+    animation: none;
+  }
+}
+
+/* Mur de photos des apprenants */
+.lp-photo {
+  position: relative;
+  width: 180px;
+  height: 220px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+}
+@media (min-width: 768px) {
+  .lp-photo {
+    width: 200px;
+    height: 240px;
+  }
+}
+.lp-photo__empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 14px 40px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-ink-soft);
+  background:
+    radial-gradient(80% 60% at 30% 10%, var(--color-primary-soft), transparent 70%),
+    radial-gradient(70% 50% at 90% 100%, var(--color-secondary-soft), transparent 70%),
+    repeating-linear-gradient(135deg, transparent 0 10px, color-mix(in srgb, var(--color-primary) 4%, transparent) 10px 11px);
+}
+.lp-photo__empty svg {
+  color: var(--color-primary);
+}
+.lp-photo__badge {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--color-surface);
+  background: color-mix(in srgb, var(--color-ink) 55%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+} /* fin @layer components */

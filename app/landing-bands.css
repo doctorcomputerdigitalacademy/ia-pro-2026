@@ -1,0 +1,1101 @@
+/* ==========================================================================
+   BANDES BLEUES (fond uni bleu) — sections inspirées de phantombuild :
+   7 compétences, « Ce que vous saurez faire », prix, « À vous de choisir ».
+   Fichier hors @layer : il peut adapter les couleurs utilitaires (texte clair sur bleu).
+   Couleurs : uniquement via les variables de app/globals.css.
+   ========================================================================== */
+.lp-band {
+  --band-accent: color-mix(in srgb, var(--color-surface), var(--color-primary-bright) 30%);
+  --band-glass: color-mix(in srgb, var(--color-surface) 8%, transparent);
+  --band-glass-strong: color-mix(in srgb, var(--color-surface) 13%, transparent);
+  --band-border: color-mix(in srgb, var(--color-surface) 16%, transparent);
+  position: relative;
+  margin: 0 10px;
+  padding: 56px 0;
+  border-radius: 32px;
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+@media (min-width: 768px) {
+  .lp-band {
+    padding: 80px 0;
+  }
+}
+@media (max-width: 640px) {
+  .lp-band {
+    margin: 0 6px;
+    border-radius: 24px;
+  }
+}
+.lp-band .lp-h1,
+.lp-band .lp-h2,
+.lp-band .lp-h3,
+.lp-band .text-ink {
+  color: var(--color-surface);
+}
+.lp-band .text-ink-soft {
+  color: color-mix(in srgb, var(--color-surface) 76%, transparent);
+}
+.lp-band .text-primary {
+  color: var(--band-accent);
+}
+.lp-band .text-secondary {
+  color: color-mix(in srgb, var(--color-secondary), var(--color-surface) 35%);
+}
+.lp-band .lp-eyebrow {
+  color: var(--color-surface);
+}
+.lp-band .lp-card {
+  background: var(--band-glass);
+  border-color: var(--band-border);
+  box-shadow: none;
+}
+.lp-band .border-line {
+  border-color: var(--band-border);
+}
+.lp-band .lp-icon-tile,
+.lp-band .lp-icon-chip {
+  --glass-tint: var(--color-primary-bright);
+  color: var(--color-primary);
+}
+
+/* ---- 7 compétences : cartes en quinconce, inclinées, punaise rouge, flèches en pointillés */
+.lp-steps {
+  position: relative;
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+.lp-step {
+  position: relative;
+}
+.lp-step__card {
+  position: relative;
+  padding: 30px 24px 24px;
+  border-radius: 18px;
+  background: var(--band-glass);
+  border: 1px solid var(--band-border);
+  box-shadow: 0 24px 50px -30px color-mix(in srgb, var(--color-ink) 80%, transparent);
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease;
+}
+.lp-step__card::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border-radius: 13px;
+  border: 1px solid color-mix(in srgb, var(--color-surface) 8%, transparent);
+  pointer-events: none;
+}
+.lp-step__pin {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin-left: -9px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    color-mix(in srgb, var(--color-secondary), var(--color-surface) 55%) 0 18%,
+    var(--color-secondary) 55%,
+    color-mix(in srgb, var(--color-secondary), var(--color-ink) 35%) 100%
+  );
+  box-shadow: 0 4px 10px color-mix(in srgb, var(--color-ink) 45%, transparent);
+}
+.lp-step__num {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: color-mix(in srgb, var(--color-surface) 38%, transparent);
+}
+.lp-step__link {
+  display: none;
+}
+@media (max-width: 767px) {
+  .lp-step:nth-child(odd) .lp-step__card {
+    transform: rotate(-1deg);
+  }
+  .lp-step:nth-child(even) .lp-step__card {
+    transform: rotate(1deg);
+  }
+  .lp-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -40px;
+    height: 34px;
+    border-left: 2px dashed color-mix(in srgb, var(--color-surface) 40%, transparent);
+  }
+}
+@media (min-width: 768px) {
+  .lp-steps {
+    gap: 0;
+  }
+  .lp-step {
+    width: 47%;
+  }
+  .lp-step:nth-child(odd) {
+    align-self: flex-start;
+  }
+  .lp-step:nth-child(even) {
+    align-self: flex-end;
+  }
+  .lp-step + .lp-step {
+    margin-top: -56px;
+  }
+  .lp-step:nth-child(odd) .lp-step__card {
+    transform: rotate(-1.6deg);
+  }
+  .lp-step:nth-child(even) .lp-step__card {
+    transform: rotate(1.4deg);
+  }
+  .lp-step:hover .lp-step__card {
+    transform: rotate(0deg) translateY(-4px);
+    background: var(--band-glass-strong);
+  }
+  .lp-step__link {
+    display: block;
+    position: absolute;
+    top: 56%;
+    width: 13%;
+    height: 96px;
+    overflow: visible;
+    color: color-mix(in srgb, var(--color-surface) 55%, transparent);
+  }
+  .lp-step:nth-child(odd) .lp-step__link {
+    left: 100%;
+    margin-left: 6px;
+  }
+  .lp-step:nth-child(even) .lp-step__link {
+    right: 100%;
+    margin-right: 6px;
+    transform: scaleX(-1);
+  }
+}
+
+/* ---- « Ce que vous saurez faire » : liste cochée + mini-fenêtre */
+.lp-skill {
+  position: relative;
+  padding-left: 52px;
+}
+.lp-skill::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: -16px;
+  width: 2px;
+  background: color-mix(in srgb, var(--color-surface) 22%, transparent);
+}
+.lp-skill:first-child::before {
+  top: 40px;
+}
+.lp-skill:last-child::before {
+  bottom: calc(100% - 42px);
+}
+.lp-skill__check {
+  position: absolute;
+  left: 0;
+  top: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--color-surface) 35%, transparent);
+  background: var(--color-primary);
+  color: transparent;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lp-skill[data-on="true"] .lp-skill__check {
+  background: var(--color-surface);
+  border-color: var(--color-surface);
+  color: var(--color-primary);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-surface) 14%, transparent);
+}
+.lp-skill__window {
+  border-radius: 14px;
+  border: 1px solid var(--band-border);
+  background: color-mix(in srgb, var(--color-ink) 22%, transparent);
+  overflow: hidden;
+}
+.lp-skill__bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--band-border);
+  font-size: 12px;
+  color: color-mix(in srgb, var(--color-surface) 65%, transparent);
+}
+.lp-skill__bar i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-surface) 30%, transparent);
+}
+.lp-skill__bar i:first-child {
+  background: var(--color-secondary);
+}
+.lp-skill__chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--band-border);
+  background: var(--band-glass);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-surface);
+}
+.lp-skill__chip svg {
+  color: var(--band-accent);
+  flex-shrink: 0;
+}
+.lp-progress-dashes {
+  display: inline-flex;
+  gap: 4px;
+}
+.lp-progress-dashes i {
+  width: 16px;
+  height: 4px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--color-surface) 22%, transparent);
+  transition: background-color 0.4s ease;
+}
+.lp-progress-dashes i[data-on="true"] {
+  background: var(--color-surface);
+}
+
+/* ---- Prix : tableau de ce qui est compris + bloc prix */
+.lp-price-panel {
+  border-radius: 24px;
+  border: 1px solid var(--band-border);
+  background: var(--band-glass);
+  overflow: hidden;
+}
+.lp-price-panel__side {
+  background: color-mix(in srgb, var(--color-ink) 18%, transparent);
+}
+.lp-price-row + .lp-price-row {
+  border-top: 1px solid var(--band-border);
+}
+.lp-tag-included {
+  display: inline-flex;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-surface);
+  background: color-mix(in srgb, var(--color-surface) 12%, transparent);
+  border: 1px solid var(--band-border);
+  white-space: nowrap;
+}
+
+/* ---- « À vous de choisir » */
+.lp-choice {
+  border-radius: 22px;
+  padding: 26px 24px;
+  border: 1px solid var(--band-border);
+}
+.lp-choice--off {
+  border-style: dashed;
+  opacity: 0.55;
+}
+.lp-choice--on {
+  background: var(--band-glass-strong);
+  border-color: color-mix(in srgb, var(--color-surface) 45%, transparent);
+  box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--color-ink) 70%, transparent);
+}
+.lp-band-avatars {
+  display: inline-flex;
+}
+.lp-band-avatars span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-left: -8px;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+  background: color-mix(in srgb, var(--color-surface) 22%, var(--color-primary));
+  color: var(--color-surface);
+}
+.lp-band-avatars span:first-child {
+  margin-left: 0;
+}
+
+/* ---- Bande rouge (spécialités 1 et 2, section Solution) */
+.lp-redband {
+  padding: 36px 18px;
+  border-radius: 28px;
+  background: var(--color-secondary);
+  box-shadow: 0 30px 60px -36px color-mix(in srgb, var(--color-secondary) 70%, transparent);
+}
+@media (min-width: 768px) {
+  .lp-redband {
+    padding: 52px 40px;
+  }
+}
+.lp-redband .lp-card {
+  border-color: transparent;
+}
+
+/* ---- Comment ça marche ? : cartes blanches, numéros rouges, trait en pointillés avec boucle */
+.lp-how__line path {
+  fill: none;
+  stroke: color-mix(in srgb, var(--color-surface) 70%, transparent);
+  stroke-width: 2.5;
+  stroke-dasharray: 10 9;
+  stroke-linecap: round;
+}
+.lp-how__item {
+  position: relative;
+}
+.lp-how__card {
+  height: 100%;
+  padding: 34px 26px 32px;
+  border-radius: 14px;
+  background: var(--color-surface);
+  text-align: center;
+  box-shadow: 0 26px 50px -30px color-mix(in srgb, var(--color-ink) 75%, transparent);
+}
+.lp-band .lp-how__card .lp-h3 {
+  color: var(--color-ink);
+}
+.lp-band .lp-how__card p {
+  color: var(--color-ink-soft);
+}
+.lp-how__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: var(--color-surface);
+  font-family: var(--font-satoshi), var(--font-dm-sans), sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  box-shadow: 0 8px 18px -6px color-mix(in srgb, var(--color-secondary) 70%, transparent);
+}
+@media (max-width: 767px) {
+  .lp-how__item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -44px;
+    height: 36px;
+    border-left: 2.5px dashed color-mix(in srgb, var(--color-surface) 70%, transparent);
+  }
+}
+
+/* ---- Deux situations */
+.lp-situation--good {
+  border-color: var(--color-primary-line);
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--color-primary) 8%, transparent),
+    0 30px 60px -34px color-mix(in srgb, var(--color-primary) 55%, transparent);
+}
+.lp-situation__tag {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  color: var(--color-surface);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+/* puce simple (trait) — pas d'icône dans cette section */
+.lp-situation__point {
+  position: relative;
+  padding-left: 22px;
+}
+.lp-situation__point::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: -5px;
+  background: var(--color-secondary);
+}
+.lp-situation--good .lp-situation__point::before {
+  background: var(--color-primary);
+}
+
+/* ---- Bonus exclusifs */
+.lp-bonus {
+  border-top: 3px solid var(--color-secondary);
+}
+.lp-bonus__tag {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--color-secondary);
+  color: var(--color-surface);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.lp-tag-included.lp-tag-bonus {
+  background: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+/* ---- Prix barrés en rouge, icônes rouges sur fond bleu */
+/* Ancrage des prix : montant en vert, barré en rouge */
+.lp-strike {
+  color: color-mix(in srgb, var(--color-path), var(--color-surface) 38%);
+  text-decoration: line-through;
+  text-decoration-color: var(--color-secondary);
+  text-decoration-thickness: 2px;
+}
+.lp-band .lp-icon--red,
+.lp-icon--red {
+  --glass-tint: var(--color-secondary);
+  color: var(--color-secondary);
+}
+
+/* Titre « COMMENT ÇA MARCHE ? » : blanc et très gras */
+.lp-band .lp-how-head .lp-h2 {
+  color: var(--color-surface);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+/* ---- Cartes d'offre (modules et bonus) : image en haut, titre centré, prix barré, GRATUIT */
+.lp-offer {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--color-surface);
+  border: 3px solid color-mix(in srgb, var(--color-ink) 10%, transparent);
+  box-shadow: 0 3px 0 color-mix(in srgb, var(--color-ink) 10%, transparent);
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease;
+}
+@media (hover: hover) {
+  .lp-offer:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 44px -24px color-mix(in srgb, var(--color-primary) 45%, transparent);
+  }
+}
+.lp-offer__media {
+  position: relative;
+  container-type: inline-size;
+  aspect-ratio: 16 / 9;
+  margin: 14px 14px 0;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--color-page);
+}
+.lp-offer__cover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 18px 20px 20px;
+  color: var(--color-surface);
+  overflow: hidden;
+}
+.lp-offer__cover--blue {
+  background:
+    radial-gradient(70% 90% at 100% 0%, color-mix(in srgb, var(--color-primary-bright) 70%, transparent), transparent 70%),
+    var(--color-primary);
+}
+.lp-offer__cover--red {
+  background:
+    radial-gradient(70% 90% at 100% 0%, color-mix(in srgb, var(--color-surface) 18%, transparent), transparent 70%),
+    var(--color-secondary);
+}
+.lp-offer__cover--ink {
+  background:
+    radial-gradient(70% 90% at 100% 100%, color-mix(in srgb, var(--color-primary) 55%, transparent), transparent 70%),
+    var(--color-ink);
+}
+.lp-offer__cover-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+.lp-offer__cover-text {
+  font-family: var(--font-satoshi), var(--font-dm-sans), sans-serif;
+  font-size: clamp(20px, 8.6cqi, 40px);
+  font-weight: 900;
+  padding-right: 4px;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.lp-offer__cover-brand {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-primary);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.lp-offer__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: 22px 22px 24px;
+  text-align: center;
+}
+.lp-offer__title {
+  font-family: var(--font-satoshi), var(--font-dm-sans), sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+.lp-offer__text {
+  margin-top: 10px;
+  flex: 1;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+.lp-offer__strike {
+  margin-top: 18px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-path);
+  text-decoration: line-through;
+  text-decoration-color: var(--color-secondary);
+  text-decoration-thickness: 2.5px;
+}
+.lp-offer__footer {
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--color-primary);
+}
+
+/* ---- Profils « Pour qui ? » : photo en haut */
+.lp-profile__img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (hover: hover) {
+  .lp-profile:hover .lp-profile__img {
+    transform: scale(1.05);
+  }
+}
+.lp-profile__tag {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* ---- 30 jours d'accompagnement : carte rouge dans une bande bleue */
+.lp-support-card {
+  border-radius: 28px;
+  background: var(--color-secondary);
+  color: var(--color-surface);
+  box-shadow: 0 34px 70px -34px color-mix(in srgb, var(--color-ink) 70%, transparent);
+}
+.lp-support__core {
+  background: var(--color-surface);
+  color: var(--color-secondary);
+}
+.lp-support__core span:last-child {
+  color: var(--color-ink-soft);
+}
+.lp-support__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--color-surface);
+  color: var(--color-secondary);
+}
+
+/* ---- Modules : cartes empilées au défilement (façon fluxity) */
+.lp-stack {
+  display: grid;
+  gap: 20px;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+.lp-stack__card {
+  position: relative;
+  transform-origin: 50% 0%;
+}
+.lp-stack__shade {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: var(--color-ink);
+  pointer-events: none;
+}
+@media (min-width: 768px) {
+  .lp-stack {
+    gap: 0;
+  }
+  .lp-stack__item {
+    position: sticky;
+    top: calc(104px + var(--i) * 14px);
+    padding-bottom: 28px;
+  }
+  .lp-stack__item:last-child {
+    padding-bottom: 0;
+  }
+}
+.lp-offer__counter {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-secondary);
+  margin-bottom: 8px;
+}
+@media (min-width: 768px) {
+  .lp-offer--row {
+    flex-direction: row;
+    min-height: 360px;
+  }
+  .lp-offer--row .lp-offer__media {
+    flex: 0 0 50%;
+    aspect-ratio: auto;
+    margin: 14px 0 14px 14px;
+  }
+  .lp-offer--row .lp-offer__body {
+    justify-content: center;
+    padding: 32px 36px;
+  }
+  .lp-offer--row .lp-offer__text {
+    flex: none;
+  }
+  .lp-offer--row .lp-offer__title {
+    font-size: 26px;
+  }
+  .lp-offer--row .lp-offer__cover-text {
+    font-size: clamp(30px, 9cqi, 52px);
+  }
+}
+/* Mobile : pas d'empilement, donc ni réduction ni assombrissement */
+@media (max-width: 767px) {
+  .lp-stack__card {
+    transform: none !important;
+  }
+  .lp-stack__shade {
+    display: none;
+  }
+}
+
+/* ---- Section « Le problème » : comparatif + manifeste encadré */
+.lp-compare {
+  padding: 24px;
+  border-radius: 24px;
+}
+@media (min-width: 768px) {
+  .lp-compare {
+    padding: 32px;
+  }
+}
+.lp-compare--basic {
+  background: var(--color-surface);
+  border: 2px dashed color-mix(in srgb, var(--color-secondary) 30%, transparent);
+}
+.lp-compare--pro {
+  background: var(--color-primary);
+  color: var(--color-surface);
+  box-shadow: 0 30px 60px -32px color-mix(in srgb, var(--color-primary) 75%, transparent);
+}
+.lp-compare__tag {
+  display: inline-flex;
+  padding: 6px 14px;
+  border-radius: 999px;
+  color: var(--color-surface);
+  font-family: var(--font-montserrat), var(--font-dm-sans), sans-serif;
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.lp-compare--pro .lp-compare__tag {
+  color: var(--color-primary);
+}
+.lp-chat {
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--color-line);
+  background: var(--color-page);
+  filter: saturate(0.6);
+}
+.lp-chat__bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--color-line);
+  font-size: 12px;
+  color: var(--color-ink-soft);
+}
+.lp-chat__bar i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-line-strong);
+}
+.lp-chat__bar span {
+  margin-left: 6px;
+}
+.lp-chat__user {
+  margin-left: auto;
+  width: fit-content;
+  max-width: 85%;
+  padding: 9px 13px;
+  border-radius: 14px 14px 4px 14px;
+  background: var(--color-ink-soft);
+  color: var(--color-surface);
+  font-size: 14px;
+}
+.lp-chat__bot {
+  display: grid;
+  gap: 7px;
+  max-width: 88%;
+  padding: 11px 13px;
+  border-radius: 14px 14px 14px 4px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  font-size: 14px;
+  color: var(--color-ink-soft);
+}
+.lp-chat__line {
+  display: block;
+  height: 7px;
+  border-radius: 99px;
+  background: var(--color-line);
+}
+.lp-agent {
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+.lp-agent__out {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--color-line);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-ink-soft);
+  transition: all 0.4s ease;
+}
+.lp-agent__out svg {
+  opacity: 0.25;
+  transition: opacity 0.4s ease;
+}
+.lp-agent__out.is-done {
+  border-color: color-mix(in srgb, var(--color-path) 40%, transparent);
+  background: color-mix(in srgb, var(--color-path) 8%, transparent);
+  color: var(--color-ink);
+}
+.lp-agent__out.is-done svg {
+  opacity: 1;
+  color: var(--color-path);
+}
+.lp-manifesto {
+  position: relative;
+  overflow: hidden;
+  padding: 40px 24px 0;
+  border-radius: 28px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  box-shadow: 0 30px 60px -40px color-mix(in srgb, var(--color-primary) 45%, transparent);
+}
+@media (min-width: 768px) {
+  .lp-manifesto {
+    padding: 64px 72px 0;
+  }
+}
+.lp-manifesto__quote {
+  position: absolute;
+  top: -18px;
+  left: 18px;
+  font-family: var(--font-satoshi), serif;
+  font-size: 160px;
+  font-weight: 900;
+  line-height: 1;
+  color: color-mix(in srgb, var(--color-secondary) 18%, transparent);
+  pointer-events: none;
+}
+.lp-manifesto__end {
+  margin: 36px -24px 0;
+  padding: 22px 24px;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .lp-manifesto__end {
+    margin: 48px -72px 0;
+    padding: 26px 72px;
+  }
+}
+.lp-manifesto__end .text-primary {
+  color: color-mix(in srgb, var(--color-surface), var(--color-primary-bright) 35%);
+}
+
+/* ---- FAQ : grand cadre, onglets, carte d'aide bleue, réponses façon message */
+.lp-faq {
+  padding: 28px 18px;
+  border-radius: 32px;
+  background:
+    radial-gradient(60% 50% at 100% 0%, var(--color-primary-soft), transparent 70%),
+    radial-gradient(50% 40% at 0% 100%, var(--color-secondary-soft), transparent 70%),
+    var(--color-surface);
+  border: 1px solid var(--color-line);
+  box-shadow: 0 40px 80px -50px color-mix(in srgb, var(--color-primary) 45%, transparent);
+}
+@media (min-width: 768px) {
+  .lp-faq {
+    padding: 48px;
+  }
+}
+.lp-faq__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 5px;
+  border-radius: 999px;
+  background: var(--color-page);
+  border: 1px solid var(--color-line);
+  width: fit-content;
+}
+.lp-faq__tab {
+  position: relative;
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-ink-soft);
+  transition: color 0.25s ease;
+}
+.lp-faq__tab.is-active {
+  color: var(--color-surface);
+}
+.lp-faq__tab-pill {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--color-primary);
+  box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--color-primary) 70%, transparent);
+}
+.lp-faq__help {
+  padding: 26px;
+  border-radius: 24px;
+  background: var(--color-primary);
+  box-shadow: 0 30px 60px -32px color-mix(in srgb, var(--color-primary) 75%, transparent);
+}
+.lp-faq__avatar {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-surface) 25%, transparent);
+}
+.lp-faq__avatar--sm {
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+.lp-faq__online {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-whatsapp);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-whatsapp) 30%, transparent);
+}
+.lp-faq__fact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--color-surface) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-surface) 16%, transparent);
+  font-size: 14px;
+}
+.lp-faq__fact dt {
+  color: color-mix(in srgb, var(--color-surface) 70%, transparent);
+}
+.lp-faq__fact dd {
+  font-weight: 700;
+  color: var(--color-surface);
+  text-align: right;
+}
+.lp-faq__wa {
+  margin-top: 20px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 20px;
+  border-radius: 999px;
+  background: var(--color-whatsapp);
+  color: var(--color-surface);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  box-shadow: 0 12px 26px -12px var(--color-whatsapp);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.lp-faq__wa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px -12px var(--color-whatsapp);
+}
+.lp-faq__item {
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+@media (hover: hover) {
+  .lp-faq__item:not(.is-open):hover {
+    border-color: var(--color-line-strong);
+    box-shadow: 0 14px 30px -20px color-mix(in srgb, var(--color-primary) 45%, transparent);
+  }
+}
+.lp-faq__item.is-open {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 26px 50px -28px color-mix(in srgb, var(--color-primary) 75%, transparent);
+}
+.lp-faq__num {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--color-secondary-soft);
+  color: var(--color-secondary);
+  font-family: var(--font-satoshi), var(--font-dm-sans), sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  transition: all 0.35s ease;
+}
+.lp-faq__item.is-open .lp-faq__num {
+  background: var(--color-secondary);
+  color: var(--color-surface);
+}
+.lp-faq__q {
+  font-family: var(--font-satoshi), var(--font-dm-sans), sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  transition: color 0.35s ease;
+}
+@media (min-width: 768px) {
+  .lp-faq__q {
+    font-size: 18.5px;
+  }
+}
+.lp-faq__item.is-open .lp-faq__q {
+  color: var(--color-surface);
+}
+.lp-faq__toggle {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--color-line-strong);
+  color: var(--color-primary);
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+.lp-faq__item.is-open .lp-faq__toggle {
+  transform: rotate(45deg);
+  background: var(--color-surface);
+  border-color: var(--color-surface);
+  color: var(--color-primary);
+}
+.lp-faq__bubble {
+  flex: 1;
+  padding: 14px 16px;
+  border-radius: 4px 18px 18px 18px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+.lp-faq__from {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-montserrat), var(--font-dm-sans), sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
