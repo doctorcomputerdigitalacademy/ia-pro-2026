@@ -678,6 +678,11 @@ export const FAQ = {
       answer: "Les ordinateurs et la connexion Internet sont disponibles pour les ateliers pratiques, selon les équipements disponibles. Vous pouvez contacter l'académie pour connaître les modalités.",
     },
     {
+      id: "presentiel", category: "pratique",
+      question: "La formation se fait-elle en ligne ?",
+      answer: "Non. IA PRO 2026 est une formation 100 % en présentiel, en salle à Calavi. Seul le suivi de 30 jours qui suit la formation se fait à distance, dans le groupe WhatsApp privé.",
+    },
+    {
       id: "duree", category: "pratique",
       question: "Combien de temps dure la formation ?",
       answer: "Trois jours consécutifs : du lundi au mercredi, ou du jeudi au samedi. Pour chaque formule, deux horaires possibles : 10h à 13h ou 19h à 22h.",
@@ -695,7 +700,7 @@ export const FAQ = {
     {
       id: "lieu", category: "pratique",
       question: "Où se déroule la formation ?",
-      answer: "À Calavi, Bidossessi, après le carrefour de l'ORTB.",
+      answer: "En présentiel, en salle, à Calavi, Bidossessi, après le carrefour de l'ORTB.",
     },
     {
       id: "prix", category: "tarif",

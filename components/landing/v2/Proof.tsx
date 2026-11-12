@@ -72,7 +72,7 @@ export function Proof() {
                       transition={{ duration: 0.7, ease: EASE_OUT }}
                     >
                       <Image src={p.src} alt="" fill sizes="(min-width: 1024px) 40vw, 90vw" className="object-cover" />
-                      <figcaption>Séance pratique · Calavi</figcaption>
+                      <figcaption>Séance en présentiel · Calavi</figcaption>
                     </motion.figure>
                   );
                 })}

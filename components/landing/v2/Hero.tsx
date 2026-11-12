@@ -3,7 +3,9 @@ import { CTA } from "@/lib/landing/content.fr";
 import { HERO2 } from "@/lib/landing/content.v2";
 import { VSL_POSTER, VSL_SRC } from "@/lib/landing/config";
 import { TOTAL_VALUE } from "@/lib/landing/pricing";
+import { Location01Icon } from "@hugeicons/core-free-icons";
 import { CTAButton } from "../primitives/CTAButton";
+import { Icon } from "../primitives/Icon";
 import { HeroIn } from "../primitives/Reveal";
 import { Container } from "../primitives/SectionHead";
 import { VSLPlayer } from "../primitives/VSLPlayer";
@@ -21,7 +23,14 @@ export function Hero() {
       <div className="v2-hero__bg" aria-hidden="true" />
 
       <Container className="flex flex-col items-center text-center">
-        <div className="relative w-full max-w-[1000px]">
+        <HeroIn delay={0}>
+          <span className="v2-badge">
+            <Icon icon={Location01Icon} size={16} strokeWidth={2} />
+            {HERO2.badge}
+          </span>
+        </HeroIn>
+
+        <div className="relative mt-7 w-full max-w-[1000px]">
 
           <h1 id="hero-title" className="v2-title v2-title--hero">
             <HeroIn as="span" delay={0.05} className="block">

@@ -14,12 +14,14 @@ export const HERO2 = {
     { label: "Images & vidéos IA", tone: "red" as const, pos: "tr" as const },
     { label: "100 % pratique", tone: "blue" as const, pos: "br" as const },
   ],
+  /** Pastille au-dessus du titre */
+  badge: "Formation en présentiel · Calavi",
   /** Accroche simple */
   line1: "Apprenez l'IA en 3 jours.",
   line2Before: "Et utilisez-la",
   highlight: "comme un pro.",
   cursor: "Vous",
-  sub: "Une formation pratique à Calavi : ChatGPT, Claude, Gemini, images et vidéos IA.",
+  sub: "Une formation pratique en présentiel, en salle à Calavi : ChatGPT, Claude, Gemini, images et vidéos IA.",
   /** Les cibles (avec leurs photos) */
   targetsLead: "Pour les",
   targets: [
@@ -65,7 +67,7 @@ export const BEFORE_AFTER = {
 
 export const METHOD = {
   line1: "Pas de théorie.",
-  line2: "Une méthode, étape par étape.",
+  line2: "Une méthode pratiquée en salle, étape par étape.",
   steps: [
     { title: "Le besoin", text: "Vous partez d'un vrai besoin : un rapport, une pub, une présentation." },
     { title: "Le bon prompt", text: "Vous donnez à l'IA des instructions claires et structurées." },
@@ -76,7 +78,7 @@ export const METHOD = {
 };
 
 export const SPECIALTIES = {
-  line1: "Une formation.",
+  line1: "Une formation en présentiel.",
   line2: "Deux spécialités.",
   pro: {
     tag: "Spécialité 1",
@@ -103,7 +105,7 @@ export type IlluKind = (typeof PRO_ILLU)[number] | (typeof VISUAL_ILLU)[number];
 /** Programme : 6 modules (IA professionnelle) et 7 compétences (IA visuelle), en onglets. */
 export const PROGRAM = {
   line1: "Le programme.",
-  line2: "Deux spécialités, 13 étapes.",
+  line2: "Deux spécialités, 13 étapes, en salle.",
   tabs: [
     {
       label: "IA professionnelle",
@@ -135,7 +137,7 @@ const REAL_TONE = ["blue", "ink", "blue", "red", "ink", "red", "ink"] as const;
 
 export const REALISATIONS = {
   line1: "Voilà ce que vous saurez faire.",
-  line2: "7 réalisations, faites pendant la formation.",
+  line2: "7 réalisations, faites en salle pendant la formation.",
   items: ACHIEVEMENTS.items.map((it, i) => ({
     kicker: `Réalisation ${String(i + 1).padStart(2, "0")}`,
     short: REAL_SHORT[i] ?? it.title,
@@ -157,9 +159,14 @@ export const FOR_WHO = {
     "Vous voulez gagner du temps sur vos documents.",
     "Vous voulez créer vos propres visuels et vidéos.",
     "Vous débutez : aucun niveau en IA n'est exigé.",
+    "Vous pouvez venir à Calavi pendant 3 jours.",
   ],
   noTitle: "Ce n'est pas pour vous si",
-  no: ["Vous cherchez un bouton magique, sans pratiquer.", "Vous n'êtes pas prêt à consacrer 3 jours à apprendre."],
+  no: [
+    "Vous cherchez une formation en ligne, à distance.",
+    "Vous cherchez un bouton magique, sans pratiquer.",
+    "Vous n'êtes pas prêt à consacrer 3 jours à apprendre.",
+  ],
 };
 
 export const TOOLS = {
@@ -215,11 +222,11 @@ export const FAQ2 = {
 export const FINAL2 = {
   line1: "Votre prochain projet mérite un niveau pro.",
   line2: "Commencez aujourd'hui.",
-  note: "20 places maximum par cohorte.",
+  note: "Formation en présentiel à Calavi · 20 places maximum par cohorte.",
 };
 
 export const FOOTER2 = {
-  tagline: "Formations pratiques en intelligence artificielle, à Calavi.",
+  tagline: "Formations pratiques en intelligence artificielle, en présentiel à Calavi.",
   linksTitle: "La formation",
   contactTitle: "Contact",
 };

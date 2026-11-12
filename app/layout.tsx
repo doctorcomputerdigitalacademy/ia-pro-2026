@@ -48,12 +48,12 @@ const clash = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "IA PRO 2026 | Formation pratique en intelligence artificielle à Calavi",
+  title: "IA PRO 2026 | Formation en présentiel en intelligence artificielle à Calavi",
   description:
-    "3 jours de formation pratique + 30 jours d'accompagnement pour maîtriser ChatGPT, Claude, Gemini et NotebookLM, et créer visuels et vidéos avec l'IA. 20 000 FCFA tout compris. Doctor Computer Digital Academy, Calavi.",
+    "3 jours de formation pratique en présentiel à Calavi + 30 jours d'accompagnement pour maîtriser ChatGPT, Claude, Gemini et NotebookLM, et créer visuels et vidéos avec l'IA. 20 000 FCFA tout compris. Doctor Computer Digital Academy, Calavi.",
   openGraph: {
     title: "IA PRO 2026 | Doctor Computer Digital Academy",
-    description: "Ne soyez plus un simple utilisateur de l'IA. Apprenez à en faire votre véritable assistant professionnel.",
+    description: "Apprenez l'IA en 3 jours, en présentiel à Calavi. Et utilisez-la comme un pro.",
     locale: "fr_FR",
     type: "website",
   },
