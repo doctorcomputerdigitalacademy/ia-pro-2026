@@ -4,8 +4,6 @@ import { Achievements } from "./sections/Achievements";
 import { Audience } from "./sections/Audience";
 import { Bonus } from "./sections/Bonus";
 import { HowItWorks } from "./sections/HowItWorks";
-import { Journey } from "./sections/Journey";
-import { Situations } from "./sections/Situations";
 import { FaqSection } from "./sections/FaqSection";
 import { FinalCta } from "./sections/FinalCta";
 import { Footer } from "./sections/Footer";
@@ -16,7 +14,6 @@ import { Problem } from "./sections/Problem";
 import { ProfessionalAI } from "./sections/ProfessionalAI";
 import { Schedule } from "./sections/Schedule";
 import { Solution } from "./sections/Solution";
-import { Support } from "./sections/Support";
 import { Trust } from "./sections/Trust";
 import { VisualAI } from "./sections/VisualAI";
 
@@ -36,14 +33,11 @@ export function LandingPage() {
         <main id="contenu">
           <Hero />
           <Problem />
-          <Situations />
           <Solution />
           <ProfessionalAI />
           <VisualAI />
           <Achievements />
-          <Support />
           <Trust />
-          <Journey />
           <Audience />
           <Bonus />
           <Pricing />

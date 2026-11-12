@@ -45,7 +45,6 @@ import {
   WhatsappIcon,
   HandHelpingIcon,
   Wallet01Icon,
-  LanguageSkillIcon,
   Camera01Icon,
   Film01Icon,
 } from "@hugeicons/core-free-icons";
@@ -227,9 +226,6 @@ export const BONUS = {
   free: "GRATUIT",
   items: [
     { title: "Plus de 1 650 ressources IA", text: "Prompts, outils et templates prêts à l'emploi.", icon: FolderLibraryIcon, value: 20000, cover: { text: "+1 650 RESSOURCES IA", tone: "blue" as const }, image: "" },
-    { title: "Un groupe privé d'accompagnement pendant 1 mois", text: "Sur WhatsApp, avec de nouvelles formations partagées chaque mois.", icon: WhatsappIcon, value: 15000, cover: { text: "GROUPE PRIVÉ 1 MOIS", tone: "red" as const }, image: "" },
-    { title: "Ordinateurs neufs et Wi-Fi haut débit fournis", text: "Pour pratiquer dans de bonnes conditions pendant la formation en présentiel.", icon: ComputerIcon, value: 10000, cover: { text: "ORDINATEURS NEUFS + WI-FI", tone: "ink" as const }, image: "" },
-    { title: "1 mois de cours d'anglais parlé offert", text: "Pour gagner en aisance à l'oral, en plus de la formation IA.", icon: LanguageSkillIcon, value: 15000, cover: { text: "ANGLAIS PARLÉ 1 MOIS", tone: "blue" as const }, image: "" },
     { title: "Création de photo-shootings avec l'IA", text: "Réalisez des séances photo professionnelles sans studio : portraits, photos produits et visuels de marque générés par l'IA.", icon: Camera01Icon, value: 15000, cover: { text: "PHOTO-SHOOTING IA", tone: "red" as const }, image: "" },
     { title: "Création de films IA", text: "Écrivez, générez et montez vos propres courts films réalisés avec l'intelligence artificielle.", icon: Film01Icon, value: 20000, cover: { text: "FILMS IA", tone: "ink" as const }, image: "" },
   ],
@@ -465,105 +461,41 @@ export const PHOTO_BADGE = "Séance pratique";
    Les 10 premiers défilent sur la ligne 1, les suivants sur la ligne 2.
    ========================================================================== */
 export const testimonials: { name: string; role: string; quote: string }[] = [
+  // <!-- À CONFIRMER : témoignage réel ? -->
   {
     name: "Fifamè A.",
     role: "Étudiante en gestion, Abomey-Calavi",
     quote: "Je pensais connaître ChatGPT. J'ai découvert qu'on peut lui donner de vraies méthodes de travail. Mon mémoire avance beaucoup plus sereinement.",
   },
+  // <!-- À CONFIRMER : témoignage réel ? -->
   {
     name: "Rodrigue H.",
     role: "Entrepreneur, Cotonou",
     quote: "Le module sur les Projects m'a ouvert les yeux : j'ai maintenant un assistant qui connaît mon activité et m'aide à préparer mes devis.",
   },
+  // <!-- À CONFIRMER : témoignage réel ? -->
   {
     name: "Ornella K.",
     role: "Commerçante, Calavi",
     quote: "J'ai réalisé mes premières affiches publicitaires avec Google Flow et Kling AI pendant la formation. Mes clientes les ont remarquées sur mon statut WhatsApp.",
   },
+  // <!-- À CONFIRMER : témoignage réel ? -->
   {
     name: "Gildas D.",
     role: "Comptable",
     quote: "NotebookLM a changé ma façon de lire les documents longs. Je retrouve les informations importantes en quelques minutes.",
   },
+  // <!-- À CONFIRMER : témoignage réel ? -->
   {
     name: "Prisca S.",
     role: "Secrétaire de direction",
     quote: "Les rapports me prenaient des heures. Avec les bons prompts, j'ai une première structure solide que je n'ai plus qu'à ajuster.",
   },
+  // <!-- À CONFIRMER : témoignage réel ? -->
   {
     name: "Hermann T.",
     role: "Créateur de contenu",
     quote: "La partie vidéo m'a bluffé : script, storyboard, voix off, montage CapCut… J'ai compris toute la chaîne de production.",
-  },
-  {
-    name: "Bernice G.",
-    role: "Étudiante en communication",
-    quote: "Formation très pratique, on manipule les outils du début à la fin. Le formateur prend le temps d'expliquer à chacun.",
-  },
-  {
-    name: "Arnaud Z.",
-    role: "Enseignant",
-    quote: "J'utilise maintenant Claude pour préparer mes fiches de cours et mes exercices. Je gagne un temps précieux chaque semaine.",
-  },
-  {
-    name: "Nadège M.",
-    role: "Responsable d'une boutique en ligne",
-    quote: "Le groupe WhatsApp après la formation est un vrai plus : j'ai pu poser mes questions et faire corriger mes visuels.",
-  },
-  {
-    name: "Ulrich A.",
-    role: "Développeur débutant",
-    quote: "Le prompt engineering avancé, c'est ce qui manquait à ma pratique. Mes demandes sont plus précises, les réponses aussi.",
-  },
-  {
-    name: "Chimène B.",
-    role: "Chargée de communication",
-    quote: "J'ai appris à garder un personnage cohérent d'une image à l'autre. Parfait pour les campagnes de notre structure.",
-  },
-  {
-    name: "Romaric F.",
-    role: "Étudiant en droit",
-    quote: "Je débutais complètement. En trois jours, j'ai compris comment faire des recherches sérieuses et organiser mes notes avec l'IA.",
-  },
-  {
-    name: "Grâce O.",
-    role: "Entrepreneure dans la restauration",
-    quote: "J'ai produit ma première publicité vidéo avec Google Flow. Je ne pensais pas en être capable aussi vite.",
-  },
-  {
-    name: "Wilfried K.",
-    role: "Agent commercial",
-    quote: "Préparer mes présentations clients est devenu beaucoup plus simple. Elles sont mieux structurées et plus convaincantes.",
-  },
-  {
-    name: "Carine E.",
-    role: "Assistante administrative",
-    quote: "Petit groupe, ambiance conviviale, beaucoup de pratique. On repart avec des réalisations concrètes, pas juste de la théorie.",
-  },
-  {
-    name: "Ezéchiel L.",
-    role: "Photographe",
-    quote: "La génération d'images et les voix off avec ElevenLabs m'ont donné de nouvelles idées de services pour mes clients.",
-  },
-  {
-    name: "Murielle V.",
-    role: "Étudiante en marketing",
-    quote: "J'ai enfin compris la différence entre ChatGPT, Claude et Gemini, et quand utiliser chacun. Ça change tout.",
-  },
-  {
-    name: "Fabrice N.",
-    role: "Gérant de cybercafé",
-    quote: "Je peux maintenant accompagner mes clients dans leurs démarches avec l'IA. La formation m'a rendu plus utile au quotidien.",
-  },
-  {
-    name: "Sèna H.",
-    role: "Consultante RH",
-    quote: "Créer un Skill Claude adapté à mes entretiens de recrutement a été le moment fort de la formation pour moi.",
-  },
-  {
-    name: "Koffi A.",
-    role: "Jeune diplômé",
-    quote: "Rapport qualité-prix imbattable. Trois jours intenses et un mois d'accompagnement pour continuer à progresser.",
   },
 ];
 
@@ -633,7 +565,7 @@ export const PRICING = {
     { label: "La spécialité IA professionnelle.", value: 25000 },
     { label: "La spécialité IA visuelle et cinématographique.", value: 25000 },
     { label: "Les supports pédagogiques.", value: 10000 },
-    { label: "Un mois de suivi après la formation.", value: 15000 },
+    { label: "Un mois de suivi après la formation : groupe WhatsApp privé, exercices, corrections et aide pour finaliser votre projet.", value: 15000 },
     { label: "Un groupe privé WhatsApp.", value: 10000 },
     { label: "Des exercices pratiques et corrections.", value: 10000 },
     { label: "Des conseils et ressources complémentaires.", value: 5000 },

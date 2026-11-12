@@ -1,10 +1,8 @@
-import { Calendar03Icon } from "@hugeicons/core-free-icons";
 import { CTA, SOLUTION } from "@/lib/landing/content.fr";
 import { cn } from "@/lib/utils";
 import { CTAButton } from "../primitives/CTAButton";
 import { Icon } from "../primitives/Icon";
 import { Reveal } from "../primitives/Reveal";
-import { Rich } from "../primitives/Rich";
 import { Container, SectionHead } from "../primitives/SectionHead";
 
 /** SECTION 3 — LA SOLUTION : IA PRO 2026 */
@@ -40,21 +38,6 @@ export function Solution() {
               ))}
             </div>
           </div>
-        </Reveal>
-
-        <Reveal y={24} className="mt-4">
-          <div className="lp-card flex items-center gap-4 p-5 md:gap-5 md:p-7">
-            <span className="lp-icon-tile">
-              <Icon icon={Calendar03Icon} />
-            </span>
-            <p className="text-[16px] text-ink md:text-lg">{SOLUTION.support}</p>
-          </div>
-        </Reveal>
-
-        <Reveal y={24} className="mx-auto mt-12 max-w-[780px] text-center">
-          <p className="text-[22px] font-medium leading-snug tracking-[-0.02em] text-ink md:text-[28px]">
-            <Rich text={SOLUTION.statement} strong={false} />
-          </p>
         </Reveal>
 
         <Reveal y={24} className="mt-10 flex justify-center">

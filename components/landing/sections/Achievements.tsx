@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { useInView } from "motion/react";
 import { Tick02Icon } from "@hugeicons/core-free-icons";
 import { ACHIEVEMENTS, CTA } from "@/lib/landing/content.fr";
@@ -12,13 +12,9 @@ import { Container, SectionHead } from "../primitives/SectionHead";
 type Item = (typeof ACHIEVEMENTS.items)[number];
 
 /** Une réalisation : se coche quand elle arrive à l'écran. */
-function SkillRow({ item, index, onReach }: { item: Item; index: number; onReach: (i: number) => void }) {
+function SkillRow({ item, index }: { item: Item; index: number }) {
   const ref = useRef<HTMLLIElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.6 });
-  useEffect(() => {
-    if (inView) onReach(index);
-  }, [inView, index, onReach]);
-
   return (
     <li ref={ref} className="lp-skill pb-4" data-on={inView}>
       <span className="lp-skill__check" aria-hidden="true">
@@ -58,23 +54,9 @@ function SkillRow({ item, index, onReach }: { item: Item; index: number; onReach
 /**
  * SECTION 6 — CE QUE VOUS SAUREZ FAIRE À LA FIN
  * Inspiré de phantombuild : chaque réalisation se coche au défilement,
- * avec une mini-fenêtre illustrative ; barre de progression « x sur 7 ». Fond bleu uni.
+ * avec une mini-fenêtre illustrative. Fond bleu uni.
  */
 export function Achievements() {
-  const total = ACHIEVEMENTS.items.length;
-  const [reached, setReached] = useState<boolean[]>(() => Array(total).fill(false));
-  const count = reached.filter(Boolean).length;
-  const onReach = useCallback(
-    (i: number) =>
-      setReached((prev) => {
-        if (prev[i]) return prev;
-        const next = [...prev];
-        next[i] = true;
-        return next;
-      }),
-    [],
-  );
-
   return (
     <section className="lp-section">
       <div className="lp-band">
@@ -83,7 +65,7 @@ export function Achievements() {
 
           <ol className="mx-auto max-w-[860px]">
             {ACHIEVEMENTS.items.map((item, i) => (
-              <SkillRow key={item.title} item={item} index={i} onReach={onReach} />
+              <SkillRow key={item.title} item={item} index={i} />
             ))}
           </ol>
 
@@ -96,18 +78,6 @@ export function Achievements() {
             </div>
           </Reveal>
 
-          <div className="mt-5 flex justify-center">
-            <span className="inline-flex items-center gap-3 rounded-full border border-line px-4 py-2 text-[13.5px] text-ink-soft">
-              <span className="lp-progress-dashes" aria-hidden="true">
-                {reached.map((on, i) => (
-                  <i key={i} data-on={on} />
-                ))}
-              </span>
-              <span>
-                <span className="font-semibold text-ink">{count}</span> sur {total} {ACHIEVEMENTS.unlocked}
-              </span>
-            </span>
-          </div>
         </Container>
       </div>
     </section>

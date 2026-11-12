@@ -54,15 +54,15 @@ function MarqueeRow({ items, reverse, duration }: { items: Testimonial[]; revers
       style={{ "--marquee-duration": duration } as React.CSSProperties}
     >
       <ul className="lp-marquee__track">
-        {items.map((t) => (
-          <li key={t.name} className="flex">
+        {items.map((t, i) => (
+          <li key={`${t.name}-${i}`} className="flex">
             <TestimonialCard t={t} />
           </li>
         ))}
       </ul>
       <ul className="lp-marquee__track" aria-hidden="true">
-        {items.map((t) => (
-          <li key={t.name} className="flex">
+        {items.map((t, i) => (
+          <li key={`${t.name}-${i}`} className="flex">
             <TestimonialCard t={t} />
           </li>
         ))}
@@ -74,8 +74,10 @@ function MarqueeRow({ items, reverse, duration }: { items: Testimonial[]; revers
 export function TestimonialsMarquee() {
   if (testimonials.length === 0) return null;
   const half = Math.ceil(testimonials.length / 2);
-  const rowA = testimonials.slice(0, half);
-  const rowB = testimonials.slice(half);
+  // Avec peu de témoignages, chaque ligne répète sa série pour rester plus large que l'écran (boucle sans trou)
+  const fill = (list: Testimonial[]) => Array.from({ length: Math.max(1, Math.ceil(8 / Math.max(1, list.length))) }, () => list).flat();
+  const rowA = fill(testimonials.slice(0, half));
+  const rowB = fill(testimonials.slice(half));
 
   return (
     <div className="space-y-4 md:space-y-5" role="region" aria-label="Témoignages des anciens apprenants">
