@@ -94,6 +94,14 @@ export const HERO = {
     "En 3 jours de pratique, maîtrisez ChatGPT, Claude, Gemini et NotebookLM, et créez vos visuels et vidéos avec l'IA.",
   vslLabel: "Regarder la présentation de IA PRO 2026",
   notes: ["Formation 100 % en présentiel à Calavi, Bidossessi.", "20 places maximum par cohorte."],
+  /** Étiquettes inclinées qui flottent autour du titre (inspiré de ghostdesignco) */
+  tags: [
+    { label: "Formation 100 % pratique", tone: "light" as const, pos: "tl" as const },
+    { label: "ChatGPT · Claude · Gemini", tone: "red" as const, pos: "tr" as const },
+    { label: "Images & vidéos IA", tone: "light" as const, pos: "br" as const },
+  ],
+  /** Ligne sous le bouton */
+  ctaNote: "Présentiel à Calavi, Bidossessi · 20 places maximum par cohorte",
 };
 
 /* Bandeau de chiffres clés (uniquement des informations factuelles du programme) */

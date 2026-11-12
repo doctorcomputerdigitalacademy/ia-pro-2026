@@ -11,6 +11,8 @@ type CTAButtonProps = {
   pulse?: boolean;
   /** Affiche le prix dans le bouton (activé par défaut sur tous les CTA) */
   showPrice?: boolean;
+  /** Valeur barrée affichée après le prix (ancrage), ex. « 200 000 » */
+  anchor?: string;
   href?: string;
   className?: string;
 };
@@ -26,6 +28,7 @@ export function CTAButton({
   size = "md",
   pulse = false,
   showPrice = true,
+  anchor,
   href = REGISTRATION_URL,
   className,
 }: CTAButtonProps) {
@@ -59,6 +62,12 @@ export function CTAButton({
         <span className="pb-ai-price">
           <span className="sr-only"> — </span>
           {PRICE_LABEL}
+          {anchor ? (
+            <s className="pb-ai-anchor">
+              <span className="sr-only"> au lieu de </span>
+              {anchor}
+            </s>
+          ) : null}
         </span>
       ) : null}
       <span className="sr-only"> (s&apos;ouvre dans un nouvel onglet)</span>

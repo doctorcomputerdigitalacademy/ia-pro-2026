@@ -1099,3 +1099,190 @@
   text-transform: uppercase;
   color: var(--color-secondary);
 }
+
+/* ==========================================================================
+   HERO — fusion avec motion.ghostdesignco.com
+   ========================================================================== */
+/* Quadrillage discret par-dessus le bleu uni */
+.lp-hero-panel--grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-surface) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-surface) 6%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: center top;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 95%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 95%);
+  pointer-events: none;
+}
+
+/* Titre en deux tons, Satoshi gras et serré */
+.lp-h1--ghost {
+  font-family: var(--font-satoshi), var(--font-dm-sans), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(32px, 5.4vw, 66px);
+  letter-spacing: -0.045em;
+  line-height: 1.04;
+}
+.lp-hero-accent--ghost {
+  font-weight: 700;
+  color: color-mix(in srgb, var(--color-surface) 58%, transparent);
+}
+.lp-hero-accent--ghost .lp-select {
+  color: var(--color-surface);
+}
+
+/* Étiquettes inclinées qui flottent autour du titre */
+.lp-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 10px;
+  margin-bottom: 18px;
+}
+.lp-hero-tag__pill {
+  display: inline-flex;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-primary);
+  font-family: var(--font-satoshi), var(--font-dm-sans), sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--color-ink) 60%, transparent);
+  animation: lp-tag-float 5s ease-in-out infinite;
+}
+.lp-hero-tag__pill.is-red {
+  background: var(--color-secondary);
+  color: var(--color-surface);
+}
+.lp-hero-tag:nth-child(1) .lp-hero-tag__pill { transform: rotate(-6deg); animation-delay: 0s; }
+.lp-hero-tag:nth-child(2) .lp-hero-tag__pill { transform: rotate(5deg); animation-delay: -1.6s; }
+.lp-hero-tag:nth-child(3) .lp-hero-tag__pill { transform: rotate(-4deg); animation-delay: -3.2s; }
+@keyframes lp-tag-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -6px; }
+}
+@media (min-width: 900px) {
+  .lp-hero-tags {
+    display: block;
+    margin: 0;
+  }
+  .lp-hero-tag {
+    position: absolute;
+    z-index: 20;
+  }
+  .lp-hero-tag__pill {
+    padding: 8px 18px;
+    font-size: 15.5px;
+  }
+  .lp-hero-tag--tl { left: 2%; top: -26px; }
+  .lp-hero-tag--tr { right: 1%; top: -14px; }
+  .lp-hero-tag--br { left: -2%; bottom: -30px; }
+}
+
+/* Scène : écran de la vidéo devant deux lignes de photos qui défilent */
+.lp-hero-stage {
+  padding: 26px 0;
+}
+.lp-hero-photos {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  pointer-events: none;
+  opacity: 0.9;
+}
+.lp-hero-photos .lp-marquee {
+  --marquee-gap: 14px;
+}
+.lp-hero-photo {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  width: 190px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid color-mix(in srgb, var(--color-surface) 25%, transparent);
+  box-shadow: 0 16px 34px -18px color-mix(in srgb, var(--color-ink) 75%, transparent);
+}
+@media (min-width: 768px) {
+  .lp-hero-photo {
+    width: 230px;
+    height: 200px;
+  }
+}
+.lp-device {
+  position: relative;
+  padding: 10px;
+  border-radius: 30px;
+  background: var(--color-ink);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-surface) 18%, transparent),
+    0 40px 90px -30px color-mix(in srgb, var(--color-ink) 85%, transparent);
+}
+@media (min-width: 768px) {
+  .lp-device {
+    padding: 14px;
+    border-radius: 36px;
+  }
+}
+.lp-device__cam {
+  position: absolute;
+  z-index: 2;
+  top: 3px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-surface) 25%, transparent);
+}
+@media (min-width: 768px) {
+  .lp-device__cam { top: 4px; }
+}
+.lp-hero .lp-device .lp-vsl {
+  border: none;
+  box-shadow: none;
+}
+
+/* Bouton en deux parties : réservation | prix + valeur barrée */
+.pb-ai-button.pb-ai-button--split {
+  padding: 6px 6px 6px 30px;
+  gap: 18px;
+}
+.pb-ai-button--split .pb-ai-price {
+  gap: 10px;
+  padding: 12px 18px;
+  font-size: 18px;
+}
+.pb-ai-anchor {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-path);
+  text-decoration-color: var(--color-secondary);
+  text-decoration-thickness: 2px;
+}
+@media (max-width: 640px) {
+  .pb-ai-button.pb-ai-button--split {
+    padding: 14px 14px 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-hero-tag__pill {
+    animation: none;
+  }
+}
+@media (max-width: 899px) {
+  .lp-hero-tag__pill {
+    padding: 5px 12px;
+    font-size: 12.5px;
+  }
+}
