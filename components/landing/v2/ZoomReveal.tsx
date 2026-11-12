@@ -5,7 +5,7 @@ import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } f
 import { ZOOM } from "@/lib/landing/content.v2";
 
 function FloatCard({ card, index, progress }: { card: (typeof ZOOM.cards)[number]; index: number; progress: MotionValue<number> }) {
-  const start = 0.42 + index * 0.08;
+  const start = 0.3 + index * 0.08;
   const x = useTransform(progress, [start, start + 0.14], [90, 0]);
   const opacity = useTransform(progress, [start, start + 0.12], [0, 1]);
   return (
@@ -23,12 +23,12 @@ function FloatCard({ card, index, progress }: { card: (typeof ZOOM.cards)[number
 export function ZoomReveal() {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-  const scale = useTransform(scrollYProgress, [0, 0.4], [0.5, 1]);
-  const radius = useTransform(scrollYProgress, [0, 0.4], [56, 28]);
-  const border = useTransform(scrollYProgress, [0, 0.35], [18, 0]);
-  const textOpacity = useTransform(scrollYProgress, [0.3, 0.45], [0, 1]);
-  const textY = useTransform(scrollYProgress, [0.3, 0.45], [40, 0]);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end end"] });
+  const scale = useTransform(scrollYProgress, [0, 0.38], [0.78, 1]);
+  const radius = useTransform(scrollYProgress, [0, 0.38], [40, 28]);
+  const border = useTransform(scrollYProgress, [0, 0.3], [12, 0]);
+  const textOpacity = useTransform(scrollYProgress, [0.14, 0.3], [0, 1]);
+  const textY = useTransform(scrollYProgress, [0.14, 0.3], [40, 0]);
 
   return (
     <section ref={ref} className="v2-zoom" aria-labelledby="zoom-title">

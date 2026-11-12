@@ -2,7 +2,6 @@ import Image from "next/image";
 import { CTA } from "@/lib/landing/content.fr";
 import { HERO2 } from "@/lib/landing/content.v2";
 import { VSL_POSTER, VSL_SRC } from "@/lib/landing/config";
-import { TOTAL_VALUE } from "@/lib/landing/pricing";
 import { Location01Icon } from "@hugeicons/core-free-icons";
 import { CTAButton } from "../primitives/CTAButton";
 import { Icon } from "../primitives/Icon";
@@ -16,7 +15,6 @@ import { VSLPlayer } from "../primitives/VSLPlayer";
  * puis la vidéo dans un cadre d'écran.
  */
 export function Hero() {
-  const anchor = TOTAL_VALUE.toLocaleString("fr-FR").replace(/\s/g, " ");
 
   return (
     <section id="top" aria-labelledby="hero-title" className="v2-hero relative isolate pt-[128px] md:pt-[184px]">
@@ -83,16 +81,16 @@ export function Hero() {
         </HeroIn>
 
         <HeroIn delay={0.6} className="mt-10 flex w-full justify-center">
-          <CTAButton label={CTA.hero} pulse anchor={anchor} className="pb-ai-button--split" />
+          <CTAButton label={CTA.hero} showPrice={false} />
         </HeroIn>
         <HeroIn delay={0.7}>
           <p className="mt-3.5 text-[13.5px] text-ink-soft">{HERO2.note}</p>
         </HeroIn>
       </Container>
 
-      <HeroIn delay={0.8} className="v2-stage relative mt-16 md:mt-24">
+      <HeroIn delay={0.8} className="v2-stage relative mt-14 md:mt-20">
         <Container className="relative z-10 flex justify-center">
-          <div className="lp-device w-full max-w-[760px]">
+          <div className="lp-device w-full max-w-[1000px]">
             <span className="lp-device__cam" aria-hidden="true" />
             <VSLPlayer src={VSL_SRC} poster={VSL_POSTER} title={HERO2.vslTitle} kicker="IA PRO 2026 · Présentation" />
           </div>

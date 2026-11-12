@@ -962,3 +962,17 @@
   font-weight: 700;
   letter-spacing: 0.01em;
 }
+
+/* Zoom : démarre juste sous la vidéo (pas de vide), l'écran grandit depuis le haut */
+.v2-zoom {
+  height: 220vh;
+  margin-top: 24px;
+}
+.v2-zoom__screen {
+  transform-origin: 50% 0%;
+}
+@media (min-width: 768px) {
+  .v2-zoom {
+    margin-top: 40px;
+  }
+}
