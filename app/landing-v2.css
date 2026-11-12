@@ -893,3 +893,58 @@
   background: var(--color-secondary);
   border-color: var(--color-secondary);
 }
+
+/* ==========================================================================
+   ALLÈGEMENT (v2.1) — boutons nets, plus d'espace, moins d'effets
+   ========================================================================== */
+/* Boutons : plus d'anneau ni de halo ni de pulsation, juste une ombre légère */
+.v2-root .pb-ai-button,
+.v2-root .pb-ai-button--sm,
+.v2-root .pb-ai-button--bar,
+.v2-root .pb-ai-button--pulse {
+  animation: none;
+  box-shadow:
+    inset 0 -2px 0 color-mix(in srgb, var(--color-ink) 18%, transparent),
+    0 8px 20px -10px color-mix(in srgb, var(--color-secondary) 55%, transparent);
+}
+.v2-root .pb-ai-button:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 -2px 0 color-mix(in srgb, var(--color-ink) 18%, transparent),
+    0 14px 26px -12px color-mix(in srgb, var(--color-secondary) 65%, transparent);
+}
+.v2-root .pb-ai-price {
+  box-shadow: none;
+}
+.v2-root .pb-ai-button.pb-ai-button--split {
+  padding: 6px 6px 6px 26px;
+}
+.v2-root .pb-ai-button--split .pb-ai-price {
+  padding: 11px 16px;
+  font-size: 16.5px;
+}
+
+/* Plus d'air entre les sections */
+.v2-section {
+  padding-top: 104px;
+}
+@media (min-width: 768px) {
+  .v2-section {
+    padding-top: 168px;
+  }
+}
+.v2-zoom {
+  margin-top: 120px;
+}
+
+/* Hero épuré : sans étiquettes flottantes ni grille de points */
+.v2-hero .lp-hero-bg {
+  display: none;
+}
+/* Profils visés : sans cadre, simple ligne */
+.v2-targets {
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}

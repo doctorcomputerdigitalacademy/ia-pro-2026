@@ -15,8 +15,8 @@ function Ring({ items, kind }: { items: typeof TOOLS.words; kind: "inner" | "out
         <div key={t.word} className="v2-orbit__slot" style={{ "--a": `${(360 / items.length) * i}deg` } as React.CSSProperties}>
           <span className="v2-orbit__upright">
             <span className={cn("v2-orbit__chip", kind === "inner" && "is-main")}>
-              <b>{t.word.replace(/\.$/, "")}</b>
-              <small>{t.tag}</small>
+              <i aria-hidden="true" />
+              {t.word.replace(/\.$/, "")}
             </span>
           </span>
         </div>
