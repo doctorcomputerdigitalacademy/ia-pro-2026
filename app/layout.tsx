@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import "./landing.css";
 import "./landing-bands.css";
+import "./landing-v2.css";
 
 /* Police du texte courant et des boutons : DM Sans (reprise de oskool.site) */
 const dmSans = DM_Sans({
@@ -33,6 +34,17 @@ const satoshi = localFont({
   ],
 });
 
+/* Police des grands titres : Clash Display (Indian Type Foundry, licence ITF Free Font), comme ghostdesignco */
+const clash = localFont({
+  variable: "--font-clash",
+  display: "swap",
+  src: [
+    { path: "./fonts/ClashDisplay-500.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/ClashDisplay-600.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/ClashDisplay-700.woff2", weight: "700", style: "normal" },
+  ],
+});
+
 export const metadata: Metadata = {
   title: "IA PRO 2026 | Formation pratique en intelligence artificielle à Calavi",
   description:
@@ -51,7 +63,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${dmSans.variable} ${satoshi.variable} ${montserrat.variable} h-full antialiased`}>
+    <html lang="fr" className={`${dmSans.variable} ${satoshi.variable} ${montserrat.variable} ${clash.variable} h-full antialiased`}>
       <body className="min-h-full">{children}</body>
     </html>
   );
