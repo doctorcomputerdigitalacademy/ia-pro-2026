@@ -70,6 +70,13 @@ export function VSLPlayer({ src, poster, title, kicker = "Présentation vidéo",
             // eslint-disable-next-line @next/next/no-img-element
             <img src={poster} alt="" loading="lazy" decoding="async" className="absolute inset-0 size-full object-cover" />
           ) : null}
+          {poster ? (
+            <div
+              aria-hidden="true"
+              className="absolute inset-0"
+              style={{ background: "linear-gradient(180deg, color-mix(in srgb, var(--color-ink) 10%, transparent) 30%, color-mix(in srgb, var(--color-ink) 75%, transparent) 100%)" }}
+            />
+          ) : null}
 
           <span className="absolute left-3 top-3 hidden items-center sm:inline-flex gap-2 rounded-full border border-line bg-surface/90 px-3 py-1 text-[12px] font-medium tracking-wide text-ink-soft backdrop-blur md:left-5 md:top-5 md:text-[13px]">
             <span className="lp-dot" aria-hidden="true" />
@@ -80,13 +87,13 @@ export function VSLPlayer({ src, poster, title, kicker = "Présentation vidéo",
             <button
               type="button"
               onClick={() => setPlaying(true)}
-              className="absolute inset-0 flex flex-col items-center justify-center gap-4 md:gap-6"
+              className={cn("absolute inset-0 flex flex-col items-center gap-4 md:gap-6", poster ? "justify-end pb-8 md:pb-12" : "justify-center")}
               aria-label={`Lire la vidéo : ${title}`}
             >
               <span className="lp-play">
                 <Icon icon={PlayIcon} size={34} strokeWidth={2} className="translate-x-[2px]" />
               </span>
-              <span className="px-6 text-center text-[15px] font-medium text-ink md:text-xl">{title}</span>
+              <span className={cn("px-6 text-center text-[15px] font-medium md:text-xl", poster ? "text-surface" : "text-ink")}>{title}</span>
             </button>
           ) : (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 md:gap-6" role="img" aria-label={`${title} (vidéo bientôt disponible)`}>

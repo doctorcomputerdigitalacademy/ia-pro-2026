@@ -25,10 +25,10 @@ export const CONTACT_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURICom
  * (ex. "/videos/presentation.mp4" placé dans le dossier public/).
  * Laisser vide ("") pour afficher le placeholder.
  */
-export const VSL_SRC = "";
+export const VSL_SRC = "https://youtu.be/zy_oI6j_ENE";
 
 /** Image d'aperçu optionnelle de la vidéo (ex. "/images/vsl-poster.jpg"). */
-export const VSL_POSTER = "";
+export const VSL_POSTER = "https://i.ytimg.com/vi/zy_oI6j_ENE/maxresdefault.jpg";
 
 /** Prix affiché sur tous les boutons d'appel à l'action. */
 export const PRICE_LABEL = "20 000 FCFA";
