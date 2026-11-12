@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CTA, photos } from "@/lib/landing/content.fr";
+import { CTA } from "@/lib/landing/content.fr";
 import { HERO2 } from "@/lib/landing/content.v2";
 import { VSL_POSTER, VSL_SRC } from "@/lib/landing/config";
 import { TOTAL_VALUE } from "@/lib/landing/pricing";
@@ -10,34 +10,13 @@ import { HeroIn } from "../primitives/Reveal";
 import { Container } from "../primitives/SectionHead";
 import { VSLPlayer } from "../primitives/VSLPlayer";
 
-type Photo = (typeof photos)[number];
-
-function PhotoRow({ items, reverse }: { items: Photo[]; reverse?: boolean }) {
-  return (
-    <div className={cn("lp-marquee", reverse && "lp-marquee--reverse")} style={{ "--marquee-duration": "60s" } as React.CSSProperties}>
-      {[0, 1].map((copy) => (
-        <div key={copy} className="lp-marquee__track">
-          {items.map((p, i) => (
-            <span key={`${copy}-${i}`} className="v2-hero-photo">
-              <Image src={p.src} alt="" fill sizes="230px" className="object-cover" />
-            </span>
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-}
-
 /**
  * HERO (façon ghostdesignco) : fond uni clair, étiquettes inclinées qui flottent,
- * titre en deux tons, bouton en deux parties, puis la vidéo dans un cadre d'écran
- * posé sur deux lignes de photos des séances qui défilent.
+ * accroche simple en deux tons, les profils visés, le bouton en deux parties,
+ * puis la vidéo dans un cadre d'écran.
  */
 export function Hero() {
   const anchor = TOTAL_VALUE.toLocaleString("fr-FR").replace(/\s/g, " ");
-  const shift = Math.floor(photos.length / 2);
-  const rowA = [...photos, ...photos];
-  const rowB = [...photos.slice(shift), ...photos.slice(0, shift), ...photos.slice(shift), ...photos.slice(0, shift)];
 
   return (
     <section id="top" aria-labelledby="hero-title" className="v2-hero relative isolate pt-[112px] md:pt-[150px]">
@@ -86,6 +65,27 @@ export function Hero() {
           <p className="mx-auto mt-6 max-w-[600px] text-[16.5px] text-ink-soft md:text-[18px]">{HERO2.sub}</p>
         </HeroIn>
 
+        <HeroIn delay={0.55} className="mt-5">
+          <p className="v2-targets">
+            <span className="v2-targets__faces" aria-hidden="true">
+              {HERO2.targets.map((t) => (
+                <span key={t.label} className="v2-targets__face">
+                  <Image src={t.photo} alt="" fill sizes="36px" className="object-cover" />
+                </span>
+              ))}
+            </span>
+            <span>
+              {HERO2.targetsLead}{" "}
+              {HERO2.targets.map((t, i) => (
+                <span key={t.label}>
+                  <b>{t.label}</b>
+                  {i < HERO2.targets.length - 2 ? ", " : i === HERO2.targets.length - 2 ? " et " : "."}
+                </span>
+              ))}
+            </span>
+          </p>
+        </HeroIn>
+
         <HeroIn delay={0.6} className="mt-8 flex w-full justify-center">
           <CTAButton label={CTA.hero} pulse anchor={anchor} className="pb-ai-button--split" />
         </HeroIn>
@@ -95,10 +95,6 @@ export function Hero() {
       </Container>
 
       <HeroIn delay={0.8} className="v2-stage relative mt-12 md:mt-16">
-        <div className="v2-stage__photos" aria-hidden="true">
-          <PhotoRow items={rowA} />
-          <PhotoRow items={rowB} reverse />
-        </div>
         <Container className="relative z-10 flex justify-center">
           <div className="lp-device w-full max-w-[760px]">
             <span className="lp-device__cam" aria-hidden="true" />

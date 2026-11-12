@@ -5,6 +5,8 @@ import "./globals.css";
 import "./landing.css";
 import "./landing-bands.css";
 import "./landing-v2.css";
+import "./landing-v2-program.css";
+import "./landing-v2-extra.css";
 
 /* Police du texte courant et des boutons : DM Sans (reprise de oskool.site) */
 const dmSans = DM_Sans({

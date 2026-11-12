@@ -14,11 +14,21 @@ export const HERO2 = {
     { label: "Images & vidéos IA", tone: "red" as const, pos: "tr" as const },
     { label: "100 % pratique", tone: "blue" as const, pos: "br" as const },
   ],
-  line1: "Ne soyez plus un simple utilisateur de l'IA.",
-  line2Before: "Faites-en votre",
-  highlight: "assistant professionnel.",
+  /** Accroche simple */
+  line1: "Apprenez l'IA en 3 jours.",
+  line2Before: "Et utilisez-la",
+  highlight: "comme un pro.",
   cursor: "Vous",
-  sub: "3 jours de pratique à Calavi pour maîtriser les meilleurs outils d'IA, au travail comme en création.",
+  sub: "Une formation pratique à Calavi : ChatGPT, Claude, Gemini, images et vidéos IA.",
+  /** Les cibles (avec leurs photos) */
+  targetsLead: "Pour les",
+  targets: [
+    { label: "étudiants", photo: "/profils/etudiant.jpg" },
+    { label: "entrepreneurs", photo: "/profils/entrepreneur.jpg" },
+    { label: "commerçants", photo: "/profils/commercant.jpg" },
+    { label: "salariés", photo: "/profils/salarie.jpg" },
+    { label: "créateurs de contenu", photo: "/profils/createur.jpg" },
+  ],
   note: "Présentiel à Calavi · 20 places maximum par cohorte",
   vslTitle: "Regarder la présentation de IA PRO 2026",
 };
@@ -53,6 +63,18 @@ export const BEFORE_AFTER = {
   ],
 };
 
+export const METHOD = {
+  line1: "Pas de théorie.",
+  line2: "Une méthode, étape par étape.",
+  steps: [
+    { title: "Le besoin", text: "Vous partez d'un vrai besoin : un rapport, une pub, une présentation." },
+    { title: "Le bon prompt", text: "Vous donnez à l'IA des instructions claires et structurées." },
+    { title: "Le premier jet", text: "L'IA produit une première version de votre travail." },
+    { title: "Les corrections", text: "Vous l'améliorez grâce à nos retours et nos exercices." },
+    { title: "Le résultat", text: "Vous repartez avec une réalisation prête à utiliser." },
+  ],
+};
+
 export const SPECIALTIES = {
   line1: "Une formation.",
   line2: "Deux spécialités.",
@@ -74,40 +96,37 @@ export const SPECIALTIES = {
   },
 };
 
-const VISUAL_SHORT = [
-  "Images IA",
-  "Visuels publicitaires",
-  "Personnages IA",
-  "Scripts & storyboards",
-  "Pubs vidéo",
-  "Voix off",
-  "Montage CapCut",
-];
+const PRO_ILLU = ["chat", "prompt", "docs", "slides", "skill", "project"] as const;
+const VISUAL_ILLU = ["image", "poster", "character", "script", "video", "voice", "edit"] as const;
+export type IlluKind = (typeof PRO_ILLU)[number] | (typeof VISUAL_ILLU)[number];
 
-/** Programme : 6 modules (IA professionnelle) puis 7 compétences (IA visuelle). */
+/** Programme : 6 modules (IA professionnelle) et 7 compétences (IA visuelle), en onglets. */
 export const PROGRAM = {
   line1: "Le programme.",
-  line2: "De l'idée au résultat, étape par étape.",
-  file: "IA_PRO_2026.projet",
-  chapters: [
-    { label: "IA professionnelle", tone: "blue" as const },
-    { label: "IA visuelle et cinématographique", tone: "red" as const },
-  ],
-  clips: [
-    ...PRO_AI.modules.map((m, i) => ({
-      chapter: 0,
-      kicker: `Module ${i + 1}`,
-      short: m.title,
-      title: m.title,
-      text: m.lead,
-    })),
-    ...VISUAL_AI.skills.map((s, i) => ({
-      chapter: 1,
-      kicker: `Compétence ${i + 1}`,
-      short: VISUAL_SHORT[i] ?? s.title,
-      title: s.title,
-      text: s.text,
-    })),
+  line2: "Deux spécialités, 13 étapes.",
+  tabs: [
+    {
+      label: "IA professionnelle",
+      count: "6 modules",
+      tone: "blue" as const,
+      items: PRO_AI.modules.map((m, i) => ({
+        kicker: `Module ${i + 1}`,
+        title: m.title,
+        text: m.lead,
+        illu: PRO_ILLU[i] as IlluKind,
+      })),
+    },
+    {
+      label: "IA visuelle",
+      count: "7 compétences",
+      tone: "red" as const,
+      items: VISUAL_AI.skills.map((sk, i) => ({
+        kicker: `Compétence ${i + 1}`,
+        title: sk.title,
+        text: sk.text,
+        illu: VISUAL_ILLU[i] as IlluKind,
+      })),
+    },
   ],
 };
 
@@ -115,8 +134,8 @@ const REAL_SHORT = ["Dossier pro", "Skill Claude", "Project IA", "3 visuels pub"
 const REAL_TONE = ["blue", "ink", "blue", "red", "ink", "red", "ink"] as const;
 
 export const REALISATIONS = {
-  line1: "Ce que vous repartez avec.",
-  line2: "7 réalisations concrètes.",
+  line1: "Voilà ce que vous saurez faire.",
+  line2: "7 réalisations, faites pendant la formation.",
   items: ACHIEVEMENTS.items.map((it, i) => ({
     kicker: `Réalisation ${String(i + 1).padStart(2, "0")}`,
     short: REAL_SHORT[i] ?? it.title,
@@ -144,7 +163,9 @@ export const FOR_WHO = {
 };
 
 export const TOOLS = {
-  line1: "Les outils que vous allez maîtriser.",
+  line1: "Les outils",
+  line2: "que vous allez maîtriser.",
+  center: "IA PRO 2026",
   words: [
     { word: "ChatGPT.", tag: "Rédiger" },
     { word: "Claude.", tag: "Skills & Projects" },

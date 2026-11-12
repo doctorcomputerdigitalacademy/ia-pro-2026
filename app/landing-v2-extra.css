@@ -1,0 +1,346 @@
+/* ==========================================================================
+   LANDING V2 — « Ce que vous saurez faire », outils en orbite, preuves
+   ========================================================================== */
+
+/* ---- Ce que vous saurez faire (défilement horizontal) */
+.v2-sf {
+  position: relative;
+  margin-top: 112px;
+}
+.v2-sf__sticky {
+  position: sticky;
+  top: 0;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  overflow: hidden;
+  padding-top: 70px;
+}
+.v2-sf__track {
+  display: flex;
+  gap: 22px;
+  width: max-content;
+  padding: 0 max(24px, calc((100vw - 1160px) / 2 + 24px));
+  will-change: transform;
+}
+.v2-sf__item {
+  width: 300px;
+  flex-shrink: 0;
+}
+.v2-sf__item:first-child {
+  width: 420px;
+}
+.v2-sf__poster {
+  aspect-ratio: 4 / 5;
+}
+.v2-sf__item:first-child .v2-sf__poster {
+  aspect-ratio: auto;
+  height: calc(300px * 5 / 4);
+}
+.v2-sf__item:first-child .v2-poster__big {
+  font-size: 46px;
+}
+.v2-sf__num {
+  position: absolute;
+  top: 12px;
+  left: 18px;
+  font-family: var(--font-clash), sans-serif;
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 1;
+  color: color-mix(in srgb, var(--color-surface) 22%, transparent);
+}
+.v2-sf__swipe {
+  display: flex;
+  gap: 14px;
+  margin-top: 28px;
+  padding: 0 20px 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.v2-sf__swipe::-webkit-scrollbar {
+  display: none;
+}
+.v2-sf__swipe .v2-sf__item {
+  width: 76vw;
+  max-width: 300px;
+  scroll-snap-align: center;
+}
+.v2-sf__swipe .v2-sf__item:first-child .v2-sf__poster {
+  height: auto;
+  aspect-ratio: 4 / 5;
+}
+.v2-sf__swipe .v2-sf__item:first-child .v2-poster__big {
+  font-size: 34px;
+}
+
+/* ---- Outils en orbite */
+.v2-orbit {
+  --size: min(560px, 92vw);
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+}
+.v2-orbit__track {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px dashed var(--color-line-strong);
+}
+.v2-orbit__track--outer {
+  inset: 4%;
+}
+.v2-orbit__track--inner {
+  inset: 27%;
+  border-color: color-mix(in srgb, var(--color-secondary) 30%, transparent);
+}
+.v2-orbit__core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 30%;
+  height: 30%;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  font-family: var(--font-clash), sans-serif;
+  font-size: clamp(13px, 2.4vw, 17px);
+  font-weight: 600;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 0 12px var(--color-primary-soft),
+    0 30px 60px -20px color-mix(in srgb, var(--color-primary) 70%, transparent);
+  animation: v2-core 3s ease-in-out infinite;
+}
+.v2-orbit__core img {
+  padding: 6px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  width: 34%;
+}
+@keyframes v2-core {
+  0%, 100% { box-shadow: 0 0 0 12px var(--color-primary-soft), 0 30px 60px -20px color-mix(in srgb, var(--color-primary) 70%, transparent); }
+  50% { box-shadow: 0 0 0 22px color-mix(in srgb, var(--color-primary) 4%, transparent), 0 30px 60px -20px color-mix(in srgb, var(--color-primary) 70%, transparent); }
+}
+.v2-orbit__ring {
+  position: absolute;
+  inset: 4%;
+  animation: v2-spin 40s linear infinite;
+}
+.v2-orbit__ring--inner {
+  inset: 27%;
+  animation-duration: 28s;
+  animation-direction: reverse;
+}
+.v2-orbit:hover .v2-orbit__ring,
+.v2-orbit:hover .v2-orbit__upright {
+  animation-play-state: paused;
+}
+.v2-orbit__slot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform: rotate(var(--a)) translateY(calc(var(--r, 1) * -50%));
+}
+.v2-orbit__ring--outer .v2-orbit__slot {
+  transform: rotate(var(--a)) translateY(calc(var(--size) * -0.46));
+}
+.v2-orbit__ring--inner .v2-orbit__slot {
+  transform: rotate(var(--a)) translateY(calc(var(--size) * -0.23));
+}
+.v2-orbit__chip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  box-shadow: 0 14px 30px -18px color-mix(in srgb, var(--color-ink) 50%, transparent);
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+}
+/* compense la rotation de l'anneau et de l'emplacement : l'étiquette reste droite */
+.v2-orbit__upright {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  transform: rotate(calc(var(--a) * -1));
+  animation: v2-spin-counter 40s linear infinite;
+}
+.v2-orbit__ring--inner .v2-orbit__upright {
+  animation: v2-spin-counter-rev 28s linear infinite;
+}
+.v2-orbit__chip b {
+  font-family: var(--font-clash), sans-serif;
+  font-size: clamp(14px, 2.4vw, 19px);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+.v2-orbit__chip small {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.v2-orbit__chip.is-main {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+}
+.v2-orbit__chip.is-main b {
+  color: var(--color-surface);
+}
+.v2-orbit__chip.is-main small {
+  color: color-mix(in srgb, var(--color-secondary), var(--color-surface) 30%);
+}
+@keyframes v2-spin {
+  to { rotate: 360deg; }
+}
+@keyframes v2-spin-counter {
+  to { rotate: -360deg; }
+}
+@keyframes v2-spin-counter-rev {
+  to { rotate: 360deg; }
+}
+@media (max-width: 640px) {
+  .v2-orbit__chip {
+    padding: 5px 9px;
+    border-radius: 10px;
+  }
+  .v2-orbit__chip small {
+    display: none;
+  }
+}
+
+/* ---- Preuves : pile de photos + témoignage façon « stories » */
+.v2-pile {
+  position: relative;
+  max-width: 520px;
+  aspect-ratio: 5 / 4;
+  margin: 0 auto;
+}
+.v2-pile__photo {
+  position: absolute;
+  inset: 0 0 34px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--color-surface);
+  border: 10px solid var(--color-surface);
+  border-bottom-width: 44px;
+  box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--color-ink) 60%, transparent);
+}
+.v2-pile__photo figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -34px;
+  font-family: var(--font-montserrat), var(--font-dm-sans), sans-serif;
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-ink-soft);
+}
+.v2-quote {
+  padding: 30px 26px;
+  border-radius: 28px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  box-shadow: 0 40px 80px -50px color-mix(in srgb, var(--color-primary) 55%, transparent);
+}
+@media (min-width: 768px) {
+  .v2-quote {
+    padding: 40px;
+  }
+}
+.v2-quote__bars {
+  display: flex;
+  gap: 6px;
+}
+.v2-quote__bar {
+  flex: 1;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--color-line);
+}
+.v2-quote__bar i {
+  display: block;
+  height: 100%;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.v2-quote__bar i.is-full {
+  transform: scaleX(1);
+}
+.v2-quote__bar i.is-half {
+  transform: scaleX(0.5);
+}
+.v2-quote__bar i.is-run {
+  animation: v2-progress linear forwards;
+}
+.v2-quote__body {
+  min-height: 230px;
+}
+.v2-quote__text {
+  margin-top: 12px;
+  font-family: var(--font-clash), var(--font-satoshi), sans-serif;
+  font-size: clamp(21px, 2.3vw, 27px);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+.v2-quote__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  font-weight: 700;
+}
+.v2-quote__nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-line-strong);
+  color: var(--color-primary);
+  transition: all 0.25s ease;
+}
+.v2-quote__nav:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-surface);
+}
+@keyframes v2-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-orbit__ring,
+  .v2-orbit__upright,
+  .v2-orbit__core {
+    animation: none !important;
+  }
+}

@@ -40,7 +40,7 @@ export function Header() {
         </ul>
 
         {/* Sur mobile, la barre fixe en bas d'écran prend le relais */}
-        <CTAButton label={CTA.header} size="sm" className="hidden sm:inline-flex" />
+        <CTAButton label={CTA.header} size="sm" showPrice={false} className="hidden sm:inline-flex" />
       </nav>
     </motion.header>
   );

@@ -8,6 +8,7 @@ import { FinalCta } from "./v2/FinalCta";
 import { Footer } from "./v2/Footer";
 import { ForWho } from "./v2/ForWho";
 import { Hero } from "./v2/Hero";
+import { Method } from "./v2/Method";
 import { Price } from "./v2/Price";
 import { ProgramTimeline } from "./v2/ProgramTimeline";
 import { Proof } from "./v2/Proof";
@@ -36,6 +37,7 @@ export function LandingPage() {
           <Hero />
           <ZoomReveal />
           <BeforeAfter />
+          <Method />
           <Specialties />
           <ProgramTimeline />
           <Realisations />
