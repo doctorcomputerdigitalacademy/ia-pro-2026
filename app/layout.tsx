@@ -48,6 +48,10 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     type: "website",
   },
+  /* Vérification du domaine dans Meta Business (Sécurité de la marque > Domaines) */
+  other: {
+    "facebook-domain-verification": "c0pabh7kw9xzgr5cha0my1kvpjbcxv",
+  },
 };
 
 export const viewport: Viewport = {
