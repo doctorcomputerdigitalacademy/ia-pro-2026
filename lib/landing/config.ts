@@ -35,7 +35,7 @@ export const VSL_POSTER = "https://i.ytimg.com/vi/zy_oI6j_ENE/maxresdefault.jpg"
  * Coller ici l'identifiant du Pixel (15-16 chiffres, Gestionnaire d'événements Meta).
  * Laisser vide ("") pour désactiver complètement le suivi.
  */
-export const META_PIXEL_ID = "";
+export const META_PIXEL_ID = "1478490317553651";
 
 /** Prix affiché sur tous les boutons d'appel à l'action. */
 export const PRICE_LABEL = "20 000 FCFA";
