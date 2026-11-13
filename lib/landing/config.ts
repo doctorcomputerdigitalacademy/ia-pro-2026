@@ -30,6 +30,13 @@ export const VSL_SRC = "https://youtu.be/zy_oI6j_ENE";
 /** Image d'aperçu optionnelle de la vidéo (ex. "/images/vsl-poster.jpg"). */
 export const VSL_POSTER = "https://i.ytimg.com/vi/zy_oI6j_ENE/maxresdefault.jpg";
 
+/**
+ * Meta Pixel (publicités Facebook / Instagram).
+ * Coller ici l'identifiant du Pixel (15-16 chiffres, Gestionnaire d'événements Meta).
+ * Laisser vide ("") pour désactiver complètement le suivi.
+ */
+export const META_PIXEL_ID = "";
+
 /** Prix affiché sur tous les boutons d'appel à l'action. */
 export const PRICE_LABEL = "20 000 FCFA";
 /** Prix en nombre (sert au calcul « Vous économisez »). */

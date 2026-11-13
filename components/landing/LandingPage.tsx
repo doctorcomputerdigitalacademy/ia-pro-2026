@@ -1,3 +1,4 @@
+import { MetaPixel } from "./primitives/MetaPixel";
 import { MotionRoot, ScrollProgressBar } from "./primitives/ScrollEffects";
 import { StickyCTA } from "./primitives/StickyCTA";
 import { Gated, VideoGateProvider } from "./primitives/VideoGate";
@@ -26,6 +27,7 @@ export function LandingPage() {
   return (
     <MotionRoot>
       <VideoGateProvider>
+      <MetaPixel />
       <div className="lp-root v2-root">
         <a
           href="#contenu"
