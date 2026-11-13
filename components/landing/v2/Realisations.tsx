@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { Icon } from "../primitives/Icon";
 import { Reveal } from "../primitives/Reveal";
 import { Container } from "../primitives/SectionHead";
+import { Showcase } from "./Showcase";
 import { Title } from "./Title";
 
 /**
@@ -16,8 +17,14 @@ export function Realisations() {
   return (
     <section className="v2-section">
       <Container>
-        <Title line1={REALISATIONS.line1} line2={REALISATIONS.line2} />
-        <div className="mt-14 space-y-12 md:mt-16">
+        <Title line1={REALISATIONS.line1} line2={REALISATIONS.line2} className="text-center" />
+
+        {/* Exemples en images et vidéos */}
+        <div className="mt-10 md:mt-12">
+          <Showcase />
+        </div>
+
+        <div className="mt-20 space-y-12 md:mt-24">
           {groups.map((g, gi) => {
             const items = REALISATIONS.items.filter((it) => it.group === g);
             const offset = REALISATIONS.items.findIndex((it) => it.group === g);

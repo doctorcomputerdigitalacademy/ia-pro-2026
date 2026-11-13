@@ -235,3 +235,32 @@ export const FOOTER2 = {
   linksTitle: "La formation",
   contactTitle: "Contact",
 };
+
+/* ==========================================================================
+   EXEMPLES ILLUSTRANT « CE QUE VOUS SAUREZ FAIRE »
+   Fichiers dans public/creations/ (issus du dossier « LANDIGE PAGE 1 » du Bureau).
+   ========================================================================== */
+export const SHOWCASE = {
+  intro: "Des exemples de créations réalisées avec l'IA : voilà le type de résultats que vous apprendrez à produire.",
+  tabs: [
+    {
+      label: "Affiches publicitaires",
+      kind: "image" as const,
+      items: [1, 2, 3, 4, 5].map((n) => ({ src: `/creations/affiches/${n}.webp`, alt: `Affiche publicitaire créée avec l'IA, exemple ${n}` })),
+    },
+    {
+      label: "Photoshoots produits",
+      kind: "image" as const,
+      items: [1, 2, 3, 4, 5, 6].map((n) => ({ src: `/creations/photoshoot/${n}.webp`, alt: `Photo produit générée avec l'IA, exemple ${n}` })),
+    },
+    {
+      label: "Vidéos publicitaires",
+      kind: "video" as const,
+      items: [1, 2, 3, 4, 5, 6].map((n) => ({
+        src: `/creations/videos/pub-0${n}.mp4`,
+        poster: `/creations/videos/pub-0${n}.jpg`,
+        alt: `Extrait de publicité vidéo créée avec l'IA, exemple ${n}`,
+      })),
+    },
+  ],
+};
