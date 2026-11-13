@@ -44,9 +44,7 @@ export function Showcase() {
 
   return (
     <div className="v2-show">
-      <p className="mx-auto max-w-[560px] text-center text-[16px] text-ink-soft">{SHOWCASE.intro}</p>
-
-      <div className="mt-6 flex justify-center">
+      <div className="flex justify-center">
         <LayoutGroup id="show-tabs">
           <div className="v2-tabs" role="tablist" aria-label="Types de créations">
             {SHOWCASE.tabs.map((t, i) => (

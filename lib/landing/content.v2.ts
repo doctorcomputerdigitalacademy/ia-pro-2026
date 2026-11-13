@@ -34,6 +34,8 @@ export const HERO2 = {
   ],
   note: "Présentiel à Calavi · 20 places maximum par cohorte",
   vslTitle: "Regarder la présentation de IA PRO 2026",
+  /** Invitation au-dessus de la vidéo */
+  watch: "À regarder : la formation en vidéo",
 };
 
 export const ZOOM = {
@@ -85,7 +87,7 @@ export const SPECIALTIES = {
     tag: "Spécialité 1",
     title: "IA Professionnelle",
     text: "Travaillez plus vite, exploitez vos documents et construisez vos propres assistants IA.",
-    photo: "/preuves/formation-05.jpg",
+    photo: "/preuves/salle-formation-ia.jpg",
   },
   visual: {
     tag: "Spécialité 2",
@@ -140,7 +142,7 @@ const REAL_TONE = ["blue", "ink", "blue", "red", "ink", "red", "ink"] as const;
 
 export const REALISATIONS = {
   line1: "Voilà ce que vous saurez faire.",
-  line2: "7 réalisations, faites en salle pendant la formation.",
+  line2: "Des créations réalisées avec l'IA.",
   items: ACHIEVEMENTS.items.map((it, i) => ({
     kicker: `Réalisation ${String(i + 1).padStart(2, "0")}`,
     short: REAL_SHORT[i] ?? it.title,
@@ -241,7 +243,6 @@ export const FOOTER2 = {
    Fichiers dans public/creations/ (issus du dossier « LANDIGE PAGE 1 » du Bureau).
    ========================================================================== */
 export const SHOWCASE = {
-  intro: "Des exemples de créations réalisées avec l'IA : voilà le type de résultats que vous apprendrez à produire.",
   tabs: [
     {
       label: "Affiches publicitaires",

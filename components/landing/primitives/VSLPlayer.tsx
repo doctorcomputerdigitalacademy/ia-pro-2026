@@ -41,7 +41,7 @@ export function VSLPlayer({ src, poster, title, kicker = "Présentation vidéo",
   const source = resolve(src);
   const hasVideo = source.kind !== "none";
   const frame = useRef<HTMLIFrameElement>(null);
-  const { report, markStarted, unlock } = useVideoGate();
+  const { report, markStarted, onEnded } = useVideoGate();
 
   // Suivi de la lecture (pour le verrou vidéo) : messages du lecteur YouTube ;
   // à défaut (Vimeo, messages bloqués), on compte le temps écoulé depuis le clic.
@@ -61,7 +61,7 @@ export function VSLPlayer({ src, poster, title, kicker = "Présentation vidéo",
       if (!info) return;
       heard = true;
       if (typeof info.currentTime === "number") report(info.currentTime);
-      if (info.playerState === 0) unlock();
+      if (info.playerState === 0) onEnded();
     };
     window.addEventListener("message", onMessage);
     const ping = window.setInterval(() => {
@@ -72,7 +72,7 @@ export function VSLPlayer({ src, poster, title, kicker = "Présentation vidéo",
       window.removeEventListener("message", onMessage);
       window.clearInterval(ping);
     };
-  }, [playing, source.kind, report, unlock]);
+  }, [playing, source.kind, report, onEnded]);
 
   return (
     <div className={cn("lp-card lp-vsl relative aspect-video w-full overflow-hidden rounded-[22px] p-0 md:rounded-[28px]", className)}>
@@ -85,7 +85,7 @@ export function VSLPlayer({ src, poster, title, kicker = "Présentation vidéo",
           autoPlay
           playsInline
           onTimeUpdate={(e) => report(e.currentTarget.currentTime)}
-          onEnded={unlock}
+          onEnded={onEnded}
         >
           <track kind="captions" />
         </video>

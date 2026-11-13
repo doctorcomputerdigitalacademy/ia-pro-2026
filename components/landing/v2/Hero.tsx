@@ -2,7 +2,7 @@ import Image from "next/image";
 import { CTA } from "@/lib/landing/content.fr";
 import { HERO2 } from "@/lib/landing/content.v2";
 import { VSL_POSTER, VSL_SRC } from "@/lib/landing/config";
-import { Location01Icon } from "@hugeicons/core-free-icons";
+import { ArrowDown01Icon, Location01Icon, PlayIcon } from "@hugeicons/core-free-icons";
 import { CTAButton } from "../primitives/CTAButton";
 import { Icon } from "../primitives/Icon";
 import { HeroIn } from "../primitives/Reveal";
@@ -81,9 +81,19 @@ export function Hero() {
           </p>
         </HeroIn>
 
+        {/* Invitation à regarder la vidéo (sans obligation : la page reste libre au défilement) */}
+        <HeroIn delay={0.7} className="mt-12 md:mt-16">
+          <p className="v2-watch">
+            <span className="v2-watch__dot" aria-hidden="true">
+              <Icon icon={PlayIcon} size={14} strokeWidth={2.4} />
+            </span>
+            {HERO2.watch}
+            <Icon icon={ArrowDown01Icon} size={16} strokeWidth={2.2} className="v2-watch__arrow" />
+          </p>
+        </HeroIn>
       </Container>
 
-      <HeroIn delay={0.8} className="v2-stage relative mt-14 md:mt-20">
+      <HeroIn delay={0.8} className="v2-stage relative mt-6 md:mt-8">
         <Container className="relative z-10 flex justify-center">
           <div className="lp-device w-full max-w-[1000px]">
             <span className="lp-device__cam" aria-hidden="true" />

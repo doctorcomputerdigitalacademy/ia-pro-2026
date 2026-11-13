@@ -15,7 +15,7 @@ export function Specialties() {
         <div className="mt-10 grid gap-4 md:grid-cols-[1.35fr_1fr] md:grid-rows-2">
           <Reveal className="md:row-span-2">
             <article className="v2-bento v2-bento--photo h-full">
-              <Image src={pro.photo} alt="Apprenants en séance pratique" fill sizes="(min-width: 768px) 58vw, 100vw" className="v2-bento__img object-cover" />
+              <Image src={pro.photo} alt="Apprenants en séance pratique, en salle à Calavi" fill quality={90} sizes="(min-width: 768px) 58vw, 100vw" className="v2-bento__img object-cover object-[75%_50%] md:object-center" />
               <div className="v2-bento__shade" aria-hidden="true" />
               <div className="relative mt-auto">
                 <span className="v2-pill">{pro.tag}</span>

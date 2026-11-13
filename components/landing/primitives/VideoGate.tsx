@@ -3,7 +3,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, useSyncExternalStore, type ReactNode } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { PlayIcon } from "@hugeicons/core-free-icons";
-import { VSL_SKIP_AFTER_SECONDS, VSL_SRC, VSL_UNLOCK_SECONDS } from "@/lib/landing/config";
+import { VIDEO_GATE, VSL_SKIP_AFTER_SECONDS, VSL_SRC, VSL_UNLOCK_SECONDS } from "@/lib/landing/config";
 import { EASE_OUT } from "@/lib/landing/highlight";
 import { cn } from "@/lib/utils";
 import { Icon } from "./Icon";
@@ -16,24 +16,29 @@ import { Icon } from "./Icon";
  */
 
 const KEY = "iapro2026-video-unlocked";
-const ENABLED = Boolean(VSL_SRC) && VSL_UNLOCK_SECONDS > 0;
+const ENABLED = VIDEO_GATE && Boolean(VSL_SRC) && VSL_UNLOCK_SECONDS > 0;
 
 type Gate = {
   unlocked: boolean;
+  /** La vidéo a été regardée VSL_UNLOCK_SECONDS secondes (ou jusqu'au bout) pendant cette visite. */
+  watched: boolean;
   progress: number; // 0 → 1
   started: boolean;
   report: (seconds: number) => void;
   markStarted: () => void;
   unlock: () => void;
+  onEnded: () => void;
 };
 
 const GateContext = createContext<Gate>({
   unlocked: true,
+  watched: false,
   progress: 1,
   started: true,
   report: () => {},
   markStarted: () => {},
   unlock: () => {},
+  onEnded: () => {},
 });
 
 export const useVideoGate = () => useContext(GateContext);
@@ -52,6 +57,7 @@ export function VideoGateProvider({ children }: { children: ReactNode }) {
   const [opened, setOpened] = useState(false);
   const [progress, setProgress] = useState(0);
   const [started, setStarted] = useState(false);
+  const [watched, setWatched] = useState(false);
 
   const unlock = useCallback(() => {
     setOpened(true);
@@ -66,16 +72,24 @@ export function VideoGateProvider({ children }: { children: ReactNode }) {
   const report = useCallback(
     (seconds: number) => {
       setProgress((p) => Math.max(p, Math.min(1, seconds / VSL_UNLOCK_SECONDS)));
-      if (seconds >= VSL_UNLOCK_SECONDS) unlock();
+      if (seconds >= VSL_UNLOCK_SECONDS) {
+        setWatched(true);
+        unlock();
+      }
     },
     [unlock],
   );
 
+  const onEnded = useCallback(() => {
+    setWatched(true);
+    unlock();
+  }, [unlock]);
+
   const markStarted = useCallback(() => setStarted(true), []);
 
   const value = useMemo<Gate>(
-    () => ({ unlocked: !ENABLED || stored || opened, progress, started, report, markStarted, unlock }),
-    [stored, opened, progress, started, report, markStarted, unlock],
+    () => ({ unlocked: !ENABLED || stored || opened, watched, progress, started, report, markStarted, unlock, onEnded }),
+    [stored, opened, watched, progress, started, report, markStarted, unlock, onEnded],
   );
 
   return <GateContext.Provider value={value}>{children}</GateContext.Provider>;

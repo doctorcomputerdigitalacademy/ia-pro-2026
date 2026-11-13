@@ -17,29 +17,20 @@ export function track(event: string, params?: Record<string, unknown>) {
 /**
  * META PIXEL — événements suivis :
  * - PageView     : chaque visite de la page ;
- * - ViewContent  : la vidéo de présentation est regardée (déblocage de la page) ;
+ * - ViewContent  : la vidéo de présentation est regardée 45 s ou jusqu'au bout ;
  * - Lead         : clic sur un bouton « Réserver ma place » (WhatsApp d'inscription) ;
  * - Contact      : clic sur « Écrivez-nous sur WhatsApp » (question).
  */
 export function MetaPixel() {
-  const { unlocked } = useVideoGate();
-  const wasLocked = useRef<boolean | null>(null);
+  const { watched } = useVideoGate();
+  const sent = useRef(false);
 
-  /* ViewContent : uniquement quand la page se débloque pendant cette visite. */
+  /* ViewContent : une fois par visite, quand la vidéo a été regardée 45 s (ou jusqu'au bout). */
   useEffect(() => {
-    if (wasLocked.current === null) {
-      let stored = false;
-      try {
-        stored = window.localStorage.getItem("iapro2026-video-unlocked") === "1";
-      } catch {}
-      wasLocked.current = !unlocked && !stored;
-      return;
-    }
-    if (unlocked && wasLocked.current) {
-      wasLocked.current = false;
-      track("ViewContent", { content_name: "Vidéo IA PRO 2026", content_category: "VSL" });
-    }
-  }, [unlocked]);
+    if (!watched || sent.current) return;
+    sent.current = true;
+    track("ViewContent", { content_name: "Vidéo IA PRO 2026", content_category: "VSL" });
+  }, [watched]);
 
   /* Clics vers WhatsApp : Lead (inscription) ou Contact (question). */
   useEffect(() => {

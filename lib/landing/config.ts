@@ -49,5 +49,10 @@ export const PRICE_VALUE = 20000;
  * Une fois débloquée, la page reste ouverte pour ce visiteur (mémorisé sur son appareil).
  */
 export const VSL_UNLOCK_SECONDS = 45;
+/**
+ * Activer le verrou vidéo (true) ou laisser le visiteur libre de faire défiler la page (false).
+ * Même désactivé, VSL_UNLOCK_SECONDS sert à savoir quand la vidéo est « regardée » (Pixel ViewContent).
+ */
+export const VIDEO_GATE = false;
 /** Délai avant d'afficher le lien discret « Afficher la suite sans la vidéo » (connexion lente, vidéo bloquée…). */
 export const VSL_SKIP_AFTER_SECONDS = 25;
