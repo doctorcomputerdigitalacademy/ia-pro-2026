@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { CTA } from "@/lib/landing/content.fr";
 import { EASE_OUT } from "@/lib/landing/highlight";
 import { CTAButton } from "./CTAButton";
+import { useVideoGate } from "./VideoGate";
 
 /**
  * Barre d'action fixe en bas de l'écran, uniquement sur mobile (< 640px).
@@ -32,7 +33,8 @@ export function StickyCTA() {
     };
   }, []);
 
-  const show = pastHero && !finalVisible;
+  const { unlocked } = useVideoGate();
+  const show = unlocked && pastHero && !finalVisible;
 
   return (
     <AnimatePresence>

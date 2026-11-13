@@ -34,3 +34,13 @@ export const VSL_POSTER = "https://i.ytimg.com/vi/zy_oI6j_ENE/maxresdefault.jpg"
 export const PRICE_LABEL = "20 000 FCFA";
 /** Prix en nombre (sert au calcul « Vous économisez »). */
 export const PRICE_VALUE = 20000;
+
+/**
+ * Verrou vidéo : au chargement, seule la vidéo est visible. Le bouton et la suite
+ * de la page s'affichent quand le visiteur a regardé ce nombre de secondes
+ * (ou la vidéo jusqu'à la fin). Mettre 0 pour désactiver le verrou.
+ * Une fois débloquée, la page reste ouverte pour ce visiteur (mémorisé sur son appareil).
+ */
+export const VSL_UNLOCK_SECONDS = 45;
+/** Délai avant d'afficher le lien discret « Afficher la suite sans la vidéo » (connexion lente, vidéo bloquée…). */
+export const VSL_SKIP_AFTER_SECONDS = 25;

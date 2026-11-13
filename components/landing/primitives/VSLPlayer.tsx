@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PlayIcon } from "@hugeicons/core-free-icons";
 import { cn } from "@/lib/utils";
 import { Icon } from "./Icon";
+import { useVideoGate } from "./VideoGate";
 
 type VSLPlayerProps = {
   /** Lien YouTube, Vimeo ou fichier .mp4. Vide = placeholder. */
@@ -26,7 +27,7 @@ type Source =
 function resolve(src?: string): Source {
   if (!src) return { kind: "none" };
   const yt = src.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/);
-  if (yt) return { kind: "youtube", embed: `https://www.youtube-nocookie.com/embed/${yt[1]}?autoplay=1&rel=0&playsinline=1` };
+  if (yt) return { kind: "youtube", embed: `https://www.youtube-nocookie.com/embed/${yt[1]}?autoplay=1&rel=0&playsinline=1&enablejsapi=1` };
   const vimeo = src.match(/vimeo\.com\/(?:video\/)?(\d+)/);
   if (vimeo) return { kind: "vimeo", embed: `https://player.vimeo.com/video/${vimeo[1]}?autoplay=1` };
   return { kind: "file", url: src };
@@ -39,15 +40,58 @@ export function VSLPlayer({ src, poster, title, kicker = "Présentation vidéo",
   const [playing, setPlaying] = useState(false);
   const source = resolve(src);
   const hasVideo = source.kind !== "none";
+  const frame = useRef<HTMLIFrameElement>(null);
+  const { report, markStarted, unlock } = useVideoGate();
+
+  // Suivi de la lecture (pour le verrou vidéo) : messages du lecteur YouTube ;
+  // à défaut (Vimeo, messages bloqués), on compte le temps écoulé depuis le clic.
+  useEffect(() => {
+    if (!playing || source.kind === "file" || source.kind === "none") return;
+    let heard = false;
+    const start = Date.now();
+    const onMessage = (e: MessageEvent) => {
+      if (!/youtube/.test(e.origin)) return;
+      let data: { info?: { currentTime?: number; playerState?: number } } | null = null;
+      try {
+        data = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
+      } catch {
+        return;
+      }
+      const info = data?.info;
+      if (!info) return;
+      heard = true;
+      if (typeof info.currentTime === "number") report(info.currentTime);
+      if (info.playerState === 0) unlock();
+    };
+    window.addEventListener("message", onMessage);
+    const ping = window.setInterval(() => {
+      frame.current?.contentWindow?.postMessage(JSON.stringify({ event: "listening", id: 1, channel: "widget" }), "*");
+      if (!heard) report((Date.now() - start) / 1000 - 2);
+    }, 1000);
+    return () => {
+      window.removeEventListener("message", onMessage);
+      window.clearInterval(ping);
+    };
+  }, [playing, source.kind, report, unlock]);
 
   return (
     <div className={cn("lp-card lp-vsl relative aspect-video w-full overflow-hidden rounded-[22px] p-0 md:rounded-[28px]", className)}>
       {playing && source.kind === "file" ? (
-        <video className="absolute inset-0 size-full bg-black object-contain" src={source.url} poster={poster || undefined} controls autoPlay playsInline>
+        <video
+          className="absolute inset-0 size-full bg-black object-contain"
+          src={source.url}
+          poster={poster || undefined}
+          controls
+          autoPlay
+          playsInline
+          onTimeUpdate={(e) => report(e.currentTarget.currentTime)}
+          onEnded={unlock}
+        >
           <track kind="captions" />
         </video>
       ) : playing && (source.kind === "youtube" || source.kind === "vimeo") ? (
         <iframe
+          ref={frame}
           className="absolute inset-0 size-full"
           src={source.embed}
           title={title}
@@ -86,7 +130,10 @@ export function VSLPlayer({ src, poster, title, kicker = "Présentation vidéo",
           {hasVideo ? (
             <button
               type="button"
-              onClick={() => setPlaying(true)}
+              onClick={() => {
+                setPlaying(true);
+                markStarted();
+              }}
               className={cn("absolute inset-0 flex flex-col items-center gap-4 md:gap-6", poster ? "justify-end pb-8 md:pb-12" : "justify-center")}
               aria-label={`Lire la vidéo : ${title}`}
             >

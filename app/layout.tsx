@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Montserrat } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import "./landing.css";
@@ -13,15 +13,6 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-});
-
-/* Police des surtitres (petites lignes au-dessus des grands titres) : Montserrat italique */
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  style: ["italic"],
   display: "swap",
 });
 
@@ -65,7 +56,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${dmSans.variable} ${satoshi.variable} ${montserrat.variable} ${clash.variable} h-full antialiased`}>
+    <html lang="fr" className={`${dmSans.variable} ${satoshi.variable} ${clash.variable} h-full antialiased`}>
       <body className="min-h-full">{children}</body>
     </html>
   );

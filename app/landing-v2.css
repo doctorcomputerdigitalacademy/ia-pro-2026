@@ -51,9 +51,8 @@
 }
 .v2-kicker {
   display: inline-block;
-  font-family: var(--font-montserrat), var(--font-dm-sans), sans-serif;
+  font-family: var(--font-satoshi), var(--font-dm-sans), sans-serif;
   font-size: 13.5px;
-  font-style: italic;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -974,5 +973,66 @@
 @media (min-width: 768px) {
   .v2-zoom {
     margin-top: 40px;
+  }
+}
+
+/* ---- Verrou vidéo : la suite reste masquée jusqu'à ce que la vidéo soit regardée */
+.v2-gate:not(.is-open) {
+  display: none;
+}
+.v2-gate.is-open {
+  animation: v2-gate-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes v2-gate-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+.v2-gate-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 26px;
+  overflow: hidden;
+}
+.v2-gate-hint__text {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-ink-soft);
+}
+.v2-gate-hint__text svg {
+  color: var(--color-secondary);
+}
+.v2-gate-hint__bar {
+  display: block;
+  width: min(280px, 70vw);
+  height: 4px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: var(--color-line);
+}
+.v2-gate-hint__bar i {
+  display: block;
+  height: 100%;
+  background: var(--color-primary);
+  transform-origin: left;
+  transition: transform 0.6s linear;
+}
+.v2-gate-hint__skip {
+  font-size: 13px;
+  color: var(--color-ink-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.75;
+}
+.v2-gate-hint__skip:hover {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .v2-gate.is-open {
+    animation: none;
   }
 }

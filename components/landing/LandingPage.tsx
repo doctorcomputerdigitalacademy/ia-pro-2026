@@ -1,5 +1,6 @@
 import { MotionRoot, ScrollProgressBar } from "./primitives/ScrollEffects";
 import { StickyCTA } from "./primitives/StickyCTA";
+import { Gated, VideoGateProvider } from "./primitives/VideoGate";
 import { Header } from "./sections/Header";
 import { BeforeAfter } from "./v2/BeforeAfter";
 import { BonusFan } from "./v2/BonusFan";
@@ -24,6 +25,7 @@ import { ZoomReveal } from "./v2/ZoomReveal";
 export function LandingPage() {
   return (
     <MotionRoot>
+      <VideoGateProvider>
       <div className="lp-root v2-root">
         <a
           href="#contenu"
@@ -35,23 +37,28 @@ export function LandingPage() {
         <Header />
         <main id="contenu">
           <Hero />
-          <ZoomReveal />
-          <BeforeAfter />
-          <Method />
-          <Specialties />
-          <ProgramTimeline />
-          <Realisations />
-          <Tools />
-          <Proof />
-          <ForWho />
-          <BonusFan />
-          <Price />
-          <Faq />
-          <FinalCta />
+          <Gated>
+            <ZoomReveal />
+            <BeforeAfter />
+            <Method />
+            <Specialties />
+            <ProgramTimeline />
+            <Realisations />
+            <Tools />
+            <Proof />
+            <ForWho />
+            <BonusFan />
+            <Price />
+            <Faq />
+            <FinalCta />
+          </Gated>
         </main>
-        <Footer />
+        <Gated>
+          <Footer />
+        </Gated>
         <StickyCTA />
       </div>
+      </VideoGateProvider>
     </MotionRoot>
   );
 }

@@ -5,8 +5,11 @@ import { motion } from "motion/react";
 import { BRAND, CTA, NAV } from "@/lib/landing/content.fr";
 import { EASE_OUT } from "@/lib/landing/highlight";
 import { CTAButton } from "../primitives/CTAButton";
+import { useVideoGate } from "../primitives/VideoGate";
 
 export function Header() {
+  // Menu et bouton masqués tant que la vidéo n'a pas été regardée
+  const { unlocked } = useVideoGate();
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
@@ -29,7 +32,7 @@ export function Header() {
           />
         </a>
 
-        <ul className="hidden items-center gap-7 lg:flex">
+        <ul className={unlocked ? "hidden items-center gap-7 lg:flex" : "hidden"}>
           {NAV.map((item) => (
             <li key={item.href}>
               <a href={item.href} className="text-[15px] font-medium text-ink-soft transition-colors hover:text-primary">
@@ -40,7 +43,7 @@ export function Header() {
         </ul>
 
         {/* Sur mobile, la barre fixe en bas d'écran prend le relais */}
-        <CTAButton label={CTA.header} size="sm" showPrice={false} className="hidden sm:inline-flex" />
+        <CTAButton label={CTA.header} size="sm" showPrice={false} className={unlocked ? "hidden sm:inline-flex" : "hidden"} />
       </nav>
     </motion.header>
   );

@@ -751,9 +751,8 @@
   padding: 6px 14px;
   border-radius: 999px;
   color: var(--color-surface);
-  font-family: var(--font-montserrat), var(--font-dm-sans), sans-serif;
+  font-family: var(--font-satoshi), var(--font-dm-sans), sans-serif;
   font-size: 13px;
-  font-style: italic;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1091,9 +1090,8 @@
 .lp-faq__from {
   display: block;
   margin-bottom: 4px;
-  font-family: var(--font-montserrat), var(--font-dm-sans), sans-serif;
+  font-family: var(--font-satoshi), var(--font-dm-sans), sans-serif;
   font-size: 12px;
-  font-style: italic;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;

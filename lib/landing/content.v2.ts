@@ -6,6 +6,7 @@
    Titres en deux tons : `line1` foncé, `line2` atténué.
    ========================================================================== */
 
+import { Edit02Icon, File01Icon, Film01Icon, FolderLibraryIcon, Image01Icon, PuzzleIcon, Video01Icon } from "@hugeicons/core-free-icons";
 import { ACHIEVEMENTS, BONUS, FAQ, PRO_AI, SCHEDULE, VISUAL_AI } from "./content.fr";
 
 export const HERO2 = {
@@ -132,6 +133,8 @@ export const PROGRAM = {
   ],
 };
 
+const REAL_ICON = [File01Icon, PuzzleIcon, FolderLibraryIcon, Image01Icon, Edit02Icon, Video01Icon, Film01Icon];
+const REAL_FILE = ["dossier.docx", "mon-skill", "mon-project", "visuels.png", "storyboard.pdf", "pub-video.mp4", "sequence-ia.mp4"];
 const REAL_SHORT = ["Dossier pro", "Skill Claude", "Project IA", "3 visuels pub", "Script + storyboard", "Pub vidéo", "Séquence cinéma"];
 const REAL_TONE = ["blue", "ink", "blue", "red", "ink", "red", "ink"] as const;
 
@@ -144,6 +147,8 @@ export const REALISATIONS = {
     title: it.title,
     group: it.group,
     tone: REAL_TONE[i % REAL_TONE.length],
+    icon: REAL_ICON[i],
+    file: REAL_FILE[i],
   })),
 };
 

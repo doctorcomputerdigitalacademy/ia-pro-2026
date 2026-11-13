@@ -247,9 +247,8 @@
   left: 0;
   right: 0;
   bottom: -34px;
-  font-family: var(--font-montserrat), var(--font-dm-sans), sans-serif;
+  font-family: var(--font-satoshi), var(--font-dm-sans), sans-serif;
   font-size: 13px;
-  font-style: italic;
   font-weight: 700;
   text-align: center;
   color: var(--color-ink-soft);
@@ -465,4 +464,114 @@
   line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--color-ink);
+}
+
+/* ---- Réalisations en cartes « livrables » (v2.2) */
+.v2-deliv {
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 640px) {
+  .v2-deliv {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .v2-deliv--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .v2-deliv--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.v2-deliv__card {
+  --tone: var(--color-primary);
+  --tone-soft: var(--color-primary-soft);
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 24px;
+  border-radius: 22px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    box-shadow 0.4s ease;
+}
+.v2-deliv__card.is-red {
+  --tone: var(--color-secondary);
+  --tone-soft: var(--color-secondary-soft);
+}
+.v2-deliv__card::after {
+  /* bande de couleur en bas qui se remplit au survol */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: var(--tone);
+  transform: scaleX(0.18);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (hover: hover) {
+  .v2-deliv__card:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--tone) 30%, transparent);
+    box-shadow: 0 28px 50px -34px color-mix(in srgb, var(--tone) 60%, transparent);
+  }
+  .v2-deliv__card:hover::after {
+    transform: scaleX(1);
+  }
+}
+.v2-deliv__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--tone-soft);
+  color: var(--tone);
+}
+.v2-deliv__num {
+  font-family: var(--font-clash), sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1;
+  color: color-mix(in srgb, var(--tone) 22%, transparent);
+}
+.v2-deliv__file {
+  margin-top: 22px;
+  width: fit-content;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: var(--color-page);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--color-ink-soft);
+}
+.v2-deliv__title {
+  margin-top: 10px;
+  margin-bottom: 18px;
+  font-family: var(--font-clash), var(--font-satoshi), sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+.v2-deliv__done {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--tone);
 }

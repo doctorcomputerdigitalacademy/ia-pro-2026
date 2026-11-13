@@ -8,6 +8,7 @@ import { Icon } from "../primitives/Icon";
 import { HeroIn } from "../primitives/Reveal";
 import { Container } from "../primitives/SectionHead";
 import { VSLPlayer } from "../primitives/VSLPlayer";
+import { GateHint, Gated } from "../primitives/VideoGate";
 
 /**
  * HERO (façon ghostdesignco) : fond uni clair, étiquettes inclinées qui flottent,
@@ -80,12 +81,6 @@ export function Hero() {
           </p>
         </HeroIn>
 
-        <HeroIn delay={0.6} className="mt-10 flex w-full justify-center">
-          <CTAButton label={CTA.hero} showPrice={false} />
-        </HeroIn>
-        <HeroIn delay={0.7}>
-          <p className="mt-3.5 text-[13.5px] text-ink-soft">{HERO2.note}</p>
-        </HeroIn>
       </Container>
 
       <HeroIn delay={0.8} className="v2-stage relative mt-14 md:mt-20">
@@ -96,6 +91,16 @@ export function Hero() {
           </div>
         </Container>
       </HeroIn>
+
+      {/* Sous la vidéo : invitation à la regarder, puis le bouton une fois la suite débloquée */}
+      <Container className="flex flex-col items-center text-center">
+        <GateHint />
+        <Gated className="w-full">
+          <div className="mt-10 flex w-full justify-center md:mt-12">
+            <CTAButton label={CTA.hero} showPrice={false} />
+          </div>
+        </Gated>
+      </Container>
     </section>
   );
 }

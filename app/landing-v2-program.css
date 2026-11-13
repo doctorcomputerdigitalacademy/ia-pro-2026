@@ -73,9 +73,8 @@
   }
 }
 .v2-mod__kicker {
-  font-family: var(--font-montserrat), var(--font-dm-sans), sans-serif;
+  font-family: var(--font-satoshi), var(--font-dm-sans), sans-serif;
   font-size: 12.5px;
-  font-style: italic;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
