@@ -212,15 +212,26 @@ export const BONUS2 = {
   free: "OFFERT",
   normal: "Prix normal",
   items: BONUS.items,
-  /** Vraies créations affichées dans les maquettes de chaque bonus (public/creations/) */
+  /** Maquettes de chaque bonus : image de la boîte 3D + contenu de l'écran du PC (vraies créations, public/creations/) */
   mocks: [
-    { screen: "/creations/affiches/1.webp", box: "/creations/affiches/4.webp", phone: "/creations/affiches/3.webp" },
-    { screen: "/creations/photoshoot/1.webp", box: "/creations/photoshoot/3.webp", phone: "/creations/photoshoot/6.webp" },
     {
-      screen: "/creations/videos/pub-03.jpg",
+      box: "/creations/affiches/4.webp",
+      boxMosaic: ["/creations/photoshoot/5.webp", "/creations/affiches/5.webp", "/creations/videos/pub-01.jpg", "/creations/photoshoot/2.webp", "/creations/affiches/2.webp", "/creations/videos/pub-06.jpg"],
+      screen: {
+        kind: "library" as const,
+        thumbs: ["/creations/affiches/1.webp", "/creations/photoshoot/2.webp", "/creations/affiches/5.webp", "/creations/videos/pub-04.jpg", "/creations/affiches/2.webp", "/creations/photoshoot/4.webp"],
+      },
+    },
+    {
+      box: "/creations/photoshoot/3.webp",
+      screen: {
+        kind: "gallery" as const,
+        photos: ["/creations/photoshoot/1.webp", "/creations/photoshoot/2.webp", "/creations/photoshoot/4.webp", "/creations/photoshoot/5.webp", "/creations/photoshoot/6.webp"],
+      },
+    },
+    {
       box: "/creations/videos/pub-05.jpg",
-      phone: "/creations/videos/pub-02.jpg",
-      phoneVideo: "/creations/videos/pub-02.mp4",
+      screen: { kind: "video" as const, src: "/creations/videos/pub-02.mp4", poster: "/creations/videos/pub-02.jpg" },
     },
   ],
 };

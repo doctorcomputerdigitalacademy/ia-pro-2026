@@ -55,7 +55,7 @@ export function Bonus() {
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ duration: 0.9, ease: EASE_OUT }}
               >
-                <BonusMockup cover={b.cover.text} kicker={`Bonus ${i + 1}`} tone={b.cover.tone} images={BONUS2.mocks[i]} className="v2-mock--float" />
+                <BonusMockup cover={b.cover.text} kicker={`Bonus ${i + 1}`} tone={b.cover.tone} data={BONUS2.mocks[i]} className="v2-mock--float" />
               </motion.div>
             </li>
           ))}
@@ -66,7 +66,7 @@ export function Bonus() {
           <div className="v2-bonus__recap">
             <div className="v2-bonus__stack" aria-hidden="true">
               {BONUS2.items.map((b, i) => (
-                <BonusMockup key={b.title} cover={b.cover.text} kicker={`Bonus ${i + 1}`} tone={b.cover.tone} images={BONUS2.mocks[i]} small className={cn("v2-mock--mini", `v2-mock--pos${i}`)} />
+                <BonusMockup key={b.title} cover={b.cover.text} kicker={`Bonus ${i + 1}`} tone={b.cover.tone} data={BONUS2.mocks[i]} small className={cn("v2-mock--mini", `v2-mock--pos${i}`)} />
               ))}
             </div>
             <p className="v2-bonus__recap-label">Valeur totale des 3 bonus</p>
