@@ -32,18 +32,6 @@ export const HERO2 = {
     { label: "salariés", photo: "/profils/salarie.jpg" },
     { label: "créateurs de contenu", photo: "/profils/createur.jpg" },
   ],
-  /** Les 3 bénéfices cochés (à gauche de la vidéo) */
-  checks: [
-    "ChatGPT, Claude, Gemini : des résultats pros, pas génériques",
-    "Vos propres affiches, photos produits et vidéos IA",
-    "3 jours en salle à Calavi + 30 jours de suivi",
-  ],
-  /** Les 3 cartes de preuve sous le hero (faits uniquement) */
-  cards: [
-    { big: "3 jours", accent: "en présentiel", small: "Calavi · Bidossessi" },
-    { big: "20 places", accent: "par cohorte", small: "4 cohortes au choix" },
-    { big: "30 jours", accent: "de suivi", small: "Groupe WhatsApp privé" },
-  ],
   vslTitle: "Regarder la présentation de IA PRO 2026",
   /** Invitation au-dessus de la vidéo */
   watch: "À regarder : la formation en vidéo",
@@ -224,6 +212,17 @@ export const BONUS2 = {
   free: "OFFERT",
   normal: "Prix normal",
   items: BONUS.items,
+  /** Vraies créations affichées dans les maquettes de chaque bonus (public/creations/) */
+  mocks: [
+    { screen: "/creations/affiches/1.webp", box: "/creations/affiches/4.webp", phone: "/creations/affiches/3.webp" },
+    { screen: "/creations/photoshoot/1.webp", box: "/creations/photoshoot/3.webp", phone: "/creations/photoshoot/6.webp" },
+    {
+      screen: "/creations/videos/pub-03.jpg",
+      box: "/creations/videos/pub-05.jpg",
+      phone: "/creations/videos/pub-02.jpg",
+      phoneVideo: "/creations/videos/pub-02.mp4",
+    },
+  ],
 };
 
 export const PRICE2 = {

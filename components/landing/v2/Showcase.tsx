@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, LayoutGroup, motion, useInView, useReducedMotion } from "motion/react";
 import { SHOWCASE } from "@/lib/landing/content.v2";
 import { EASE_OUT } from "@/lib/landing/highlight";
 import { cn } from "@/lib/utils";
@@ -34,16 +34,39 @@ function ClipCard({ item }: { item: VideoItem }) {
   );
 }
 
+/** Durée d'affichage de chaque onglet avant de passer au suivant (ms) */
+const DUR = { video: 12000, image: 8000 } as const;
+
 /**
  * EXEMPLES — illustrations de « Voilà ce que vous saurez faire » :
- * onglets Affiches / Photoshoots produits / Vidéos publicitaires.
+ * onglets Vidéos / Affiches / Photoshoots qui défilent tout seuls
+ * (barre de progression dans l'onglet actif, pause au survol, clic possible).
  */
 export function Showcase() {
   const [tab, setTab] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [run, setRun] = useState(0);
+  const root = useRef<HTMLDivElement>(null);
+  const inView = useInView(root, { amount: 0.3 });
+  const reducedMotion = useReducedMotion();
   const current = SHOWCASE.tabs[tab];
+  const n = SHOWCASE.tabs.length;
+  const dur = DUR[current.kind];
+  const auto = inView && !paused && !reducedMotion;
+
+  useEffect(() => {
+    if (!auto) return;
+    const id = window.setTimeout(() => setTab((v) => (v + 1) % n), dur);
+    return () => window.clearTimeout(id);
+  }, [auto, tab, dur, n, run]);
+
+  const pause = (v: boolean) => {
+    setPaused(v);
+    if (!v) setRun((r) => r + 1);
+  };
 
   return (
-    <div className="v2-show">
+    <div ref={root} className="v2-show" onMouseEnter={() => pause(true)} onMouseLeave={() => pause(false)}>
       <div className="flex justify-center">
         <LayoutGroup id="show-tabs">
           <div className="v2-tabs" role="tablist" aria-label="Types de créations">
@@ -53,11 +76,19 @@ export function Showcase() {
                 type="button"
                 role="tab"
                 aria-selected={tab === i}
-                onClick={() => setTab(i)}
+                onClick={() => {
+                  setTab(i);
+                  setRun((r) => r + 1);
+                }}
                 className={cn("v2-tab", tab === i && "is-active", t.kind === "video" && "is-red")}
               >
                 {tab === i ? <motion.span layoutId="show-pill" className="v2-tab__pill" transition={{ duration: 0.45, ease: EASE_OUT }} /> : null}
                 <span className="relative">{t.label}</span>
+                {tab === i && !reducedMotion ? (
+                  <span className="v2-tab__progress" aria-hidden="true">
+                    <i key={`${i}-${run}`} className={auto ? "is-run" : ""} style={{ animationDuration: `${dur}ms` }} />
+                  </span>
+                ) : null}
               </button>
             ))}
           </div>

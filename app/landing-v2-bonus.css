@@ -135,6 +135,7 @@
 .v2-bonus__visual {
   display: flex;
   justify-content: center;
+  min-width: 0;
 }
 
 /* ------------------------------------------------------------- Maquette */
@@ -155,9 +156,15 @@
   --mock-a: var(--color-ink);
   --mock-b: color-mix(in srgb, var(--color-ink), var(--color-primary) 60%);
 }
+/* Mobile : la maquette tient toujours dans l'écran (16 px de marge de chaque côté) */
 @media (max-width: 520px) {
   .v2-mock:not(.v2-mock--mini) {
-    --s: 0.7;
+    --s: 0.66;
+  }
+}
+@media (max-width: 380px) {
+  .v2-mock:not(.v2-mock--mini) {
+    --s: 0.6;
   }
 }
 .v2-mock--float {
@@ -173,31 +180,17 @@
   }
 }
 
-/* Couverture commune aux 3 écrans */
-.v2-mock__cover {
+/* Bandeau avec le nom du bonus, posé sur les vraies images */
+.v2-mock__band {
   position: absolute;
-  inset: 0;
+  inset: auto 0 0;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: calc(6px * var(--s));
-  padding: calc(14px * var(--s));
-  overflow: hidden;
-  background:
-    radial-gradient(120% 80% at 100% 0%, color-mix(in srgb, var(--mock-b) 70%, transparent), transparent 60%),
-    linear-gradient(160deg, var(--mock-a), color-mix(in srgb, var(--mock-a), var(--color-ink) 55%));
+  gap: calc(2px * var(--s));
+  padding: calc(26px * var(--s)) calc(12px * var(--s)) calc(10px * var(--s));
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--mock-a), var(--color-ink) 45%) 70%);
   color: var(--color-surface);
-}
-.v2-mock__cover::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(color-mix(in srgb, var(--color-surface) 7%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--color-surface) 7%, transparent) 1px, transparent 1px);
-  background-size: calc(18px * var(--s)) calc(18px * var(--s));
-  pointer-events: none;
 }
 .v2-mock__kicker {
   font-family: var(--font-satoshi), sans-serif;
@@ -205,60 +198,24 @@
   font-weight: 900;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.8;
-}
-.v2-mock__icon {
-  display: grid;
-  place-items: center;
-  width: calc(34px * var(--s));
-  height: calc(34px * var(--s));
-  border-radius: calc(10px * var(--s));
-  background: color-mix(in srgb, var(--color-surface) 18%, transparent);
-}
-.v2-mock__icon svg {
-  width: calc(20px * var(--s));
-  height: calc(20px * var(--s));
+  opacity: 0.85;
 }
 .v2-mock__title {
   font-family: var(--font-clash), sans-serif;
-  font-size: calc(19px * var(--s));
+  font-size: calc(17px * var(--s));
   font-weight: 700;
   line-height: 1.05;
   text-transform: uppercase;
 }
+.v2-mock__band.is-box .v2-mock__title {
+  font-size: calc(14px * var(--s));
+}
 .v2-mock__brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: calc(4px * var(--s));
   font-family: var(--font-satoshi), sans-serif;
-  font-size: calc(8.5px * var(--s));
+  font-size: calc(8px * var(--s));
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   opacity: 0.85;
-}
-.v2-mock__brand img {
-  width: calc(12px * var(--s));
-  filter: brightness(0) invert(1);
-}
-.v2-mock__cover.is-compact {
-  padding: calc(8px * var(--s));
-  gap: calc(4px * var(--s));
-}
-.v2-mock__cover.is-compact .v2-mock__title {
-  font-size: calc(10px * var(--s));
-}
-.v2-mock__cover.is-compact .v2-mock__icon {
-  width: calc(22px * var(--s));
-  height: calc(22px * var(--s));
-}
-.v2-mock__cover.is-compact .v2-mock__icon svg {
-  width: calc(13px * var(--s));
-  height: calc(13px * var(--s));
-}
-.v2-mock__cover.is-compact .v2-mock__kicker,
-.v2-mock__cover.is-compact .v2-mock__brand {
-  display: none;
 }
 
 /* Ordinateur portable */
@@ -276,7 +233,7 @@
   overflow: hidden;
   background: var(--color-ink);
 }
-.v2-mock__screen .v2-mock__cover {
+.v2-mock__screen .v2-mock__band {
   padding-left: calc(150px * var(--s));
 }
 .v2-mock__base {
@@ -401,10 +358,16 @@
 }
 @media (max-width: 560px) {
   .v2-bonus__stack {
-    height: 130px;
+    height: 120px;
   }
   .v2-mock--mini {
-    --s: 0.36;
+    --s: 0.3;
+  }
+  .v2-mock--pos0 {
+    transform: translateX(-112%) translateY(16px) rotate(-6deg);
+  }
+  .v2-mock--pos2 {
+    transform: translateX(12%) translateY(16px) rotate(6deg);
   }
 }
 .v2-bonus__recap-label {
