@@ -235,7 +235,7 @@ export const BONUS = {
   items: [
     { title: "Plus de 1 650 ressources IA", text: "Prompts, outils et templates prêts à l'emploi.", icon: FolderLibraryIcon, value: 20000, cover: { text: "+1 650 RESSOURCES IA", tone: "blue" as const }, image: "" },
     { title: "Création de photo-shootings avec l'IA", text: "Réalisez des séances photo professionnelles sans studio : portraits, photos produits et visuels de marque générés par l'IA.", icon: Camera01Icon, value: 15000, cover: { text: "PHOTO-SHOOTING IA", tone: "red" as const }, image: "" },
-    { title: "Création de films IA", text: "Écrivez, générez et montez vos propres courts films réalisés avec l'intelligence artificielle.", icon: Film01Icon, value: 20000, cover: { text: "FILMS IA", tone: "ink" as const }, image: "" },
+    { title: "Création de publicités vidéo IA", text: "Écrivez, générez et montez vos propres publicités vidéo réalisées avec l'intelligence artificielle.", icon: Film01Icon, value: 20000, cover: { text: "PUBLICITÉS VIDÉO IA", tone: "ink" as const }, image: "" },
   ],
 };
 

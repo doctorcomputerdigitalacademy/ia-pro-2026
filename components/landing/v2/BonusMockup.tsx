@@ -16,7 +16,7 @@ export type MockData = {
 };
 
 type Props = {
-  /** Nom du bonus sur la boîte (ex. « FILMS IA ») */
+  /** Nom du bonus sur la boîte (ex. « PUBLICITÉS VIDÉO IA ») */
   cover: string;
   kicker: string;
   tone: "blue" | "red" | "ink";
@@ -76,7 +76,7 @@ function Gallery({ photos, small }: { photos: string[]; small?: boolean }) {
   );
 }
 
-/** Écran « lecteur vidéo » : la vraie pub qui tourne + barre de lecture (bonus films IA) */
+/** Écran « lecteur vidéo » : la vraie pub qui tourne + barre de lecture (bonus publicités vidéo IA) */
 function Player({ src, poster, small }: { src: string; poster: string; small?: boolean }) {
   return (
     <div className="v2-scr v2-scr--vid">
