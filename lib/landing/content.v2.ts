@@ -32,7 +32,18 @@ export const HERO2 = {
     { label: "salariés", photo: "/profils/salarie.jpg" },
     { label: "créateurs de contenu", photo: "/profils/createur.jpg" },
   ],
-  note: "Présentiel à Calavi · 20 places maximum par cohorte",
+  /** Les 3 bénéfices cochés (à gauche de la vidéo) */
+  checks: [
+    "ChatGPT, Claude, Gemini : des résultats pros, pas génériques",
+    "Vos propres affiches, photos produits et vidéos IA",
+    "3 jours en salle à Calavi + 30 jours de suivi",
+  ],
+  /** Les 3 cartes de preuve sous le hero (faits uniquement) */
+  cards: [
+    { big: "3 jours", accent: "en présentiel", small: "Calavi · Bidossessi" },
+    { big: "20 places", accent: "par cohorte", small: "4 cohortes au choix" },
+    { big: "30 jours", accent: "de suivi", small: "Groupe WhatsApp privé" },
+  ],
   vslTitle: "Regarder la présentation de IA PRO 2026",
   /** Invitation au-dessus de la vidéo */
   watch: "À regarder : la formation en vidéo",
@@ -159,6 +170,21 @@ export const PROOF = {
   line2: "Ils en parlent.",
 };
 
+/** NOS SÉANCES PRATIQUES — photos réelles des séances (public/preuves/) */
+export const SESSIONS = {
+  line1: "Nos séances pratiques.",
+  line2: "En salle, à Calavi, sur vos propres projets.",
+  chips: ["Séances de 3 heures", "20 places maximum", "Un formateur présent en salle"],
+  photos: [
+    "/preuves/salle-formation-ia.jpg",
+    "/preuves/formation-04.jpg",
+    "/preuves/formation-01.jpg",
+    "/preuves/formation-05.jpg",
+    "/preuves/formation-03.jpg",
+    "/preuves/formation-06.jpg",
+  ],
+};
+
 export const FOR_WHO = {
   yesTitle: "C'est pour vous si",
   yes: [
@@ -245,6 +271,15 @@ export const FOOTER2 = {
 export const SHOWCASE = {
   tabs: [
     {
+      label: "Vidéos publicitaires",
+      kind: "video" as const,
+      items: [1, 2, 3, 4, 5, 6].map((n) => ({
+        src: `/creations/videos/pub-0${n}.mp4`,
+        poster: `/creations/videos/pub-0${n}.jpg`,
+        alt: `Extrait de publicité vidéo créée avec l'IA, exemple ${n}`,
+      })),
+    },
+    {
       label: "Affiches publicitaires",
       kind: "image" as const,
       items: [1, 2, 3, 4, 5].map((n) => ({ src: `/creations/affiches/${n}.webp`, alt: `Affiche publicitaire créée avec l'IA, exemple ${n}` })),
@@ -253,15 +288,6 @@ export const SHOWCASE = {
       label: "Photoshoots produits",
       kind: "image" as const,
       items: [1, 2, 3, 4, 5, 6].map((n) => ({ src: `/creations/photoshoot/${n}.webp`, alt: `Photo produit générée avec l'IA, exemple ${n}` })),
-    },
-    {
-      label: "Vidéos publicitaires",
-      kind: "video" as const,
-      items: [1, 2, 3, 4, 5, 6].map((n) => ({
-        src: `/creations/videos/pub-0${n}.mp4`,
-        poster: `/creations/videos/pub-0${n}.jpg`,
-        alt: `Extrait de publicité vidéo créée avec l'IA, exemple ${n}`,
-      })),
     },
   ],
 };

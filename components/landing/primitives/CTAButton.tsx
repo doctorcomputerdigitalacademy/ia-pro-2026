@@ -1,8 +1,12 @@
+import { ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { cn } from "@/lib/utils";
 import { PRICE_LABEL, REGISTRATION_URL } from "@/lib/landing/config";
+import { Icon } from "./Icon";
 
 type CTAButtonProps = {
   label: string;
+  /** Seconde ligne, plus petite (grand bouton sur deux lignes) */
+  sub?: string;
   /** Libellé plus court affiché sur petit écran (optionnel) */
   shortLabel?: string;
   /** md : bouton principal · sm : header · bar : barre fixe mobile */
@@ -24,6 +28,7 @@ type CTAButtonProps = {
  */
 export function CTAButton({
   label,
+  sub,
   shortLabel,
   size = "md",
   pulse = false,
@@ -43,9 +48,22 @@ export function CTAButton({
         size === "bar" && "pb-ai-button--bar",
         showPrice && "pb-ai-button--priced",
         pulse && "pb-ai-button--pulse",
+        sub && "pb-ai-button--xl",
         className,
       )}
     >
+      {sub ? (
+        <>
+          <span className="pb-ai-main">
+            {label}
+            <Icon icon={ArrowRight01Icon} size={20} strokeWidth={2.6} className="pb-ai-arrow" />
+          </span>
+          <span className="pb-ai-sub">{sub}</span>
+          <span className="pb-ai-shine" aria-hidden="true" />
+          <span className="sr-only"> (s&apos;ouvre dans un nouvel onglet)</span>
+        </>
+      ) : (
+        <>
       <span className="inline-flex items-center gap-2">
         <span>
           {shortLabel ? (
@@ -71,6 +89,8 @@ export function CTAButton({
         </span>
       ) : null}
       <span className="sr-only"> (s&apos;ouvre dans un nouvel onglet)</span>
+        </>
+      )}
     </a>
   );
 }

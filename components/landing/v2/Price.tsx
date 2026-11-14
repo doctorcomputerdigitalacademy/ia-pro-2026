@@ -46,7 +46,7 @@ export function Price() {
               </ul>
 
               <div className="mt-8">
-                <CTAButton label={CTA.pricing} pulse showPrice={false} className="w-full" />
+                <CTAButton label={CTA.pricing} sub="Réservez votre place sur WhatsApp" showPrice={false} className="w-full" />
               </div>
               <p className="mt-3 text-center text-[13.5px] text-ink-soft">{PRICE2.payNote}</p>
             </div>

@@ -1,0 +1,415 @@
+/* ==========================================================================
+   HERO en deux colonnes + cartes de preuve, SÉANCES PRATIQUES (rubans photo),
+   TÉMOIGNAGES (liste fixe + cartes qui défilent) — inspiré de notion-secrets.com
+   ========================================================================== */
+
+/* ------------------------------------------------------------------ HERO */
+.v2-hero2 {
+  display: grid;
+  gap: 40px;
+  align-items: center;
+}
+.v2-hero2__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.v2-hero2__media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+@media (min-width: 1024px) {
+  .v2-hero2 {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+    gap: 56px;
+  }
+  .v2-hero2__copy {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+.v2-title--hero2 {
+  font-size: clamp(28px, 7.4vw, 44px);
+  line-height: 1.04;
+  text-wrap: balance;
+}
+@media (min-width: 768px) {
+  .v2-title--hero2 {
+    font-size: 54px;
+  }
+}
+@media (min-width: 1024px) {
+  .v2-title--hero2 {
+    font-size: clamp(40px, 3.7vw, 54px);
+  }
+}
+
+/* Bénéfices cochés */
+.v2-checks {
+  display: grid;
+  gap: 12px;
+  text-align: left;
+}
+.v2-checks__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 16px;
+  line-height: 1.45;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+@media (min-width: 768px) {
+  .v2-checks__item {
+    font-size: 17px;
+  }
+}
+.v2-checks__ico {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  border-radius: 8px;
+  background: var(--color-primary-soft);
+  border: 1px solid var(--color-primary-line);
+  color: var(--color-primary);
+}
+
+/* Profils, alignés à gauche sur ordinateur */
+.v2-targets--left {
+  font-size: 14px;
+}
+@media (min-width: 1024px) {
+  .v2-targets--left {
+    justify-content: flex-start;
+    text-align: left;
+  }
+}
+
+/* Cadre vidéo un peu plus doux en colonne */
+.v2-hero2__media .lp-device {
+  max-width: 720px;
+}
+
+/* Cartes de preuve sous le hero */
+.v2-proofcards {
+  display: grid;
+  gap: 14px;
+  margin-top: 56px;
+}
+@media (min-width: 768px) {
+  .v2-proofcards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 80px;
+  }
+}
+.v2-proofcard {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 150px;
+  padding: 26px 20px;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: 22px;
+  background: var(--color-surface);
+  box-shadow: 0 18px 40px -30px color-mix(in srgb, var(--color-primary) 45%, transparent);
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .v2-proofcard {
+    min-height: 180px;
+  }
+}
+.v2-proofcard__text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.v2-proofcard__big {
+  font-family: var(--font-clash), sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.05;
+  color: var(--color-ink);
+}
+.v2-proofcard__accent {
+  font-family: var(--font-clash), sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--color-primary);
+}
+.v2-proofcard__accent.is-red {
+  color: var(--color-secondary);
+}
+.v2-proofcard__small {
+  margin-top: 8px;
+  font-family: var(--font-satoshi), sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--color-ink-soft);
+}
+/* Lauriers (carte 1) */
+.v2-laurel {
+  position: absolute;
+  top: 50%;
+  width: 34px;
+  height: 78px;
+  margin-top: -39px;
+  color: color-mix(in srgb, var(--color-primary) 32%, transparent);
+}
+.v2-laurel:first-child {
+  left: calc(50% - 128px);
+}
+.v2-laurel:nth-child(2) {
+  right: calc(50% - 128px);
+}
+/* Visages qui défilent en fond (carte 2) */
+.v2-proofcard__faces {
+  --marquee-gap: 14px;
+  --marquee-duration: 26s;
+  position: absolute;
+  inset: auto 0 14px;
+  opacity: 0.22;
+  pointer-events: none;
+}
+.v2-proofcard__faces.lp-marquee {
+  overflow: hidden;
+}
+.v2-proofcard__faces .lp-marquee__track {
+  animation-play-state: running !important;
+}
+.v2-proofcard__face {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 50%;
+  filter: grayscale(1);
+}
+.v2-proofcard:nth-child(2) .v2-proofcard__text {
+  margin-bottom: 34px;
+}
+/* Flèche (carte 3) */
+.v2-proofcard__arrow {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  width: 92px;
+  color: color-mix(in srgb, var(--color-primary) 22%, transparent);
+}
+
+/* ---------------------------------------------------- SÉANCES PRATIQUES */
+.v2-sess {
+  overflow: hidden;
+}
+.v2-sess__row {
+  --marquee-gap: 16px;
+  --marquee-duration: 60s;
+}
+.v2-sess__row.lp-marquee--reverse {
+  --marquee-duration: 70s;
+}
+.v2-sess__photo {
+  position: relative;
+  flex-shrink: 0;
+  width: 240px;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--color-primary-soft);
+  box-shadow: 0 20px 40px -28px color-mix(in srgb, var(--color-ink) 60%, transparent);
+}
+.v2-sess__photo.is-wide {
+  width: 320px;
+}
+@media (min-width: 768px) {
+  .v2-sess__row {
+    --marquee-gap: 20px;
+  }
+  .v2-sess__photo {
+    width: 360px;
+    height: 260px;
+    border-radius: 24px;
+  }
+  .v2-sess__photo.is-wide {
+    width: 460px;
+  }
+}
+.v2-sess__photo img {
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (hover: hover) {
+  .v2-sess__photo:hover img {
+    transform: scale(1.06);
+  }
+}
+.v2-sess__photo figcaption {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 6px 12px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  backdrop-filter: blur(6px);
+  font-family: var(--font-satoshi), sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+.v2-sess__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid var(--color-line);
+  border-radius: 99px;
+  background: var(--color-surface);
+  font-family: var(--font-satoshi), sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+.v2-sess__chip svg {
+  color: var(--color-primary);
+}
+
+/* ----------------------------------------------------------- TÉMOIGNAGES */
+.v2-tst__mark {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  box-shadow: 0 14px 30px -14px var(--color-primary);
+}
+.v2-tst__list {
+  position: sticky;
+  top: 112px;
+  display: grid;
+  gap: 6px;
+}
+.v2-tst__who {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 18px;
+  opacity: 0.5;
+  transition: opacity 0.35s ease;
+}
+.v2-tst__who:hover,
+.v2-tst__who.is-active {
+  opacity: 1;
+}
+.v2-tst__who-bg {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 18px;
+  background: var(--color-surface);
+  box-shadow: 0 18px 40px -28px color-mix(in srgb, var(--color-primary) 55%, transparent);
+}
+.v2-tst__avatar {
+  position: relative;
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  font-family: var(--font-satoshi), sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+.v2-tst__name {
+  display: block;
+  font-family: var(--font-clash), sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+.v2-tst__role {
+  display: block;
+  margin-top: 2px;
+  font-size: 14px;
+  color: var(--color-ink-soft);
+}
+.v2-tst__who:not(.is-active) .v2-tst__role {
+  display: none;
+}
+.v2-tst__card {
+  padding: 26px 22px;
+  border: 1px solid var(--color-line);
+  border-radius: 24px;
+  background: var(--color-surface);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+@media (min-width: 768px) {
+  .v2-tst__card {
+    padding: 36px 38px;
+  }
+}
+.v2-tst__card.is-active {
+  border-color: var(--color-line-strong);
+  box-shadow: 0 30px 60px -40px color-mix(in srgb, var(--color-primary) 60%, transparent);
+}
+.v2-tst__title {
+  margin-top: 18px;
+  font-family: var(--font-clash), sans-serif;
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--color-ink);
+}
+@media (min-width: 1024px) {
+  .v2-tst__title {
+    margin-top: 0;
+  }
+}
+.v2-tst__quote {
+  margin-top: 14px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--color-ink-soft);
+}
+@media (min-width: 768px) {
+  .v2-tst__quote {
+    font-size: 18px;
+  }
+}
+.v2-tst__tag {
+  display: inline-flex;
+  margin-top: 22px;
+  padding: 6px 12px;
+  border-radius: 99px;
+  background: var(--color-primary-soft);
+  font-family: var(--font-satoshi), sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-proofcard__faces .lp-marquee__track {
+    animation: none !important;
+  }
+}

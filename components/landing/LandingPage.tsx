@@ -4,7 +4,7 @@ import { StickyCTA } from "./primitives/StickyCTA";
 import { Gated, VideoGateProvider } from "./primitives/VideoGate";
 import { Header } from "./sections/Header";
 import { BeforeAfter } from "./v2/BeforeAfter";
-import { BonusFan } from "./v2/BonusFan";
+import { Bonus } from "./v2/Bonus";
 import { Faq } from "./v2/Faq";
 import { FinalCta } from "./v2/FinalCta";
 import { Footer } from "./v2/Footer";
@@ -13,9 +13,10 @@ import { Hero } from "./v2/Hero";
 import { Method } from "./v2/Method";
 import { Price } from "./v2/Price";
 import { ProgramTimeline } from "./v2/ProgramTimeline";
-import { Proof } from "./v2/Proof";
 import { Realisations } from "./v2/Realisations";
+import { Sessions } from "./v2/Sessions";
 import { Specialties } from "./v2/Specialties";
+import { Testimonials } from "./v2/Testimonials";
 import { Tools } from "./v2/Tools";
 import { ZoomReveal } from "./v2/ZoomReveal";
 
@@ -47,9 +48,10 @@ export function LandingPage() {
             <ProgramTimeline />
             <Realisations />
             <Tools />
-            <Proof />
+            <Sessions />
+            <Testimonials />
             <ForWho />
-            <BonusFan />
+            <Bonus />
             <Price />
             <Faq />
             <FinalCta />

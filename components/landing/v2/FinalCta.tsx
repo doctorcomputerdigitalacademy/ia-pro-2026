@@ -25,7 +25,7 @@ export function FinalCta() {
             <circle cx="4" cy="70" r="5" />
           </svg>
           <div className="relative">
-            <CTAButton label={CTA.final} pulse showPrice={false} />
+            <CTAButton label={CTA.final} sub="Formation en présentiel à Calavi · 20 places par cohorte" showPrice={false} />
           </div>
         </div>
         <p className="mt-4 text-[14px] text-ink-soft">{FINAL2.note}</p>

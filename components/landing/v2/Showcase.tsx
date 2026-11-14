@@ -54,7 +54,7 @@ export function Showcase() {
                 role="tab"
                 aria-selected={tab === i}
                 onClick={() => setTab(i)}
-                className={cn("v2-tab", tab === i && "is-active", i === 2 && "is-red")}
+                className={cn("v2-tab", tab === i && "is-active", t.kind === "video" && "is-red")}
               >
                 {tab === i ? <motion.span layoutId="show-pill" className="v2-tab__pill" transition={{ duration: 0.45, ease: EASE_OUT }} /> : null}
                 <span className="relative">{t.label}</span>

@@ -468,40 +468,46 @@ export const PHOTO_BADGE = "Séance pratique";
    témoignages réels de vos apprenants (avec leur accord) avant la mise en ligne.
    Les 10 premiers défilent sur la ligne 1, les suivants sur la ligne 2.
    ========================================================================== */
-export const testimonials: { name: string; role: string; quote: string }[] = [
+export const testimonials: { name: string; role: string; title: string; quote: string }[] = [
   // <!-- À CONFIRMER : témoignage réel ? -->
   {
     name: "Fifamè A.",
+    title: "Mon mémoire avance enfin sereinement.",
     role: "Étudiante en gestion, Abomey-Calavi",
     quote: "Je pensais connaître ChatGPT. J'ai découvert qu'on peut lui donner de vraies méthodes de travail. Mon mémoire avance beaucoup plus sereinement.",
   },
   // <!-- À CONFIRMER : témoignage réel ? -->
   {
     name: "Rodrigue H.",
+    title: "Un assistant IA qui connaît mon activité.",
     role: "Entrepreneur, Cotonou",
     quote: "Le module sur les Projects m'a ouvert les yeux : j'ai maintenant un assistant qui connaît mon activité et m'aide à préparer mes devis.",
   },
   // <!-- À CONFIRMER : témoignage réel ? -->
   {
     name: "Ornella K.",
+    title: "Mes premières affiches pub, faites avec l'IA.",
     role: "Commerçante, Calavi",
     quote: "J'ai réalisé mes premières affiches publicitaires avec Google Flow et Kling AI pendant la formation. Mes clientes les ont remarquées sur mon statut WhatsApp.",
   },
   // <!-- À CONFIRMER : témoignage réel ? -->
   {
     name: "Gildas D.",
+    title: "Je lis les longs documents en quelques minutes.",
     role: "Comptable",
     quote: "NotebookLM a changé ma façon de lire les documents longs. Je retrouve les informations importantes en quelques minutes.",
   },
   // <!-- À CONFIRMER : témoignage réel ? -->
   {
     name: "Prisca S.",
+    title: "Mes rapports ne me prennent plus des heures.",
     role: "Secrétaire de direction",
     quote: "Les rapports me prenaient des heures. Avec les bons prompts, j'ai une première structure solide que je n'ai plus qu'à ajuster.",
   },
   // <!-- À CONFIRMER : témoignage réel ? -->
   {
     name: "Hermann T.",
+    title: "J'ai compris toute la chaîne de production vidéo.",
     role: "Créateur de contenu",
     quote: "La partie vidéo m'a bluffé : script, storyboard, voix off, montage CapCut… J'ai compris toute la chaîne de production.",
   },

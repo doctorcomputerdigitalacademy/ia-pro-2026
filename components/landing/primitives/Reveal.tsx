@@ -52,9 +52,9 @@ export function HeroIn({
   children: ReactNode;
   delay?: number;
   className?: string;
-  as?: "div" | "span";
+  as?: "div" | "span" | "li";
 }) {
-  const Tag = as === "span" ? motion.span : motion.div;
+  const Tag = as === "span" ? motion.span : as === "li" ? motion.li : motion.div;
   return (
     <Tag
       className={className}
