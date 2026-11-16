@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans } from "next/font/google";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import "./landing.css";
 import "./landing-bands.css";
@@ -63,7 +64,11 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="fr" className={`${dmSans.variable} ${satoshi.variable} ${clash.variable} h-full antialiased`}>
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        {children}
+        {/* Statistiques de visites Vercel (à activer dans l'onglet Analytics du projet) */}
+        <Analytics />
+      </body>
     </html>
   );
 }
