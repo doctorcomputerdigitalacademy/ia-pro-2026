@@ -14,7 +14,7 @@ function Row({ photos, reverse }: { photos: string[]; reverse?: boolean }) {
         <div key={k} className="lp-marquee__track" aria-hidden={k === 1 || undefined}>
           {photos.map((src, i) => (
             <figure key={`${k}-${src}`} className={cn("v2-sess__photo", i % 3 === 1 && "is-wide")}>
-              <Image src={src} alt={k === 0 ? "Apprenants en séance pratique, en salle à Calavi" : ""} fill sizes="(min-width: 768px) 460px, 300px" quality={90} className="object-cover" />
+              <Image src={src} alt={k === 0 ? `Séance pratique IA PRO 2026 en salle à Calavi, photo ${i + 1}` : ""} fill sizes="(min-width: 768px) 460px, 300px" quality={90} className="object-cover" />
               {i % 2 === 0 ? <figcaption>Séance en présentiel · Calavi</figcaption> : null}
             </figure>
           ))}

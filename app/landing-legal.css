@@ -1,0 +1,286 @@
+/* ==========================================================================
+   Bandeau cookies, pages légales, page 404
+   ========================================================================== */
+
+/* ------------------------------------------------------------ Bandeau cookies */
+.lp-cookie {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  z-index: 90;
+  width: min(560px, calc(100% - 24px));
+  padding: 18px 20px;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  box-shadow: 0 24px 60px -24px color-mix(in srgb, var(--color-ink) 45%, transparent);
+  transform: translateX(-50%);
+  animation: lp-cookie-in 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes lp-cookie-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 16px);
+  }
+}
+.lp-cookie__title {
+  font-family: var(--font-satoshi), sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+.lp-cookie__text {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+.lp-cookie__text a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.lp-cookie__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+}
+.lp-cookie__btn {
+  min-height: 44px;
+  padding: 0 22px;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  background: var(--color-surface);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.lp-cookie__btn:hover {
+  background: var(--color-page);
+}
+.lp-cookie__btn.is-main {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+.lp-cookie__btn.is-main:hover {
+  background: color-mix(in srgb, var(--color-primary), var(--color-ink) 20%);
+}
+.lp-cookie__btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+@media (max-width: 480px) {
+  .lp-cookie__actions > * {
+    flex: 1;
+  }
+}
+
+/* ------------------------------------------------------------- Pages légales */
+.lp-legal {
+  min-height: 100vh;
+  background: var(--color-page);
+  color: var(--color-ink);
+}
+.lp-legal__bar {
+  border-bottom: 1px solid var(--color-line);
+  background: var(--color-surface);
+}
+.lp-legal__bar-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(820px, calc(100% - 32px));
+  min-height: 68px;
+  margin: 0 auto;
+}
+.lp-legal__back {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+.lp-legal__back:hover {
+  text-decoration: underline;
+}
+.lp-legal__body {
+  width: min(820px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 48px 0 80px;
+}
+.lp-legal__body h1 {
+  font-family: var(--font-clash), var(--font-satoshi), sans-serif;
+  font-size: clamp(30px, 6vw, 44px);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--color-ink);
+}
+.lp-legal__updated {
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--color-ink-soft);
+}
+.lp-legal__body h2 {
+  margin-top: 40px;
+  font-family: var(--font-satoshi), sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--color-primary);
+  scroll-margin-top: 24px;
+}
+.lp-legal__body p,
+.lp-legal__body li {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-ink-soft);
+}
+.lp-legal__body ul {
+  padding-left: 22px;
+  list-style: disc;
+}
+.lp-legal__body li {
+  margin-top: 6px;
+}
+.lp-legal__body strong {
+  color: var(--color-ink);
+}
+.lp-legal__body a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.lp-legal__card {
+  margin-top: 16px;
+  padding: 18px 20px;
+  border: 1px solid var(--color-line);
+  border-radius: 16px;
+  background: var(--color-surface);
+}
+.lp-legal__card p:first-child {
+  margin-top: 0;
+}
+.lp-legal__btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 14px;
+  padding: 0 20px;
+  border: 1px solid var(--color-primary);
+  border-radius: 999px;
+  background: var(--color-surface);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+.lp-legal__btn:hover {
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+.lp-legal__foot {
+  border-top: 1px solid var(--color-line);
+  padding: 24px 16px 32px;
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--color-ink-soft);
+}
+.lp-legal__foot a {
+  margin: 0 8px;
+  color: var(--color-ink-soft);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------ Page 404 */
+.lp-404 {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 32px 16px;
+  background: var(--color-page);
+  text-align: center;
+}
+.lp-404__code {
+  font-family: var(--font-clash), var(--font-satoshi), sans-serif;
+  font-size: clamp(96px, 26vw, 180px);
+  font-weight: 700;
+  line-height: 0.9;
+  color: var(--color-primary);
+}
+.lp-404__code span {
+  color: var(--color-secondary);
+}
+.lp-404__title {
+  margin-top: 18px;
+  font-family: var(--font-satoshi), sans-serif;
+  font-size: clamp(22px, 5vw, 30px);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+.lp-404__text {
+  max-width: 440px;
+  margin: 10px auto 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+}
+.lp-404__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+.lp-404__btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+.lp-404__btn.is-main {
+  border-color: var(--color-secondary);
+  background: var(--color-secondary);
+  color: var(--color-surface);
+}
+
+/* ------------------------------------------------- Apparition du haut de page */
+/* En CSS (et non en JavaScript) pour que le haut de page s'affiche sans attendre le chargement des scripts. */
+.lp-hero-in {
+  animation: lp-hero-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+span.lp-hero-in {
+  display: inline-block;
+}
+span.lp-hero-in.block {
+  display: block;
+}
+@keyframes lp-hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lp-hero-in {
+    animation: none;
+  }
+}

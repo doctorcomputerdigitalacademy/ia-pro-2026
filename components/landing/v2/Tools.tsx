@@ -10,7 +10,7 @@ const OUTER = TOOLS.words.slice(3);
 
 function Ring({ items, kind }: { items: typeof TOOLS.words; kind: "inner" | "outer" }) {
   return (
-    <div className={cn("v2-orbit__ring", `v2-orbit__ring--${kind}`)}>
+    <div className={cn("v2-orbit__ring", `v2-orbit__ring--${kind}`)} aria-hidden="true">
       {items.map((t, i) => (
         <div key={t.word} className="v2-orbit__slot" style={{ "--a": `${(360 / items.length) * i}deg` } as React.CSSProperties}>
           <span className="v2-orbit__upright">
@@ -35,7 +35,7 @@ export function Tools() {
       <Container>
         <Title line1={TOOLS.line1} line2={TOOLS.line2} className="text-center" />
         <Reveal y={30} className="mt-6 flex justify-center">
-          <div className="v2-orbit" role="list" aria-label="Outils">
+          <div className="v2-orbit">
             <span className="v2-orbit__track v2-orbit__track--outer" aria-hidden="true" />
             <span className="v2-orbit__track v2-orbit__track--inner" aria-hidden="true" />
             <div className="v2-orbit__core">
@@ -44,9 +44,9 @@ export function Tools() {
             </div>
             <Ring items={OUTER} kind="outer" />
             <Ring items={INNER} kind="inner" />
-            <ul className="sr-only">
+            <ul className="sr-only" aria-label="Outils">
               {TOOLS.words.map((t) => (
-                <li key={t.word} role="listitem">
+                <li key={t.word}>
                   {t.word} {t.tag}
                 </li>
               ))}

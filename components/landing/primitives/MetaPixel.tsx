@@ -3,6 +3,7 @@
 import Script from "next/script";
 import { useEffect, useRef } from "react";
 import { CONTACT_URL, META_PIXEL_ID, PRICE_VALUE } from "@/lib/landing/config";
+import { useConsent } from "@/lib/landing/consent";
 import { useVideoGate } from "./VideoGate";
 
 type Fbq = (...args: unknown[]) => void;
@@ -20,17 +21,25 @@ export function track(event: string, params?: Record<string, unknown>) {
  * - ViewContent  : la vidéo de présentation est regardée 45 s ou jusqu'au bout ;
  * - Lead         : clic sur un bouton « Réserver ma place » (WhatsApp d'inscription) ;
  * - Contact      : clic sur « Écrivez-nous sur WhatsApp » (question).
+ * Le Pixel n'est chargé qu'après l'accord du visiteur (bandeau cookies).
  */
 export function MetaPixel() {
   const { watched } = useVideoGate();
+  const { consent } = useConsent();
   const sent = useRef(false);
+
+  /* Le visiteur change d'avis après coup : le Pixel déjà chargé suit son choix. */
+  useEffect(() => {
+    const fbq = (window as unknown as { fbq?: Fbq }).fbq;
+    if (fbq && consent) fbq("consent", consent === "granted" ? "grant" : "revoke");
+  }, [consent]);
 
   /* ViewContent : une fois par visite, quand la vidéo a été regardée 45 s (ou jusqu'au bout). */
   useEffect(() => {
-    if (!watched || sent.current) return;
+    if (!watched || sent.current || consent !== "granted") return;
     sent.current = true;
     track("ViewContent", { content_name: "Vidéo IA PRO 2026", content_category: "VSL" });
-  }, [watched]);
+  }, [watched, consent]);
 
   /* Clics vers WhatsApp : Lead (inscription) ou Contact (question). */
   useEffect(() => {
@@ -45,7 +54,7 @@ export function MetaPixel() {
     return () => document.removeEventListener("click", onClick, true);
   }, []);
 
-  if (!META_PIXEL_ID) return null;
+  if (!META_PIXEL_ID || consent !== "granted") return null;
   return (
     <>
       <Script id="meta-pixel" strategy="afterInteractive">
@@ -54,7 +63,7 @@ n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','${META_PIXEL_ID}');fbq('track','PageView');`}
+fbq('consent','grant');fbq('init','${META_PIXEL_ID}');fbq('track','PageView');`}
       </Script>
       <noscript>
         {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -10,6 +10,9 @@ import "./landing-v2-program.css";
 import "./landing-v2-extra.css";
 import "./landing-v2-hero.css";
 import "./landing-v2-bonus.css";
+import "./landing-legal.css";
+import { CookieConsent } from "@/components/landing/primitives/CookieConsent";
+import { SITE_URL } from "@/lib/landing/config";
 
 /* Police du texte courant et des boutons : DM Sans (reprise de oskool.site) */
 const dmSans = DM_Sans({
@@ -41,16 +44,42 @@ const clash = localFont({
   ],
 });
 
+const DESCRIPTION =
+  "3 jours de formation pratique en présentiel à Calavi + 30 jours d'accompagnement pour maîtriser ChatGPT, Claude, Gemini et NotebookLM, et créer visuels et vidéos avec l'IA. 20 000 FCFA tout compris.";
+
 export const metadata: Metadata = {
-  title: "IA PRO 2026 | Formation en présentiel en intelligence artificielle à Calavi",
-  description:
-    "3 jours de formation pratique en présentiel à Calavi + 30 jours d'accompagnement pour maîtriser ChatGPT, Claude, Gemini et NotebookLM, et créer visuels et vidéos avec l'IA. 20 000 FCFA tout compris. Doctor Computer Digital Academy, Calavi.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "IA PRO 2026 | Formation IA en présentiel à Calavi",
+    template: "%s | IA PRO 2026",
+  },
+  description: DESCRIPTION,
+  applicationName: "IA PRO 2026",
+  authors: [{ name: "Doctor Computer Digital Academy" }],
+  keywords: [
+    "formation intelligence artificielle",
+    "formation IA Bénin",
+    "formation IA Calavi",
+    "formation ChatGPT Cotonou",
+    "IA PRO 2026",
+    "Doctor Computer Digital Academy",
+  ],
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
   openGraph: {
-    title: "IA PRO 2026 | Doctor Computer Digital Academy",
-    description: "Apprenez l'IA en 3 jours, en présentiel à Calavi. Et utilisez-la comme un pro.",
+    title: "IA PRO 2026 | Formation IA en présentiel à Calavi",
+    description: "Apprenez l'IA en 3 jours, en présentiel à Calavi. Et utilisez-la comme un pro. 20 000 FCFA tout compris.",
+    url: "/",
+    siteName: "IA PRO 2026 · Doctor Computer Digital Academy",
     locale: "fr_FR",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "IA PRO 2026 | Formation IA en présentiel à Calavi",
+    description: "Apprenez l'IA en 3 jours, en présentiel à Calavi. 20 000 FCFA tout compris.",
+  },
+  formatDetection: { telephone: false },
   /* Vérification du domaine dans Meta Business (Sécurité de la marque > Domaines) */
   other: {
     "facebook-domain-verification": "c0pabh7kw9xzgr5cha0my1kvpjbcxv",
@@ -68,6 +97,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         {/* Statistiques de visites Vercel (à activer dans l'onglet Analytics du projet) */}
         <Analytics />
+        {/* Bandeau de consentement aux cookies (Pixel Meta) */}
+        <CookieConsent />
       </body>
     </html>
   );

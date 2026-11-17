@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { motion } from "motion/react";
 import { EASE_OUT } from "@/lib/landing/highlight";
+import { cn } from "@/lib/utils";
 
 const TAGS = {
   div: motion.div,
@@ -54,14 +55,11 @@ export function HeroIn({
   className?: string;
   as?: "div" | "span" | "li";
 }) {
-  const Tag = as === "span" ? motion.span : as === "li" ? motion.li : motion.div;
+  /* Animation CSS : elle démarre dès l'affichage de la page, sans attendre le JavaScript
+     (le haut de page apparaît plus vite sur les téléphones lents). */
+  const Tag = as;
   return (
-    <Tag
-      className={className}
-      initial={{ opacity: 0, y: 24, filter: "blur(10px)" }}
-      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      transition={{ duration: 0.8, delay, ease: EASE_OUT }}
-    >
+    <Tag className={cn("lp-hero-in", className)} style={{ animationDelay: `${delay}s` }}>
       {children}
     </Tag>
   );

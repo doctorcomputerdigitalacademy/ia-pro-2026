@@ -28,7 +28,7 @@ export const CONTACT_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURICom
 export const VSL_SRC = "https://youtu.be/zy_oI6j_ENE";
 
 /** Image d'aperçu optionnelle de la vidéo (ex. "/images/vsl-poster.jpg"). */
-export const VSL_POSTER = "https://i.ytimg.com/vi/zy_oI6j_ENE/maxresdefault.jpg";
+export const VSL_POSTER = "/videos/vsl-poster.webp";
 
 /**
  * Meta Pixel (publicités Facebook / Instagram).
@@ -56,3 +56,9 @@ export const VSL_UNLOCK_SECONDS = 45;
 export const VIDEO_GATE = false;
 /** Délai avant d'afficher le lien discret « Afficher la suite sans la vidéo » (connexion lente, vidéo bloquée…). */
 export const VSL_SKIP_AFTER_SECONDS = 25;
+
+/** Adresse publique du site (sert aux balises méta, au sitemap et aux aperçus réseaux sociaux). */
+export const SITE_URL = "https://ia-pro-2026.vercel.app";
+
+/** Clé de stockage du choix cookies du visiteur (bandeau de consentement). */
+export const CONSENT_KEY = "iapro-cookie-consent-v1";

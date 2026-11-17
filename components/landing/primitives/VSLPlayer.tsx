@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { PlayIcon } from "@hugeicons/core-free-icons";
 import { cn } from "@/lib/utils";
@@ -111,8 +112,8 @@ export function VSLPlayer({ src, poster, title, kicker = "Présentation vidéo",
           />
           <div aria-hidden="true" className="lp-vsl__grid absolute inset-0" />
           {poster ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={poster} alt="" loading="lazy" decoding="async" className="absolute inset-0 size-full object-cover" />
+            /* Image de la vidéo : chargée en priorité, à la bonne taille pour chaque écran */
+            <Image src={poster} alt="" fill priority sizes="(min-width: 1060px) 1000px, 100vw" className="object-cover" />
           ) : null}
           {poster ? (
             <div

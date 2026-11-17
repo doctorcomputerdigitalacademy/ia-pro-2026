@@ -93,7 +93,7 @@ export function Hero() {
         </HeroIn>
       </Container>
 
-      <HeroIn delay={0.8} className="v2-stage relative mt-6 md:mt-8">
+      <HeroIn delay={0.5} className="v2-stage relative mt-6 md:mt-8">
         <Container className="relative z-10 flex justify-center">
           <div className="lp-device w-full max-w-[1000px]">
             <span className="lp-device__cam" aria-hidden="true" />

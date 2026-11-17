@@ -216,10 +216,10 @@ export const BONUS2 = {
   mocks: [
     {
       box: "/creations/affiches/4.webp",
-      boxMosaic: ["/creations/photoshoot/5.webp", "/creations/affiches/5.webp", "/creations/videos/pub-01.jpg", "/creations/photoshoot/2.webp", "/creations/affiches/2.webp", "/creations/videos/pub-06.jpg"],
+      boxMosaic: ["/creations/photoshoot/5.webp", "/creations/affiches/5.webp", "/creations/videos/pub-01.webp", "/creations/photoshoot/2.webp", "/creations/affiches/2.webp", "/creations/videos/pub-06.webp"],
       screen: {
         kind: "library" as const,
-        thumbs: ["/creations/affiches/1.webp", "/creations/photoshoot/2.webp", "/creations/affiches/5.webp", "/creations/videos/pub-04.jpg", "/creations/affiches/2.webp", "/creations/photoshoot/4.webp"],
+        thumbs: ["/creations/affiches/1.webp", "/creations/photoshoot/2.webp", "/creations/affiches/5.webp", "/creations/videos/pub-04.webp", "/creations/affiches/2.webp", "/creations/photoshoot/4.webp"],
       },
     },
     {
@@ -230,8 +230,8 @@ export const BONUS2 = {
       },
     },
     {
-      box: "/creations/videos/pub-05.jpg",
-      screen: { kind: "video" as const, src: "/creations/videos/pub-02.mp4", poster: "/creations/videos/pub-02.jpg" },
+      box: "/creations/videos/pub-05.webp",
+      screen: { kind: "video" as const, src: "/creations/videos/pub-02.mp4", poster: "/creations/videos/pub-02.webp" },
     },
   ],
 };
@@ -285,7 +285,7 @@ export const SHOWCASE = {
       kind: "video" as const,
       items: [1, 2, 3, 4, 5, 6].map((n) => ({
         src: `/creations/videos/pub-0${n}.mp4`,
-        poster: `/creations/videos/pub-0${n}.jpg`,
+        poster: `/creations/videos/pub-0${n}.webp`,
         alt: `Extrait de publicité vidéo créée avec l'IA, exemple ${n}`,
       })),
     },
