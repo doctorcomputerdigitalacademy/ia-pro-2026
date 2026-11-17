@@ -4,6 +4,7 @@ import { MotionRoot } from "./primitives/ScrollEffects";
 import { StickyCTA } from "./primitives/StickyCTA";
 import { Gated, VideoGateProvider } from "./primitives/VideoGate";
 import { Header } from "./sections/Header";
+import { Access } from "./v2/Access";
 import { BeforeAfter } from "./v2/BeforeAfter";
 import { Bonus } from "./v2/Bonus";
 import { Faq } from "./v2/Faq";
@@ -54,6 +55,7 @@ export function LandingPage() {
             <ForWho />
             <Bonus />
             <Price />
+            <Access />
             <Faq />
             <FinalCta />
           </Gated>

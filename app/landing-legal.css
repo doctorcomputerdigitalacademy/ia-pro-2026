@@ -411,3 +411,148 @@ span.lp-hero-in.block {
     transform: rotate(var(--r, 0deg));
   }
 }
+
+/* -------------------------------------------------------------- Comment venir */
+.v2-access {
+  display: grid;
+  gap: 48px;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .v2-access {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 72px;
+  }
+}
+.v2-access__text {
+  min-width: 0;
+}
+.v2-access__card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 28px;
+  padding: 20px 22px;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  background: var(--color-surface);
+}
+.v2-access__pin {
+  display: grid;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--color-secondary);
+  color: var(--color-surface);
+}
+.v2-access__venue {
+  font-family: var(--font-satoshi), sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-ink);
+}
+.v2-access__area {
+  margin-top: 4px;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+.v2-access__steps {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+.v2-access__steps li {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 16px;
+  color: var(--color-ink);
+}
+.v2-access__steps li span {
+  display: grid;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.v2-access__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+.v2-access__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 50px;
+  padding: 0 22px;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  background: var(--color-surface);
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--color-ink);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.v2-access__btn:hover {
+  transform: translateY(-2px);
+}
+.v2-access__btn.is-main {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+@media (max-width: 480px) {
+  .v2-access__btn {
+    width: 100%;
+  }
+}
+.v2-access__media {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+.v2-access__phone {
+  position: relative;
+  width: min(330px, 82vw);
+  aspect-ratio: 9 / 16;
+  padding: 10px;
+  border-radius: 40px;
+  background: var(--color-ink);
+  box-shadow: 0 40px 80px -36px color-mix(in srgb, var(--color-primary) 70%, transparent);
+}
+.v2-access__phone video {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  object-fit: cover;
+  background: var(--color-ink);
+}
+.v2-access__badge {
+  position: absolute;
+  left: 50%;
+  top: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-ink) 70%, transparent);
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--color-surface);
+  transform: translateX(-50%);
+  pointer-events: none;
+}

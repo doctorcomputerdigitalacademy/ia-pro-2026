@@ -18,10 +18,11 @@ const JSON_LD = {
     url: SITE_URL,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Bidossessi, après le carrefour de l'ORTB",
+      streetAddress: "Centre Baha'i de la Communauté de Calavi, Bidossessi, après le carrefour de l'ORTB",
       addressLocality: "Abomey-Calavi",
       addressCountry: "BJ",
     },
+    geo: { "@type": "GeoCoordinates", latitude: 6.42933891, longitude: 2.34481219 },
   },
   offers: {
     "@type": "Offer",

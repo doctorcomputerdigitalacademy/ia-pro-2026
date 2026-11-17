@@ -68,7 +68,7 @@ export const BRAND = {
   logoAlt: "Doctor Computer Digital Academy",
   slogan:
     "Ne vous contentez pas de découvrir l'IA. Apprenez à l'utiliser pour produire, créer et développer vos compétences professionnelles.",
-  address: "Calavi, Bidossessi, après le carrefour de l'ORTB",
+  address: "Centre Baha'i de Calavi, Bidossessi, après le carrefour de l'ORTB",
   year: 2026,
 };
 
@@ -77,6 +77,7 @@ export const NAV = [
   { label: "Programme", href: "#programme" },
   { label: "Tarif", href: "#tarif" },
   { label: "Horaires", href: "#horaires" },
+  { label: "Accès", href: "#acces" },
   { label: "FAQ", href: "#faq" },
 ];
 
@@ -642,7 +643,7 @@ export const SCHEDULE = {
   ],
   locationTitle: "Lieu de formation",
   locationMode: "Formation 100 % en présentiel.",
-  location: "Calavi, Bidossessi, après le carrefour de l'ORTB.",
+  location: "Centre Baha'i de Calavi, Bidossessi, après le carrefour de l'ORTB.",
   alertTitle: "Attention : places limitées",
   alertLines: [
     "Chaque cohorte accueille seulement 20 participants maximum.",
@@ -706,7 +707,7 @@ export const FAQ = {
     {
       id: "lieu", category: "pratique",
       question: "Où se déroule la formation ?",
-      answer: "En présentiel, en salle, à Calavi, Bidossessi, après le carrefour de l'ORTB.",
+      answer: "En présentiel, en salle, au Centre Baha'i de la Communauté de Calavi, à Bidossessi, après le carrefour de l'ORTB. Une vidéo du trajet est disponible dans la section « Comment venir ».",
     },
     {
       id: "prix", category: "tarif",

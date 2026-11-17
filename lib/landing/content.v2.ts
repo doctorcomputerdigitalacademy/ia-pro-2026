@@ -251,7 +251,7 @@ export const PRICE2 = {
   whenTitle: "Quand et où ?",
   formulas: Array.from(new Set(SCHEDULE.cohorts.map((c) => c.days))),
   hours: ["10h00 – 13h00", "19h00 – 22h00"],
-  place: "Calavi, Bidossessi, après le carrefour de l'ORTB",
+  place: "Centre Baha'i de Calavi, Bidossessi, après le carrefour de l'ORTB",
   seats: "20 places maximum par cohorte",
 };
 
@@ -300,4 +300,23 @@ export const SHOWCASE = {
       items: [1, 2, 3, 4, 5, 6].map((n) => ({ src: `/creations/photoshoot/${n}.webp`, alt: `Photo produit générée avec l'IA, exemple ${n}` })),
     },
   ],
+};
+
+/* Comment venir : vidéo du trajet + adresse + itinéraire */
+export const ACCESS = {
+  line1: "Comment venir.",
+  line2: "Le trajet en vidéo, de l'entrée à la salle.",
+  venue: "Centre Baha'i de la Communauté de Calavi",
+  area: "Bidossessi, après le carrefour de l'ORTB, Abomey-Calavi",
+  steps: [
+    "Direction Bidossessi, à Calavi.",
+    "Passez le carrefour de l'ORTB.",
+    "Repérez l'enseigne « Centre Baha'i de la Communauté de Calavi ».",
+    "Entrez : la salle de formation vous attend.",
+  ],
+  video: "/videos/adresse.mp4",
+  poster: "/videos/adresse-poster.webp",
+  /* Point GPS envoyé par l'académie (Google Maps) */
+  lat: 6.42933891,
+  lng: 2.34481219,
 };
