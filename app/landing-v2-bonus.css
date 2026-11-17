@@ -592,3 +592,116 @@
     display: none;
   }
 }
+
+/* --------------------------------------------- Bonus : scène des maquettes */
+/* Chaque maquette est posée sur un panneau à la couleur du bonus (halo, grille, ombre au sol). */
+.v2-bonus__stage {
+  --tone: var(--color-primary);
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding: 64px 24px 72px;
+  border: 1px solid color-mix(in srgb, var(--tone) 16%, var(--color-line));
+  border-radius: 32px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 55% at 50% 45%, color-mix(in srgb, var(--tone) 22%, var(--color-surface)), transparent 70%),
+    linear-gradient(160deg, color-mix(in srgb, var(--tone) 9%, var(--color-surface)), color-mix(in srgb, var(--tone) 3%, var(--color-page)));
+}
+.v2-bonus__stage.is-red {
+  --tone: var(--color-secondary);
+}
+.v2-bonus__stage.is-ink {
+  --tone: var(--color-ink);
+}
+.v2-bonus__stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(color-mix(in srgb, var(--tone) 22%, transparent) 1px, transparent 1.4px);
+  background-size: 18px 18px;
+  mask-image: radial-gradient(70% 60% at 50% 50%, #000, transparent 75%);
+}
+.v2-bonus__floor {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  z-index: -1;
+  width: 70%;
+  height: 34px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--tone) 35%, transparent);
+  filter: blur(18px);
+  transform: translateX(-50%);
+}
+.v2-bonus__chip {
+  position: absolute;
+  left: 20px;
+  top: 18px;
+  padding: 6px 12px;
+  border: 1px solid color-mix(in srgb, var(--tone) 20%, var(--color-line));
+  border-radius: 999px;
+  background: var(--color-surface);
+  font-family: var(--font-satoshi), sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tone);
+}
+.v2-bonus__sticker {
+  position: absolute;
+  right: 18px;
+  top: 16px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--color-secondary);
+  font-family: var(--font-satoshi), sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: var(--color-surface);
+  box-shadow: 0 10px 24px -10px var(--color-secondary);
+  transform: rotate(4deg);
+}
+.v2-bonus__num {
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--font-clash), sans-serif;
+  font-size: clamp(56px, 7vw, 88px);
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--color-primary) 45%, transparent);
+}
+.v2-bonus__num.is-red {
+  -webkit-text-stroke-color: color-mix(in srgb, var(--color-secondary) 50%, transparent);
+}
+.v2-bonus__num.is-ink {
+  -webkit-text-stroke-color: color-mix(in srgb, var(--color-ink) 40%, transparent);
+}
+/* Texte de la boîte : espace entre les mots bien visible (« PHOTO-SHOOTING IA ») */
+.v2-mock__title {
+  word-spacing: 0.18em;
+}
+/* Mobile : la maquette tient dans le panneau */
+@media (max-width: 600px) {
+  .v2-bonus__stage {
+    padding: 56px 8px 52px;
+    border-radius: 24px;
+  }
+  .v2-bonus__stage .v2-mock {
+    --s: 0.58;
+  }
+  .v2-bonus__floor {
+    bottom: 26px;
+  }
+}
+@media (max-width: 380px) {
+  .v2-bonus__stage .v2-mock {
+    --s: 0.52;
+  }
+}

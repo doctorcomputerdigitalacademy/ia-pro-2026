@@ -141,7 +141,8 @@
 /* ---------------------------------------------------------------- ZOOM */
 .v2-zoom {
   position: relative;
-  height: 260vh;
+  /* hauteur réduite (était 260vh) : moins de défilement « à vide » sur l'écran bleu */
+  height: 200vh;
   margin-top: 72px;
 }
 .v2-zoom__sticky {
@@ -926,11 +927,11 @@
 
 /* Plus d'air entre les sections */
 .v2-section {
-  padding-top: 104px;
+  padding-top: 80px;
 }
 @media (min-width: 768px) {
   .v2-section {
-    padding-top: 168px;
+    padding-top: 128px;
   }
 }
 .v2-zoom {

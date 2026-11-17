@@ -282,6 +282,7 @@ export const SHOWCASE = {
   tabs: [
     {
       label: "Vidéos publicitaires",
+      short: "Vidéos",
       kind: "video" as const,
       items: [1, 2, 3, 4, 5, 6].map((n) => ({
         src: `/creations/videos/pub-0${n}.mp4`,
@@ -291,13 +292,28 @@ export const SHOWCASE = {
     },
     {
       label: "Affiches publicitaires",
+      short: "Affiches",
       kind: "image" as const,
-      items: [1, 2, 3, 4, 5].map((n) => ({ src: `/creations/affiches/${n}.webp`, alt: `Affiche publicitaire créée avec l'IA, exemple ${n}` })),
+      items: [
+        [1, 900, 600],
+        [2, 771, 900],
+        [3, 720, 900],
+        [4, 600, 900],
+        [5, 900, 900],
+      ].map(([n, w, h]) => ({ src: `/creations/affiches/${n}.webp`, w, h, alt: `Affiche publicitaire créée avec l'IA, exemple ${n}` })),
     },
     {
       label: "Photoshoots produits",
+      short: "Photos",
       kind: "image" as const,
-      items: [1, 2, 3, 4, 5, 6].map((n) => ({ src: `/creations/photoshoot/${n}.webp`, alt: `Photo produit générée avec l'IA, exemple ${n}` })),
+      items: [
+        [1, 900, 900],
+        [2, 900, 900],
+        [3, 720, 900],
+        [4, 721, 900],
+        [5, 720, 900],
+        [6, 503, 900],
+      ].map(([n, w, h]) => ({ src: `/creations/photoshoot/${n}.webp`, w, h, alt: `Photo produit générée avec l'IA, exemple ${n}` })),
     },
   ],
 };

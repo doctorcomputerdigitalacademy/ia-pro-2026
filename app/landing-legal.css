@@ -357,25 +357,25 @@ span.lp-hero-in.block {
     .v2-zoom__screen {
       animation: v2-zoom-screen linear both;
       animation-timeline: --zoom;
-      animation-range: cover 4.2% cover 30%;
+      animation-range: cover 5% cover 28.4%;
     }
     .v2-zoom__text {
       animation: v2-zoom-text linear both;
       animation-timeline: --zoom;
-      animation-range: cover 13.7% cover 24.6%;
+      animation-range: cover 13.6% cover 23.5%;
     }
     .v2-zoom__card {
       animation: v2-zoom-card linear both;
       animation-timeline: --zoom;
     }
     .v2-zoom__card--0 {
-      animation-range: cover 24.6% cover 34.1%;
+      animation-range: cover 23.5% cover 32.1%;
     }
     .v2-zoom__card--1 {
-      animation-range: cover 30% cover 39.6%;
+      animation-range: cover 28.4% cover 37.1%;
     }
     .v2-zoom__card--2 {
-      animation-range: cover 35.4% cover 44.9%;
+      animation-range: cover 33.4% cover 42%;
     }
   }
 }
@@ -555,4 +555,61 @@ span.lp-hero-in.block {
   color: var(--color-surface);
   transform: translateX(-50%);
   pointer-events: none;
+}
+
+/* --------------------------------------------- Créations : rangée qui glisse */
+/* Hauteur fixe pour les trois onglets : pas de saut ni d'espace vide quand l'onglet change. */
+.v2-show__row {
+  --row-h: 320px;
+  display: flex;
+  gap: 14px;
+  height: var(--row-h);
+  padding: 4px 2px 18px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.v2-show__row::-webkit-scrollbar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .v2-show__row {
+    --row-h: 380px;
+    gap: 18px;
+  }
+}
+.v2-show__row > li {
+  position: relative;
+  flex: none;
+  height: 100%;
+  scroll-snap-align: start;
+}
+.v2-show__row .v2-show__img {
+  margin: 0;
+}
+.v2-show__clip {
+  aspect-ratio: 9 / 16;
+}
+.v2-show__clip .v2-clipcard {
+  height: 100%;
+}
+/* Mobile : les 3 onglets des créations sur une seule ligne */
+@media (max-width: 639px) {
+  .v2-show .v2-tabs {
+    flex-wrap: nowrap;
+  }
+  .v2-show .v2-tab {
+    padding: 10px 16px;
+    font-size: 14.5px;
+  }
+}
+/* Panneau bonus : un peu moins d'espace sous la maquette */
+.v2-bonus__stage {
+  padding-bottom: 56px;
+}
+@media (max-width: 600px) {
+  .v2-bonus__stage {
+    padding-bottom: 44px;
+  }
 }

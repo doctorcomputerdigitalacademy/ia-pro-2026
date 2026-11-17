@@ -32,6 +32,9 @@ export function Bonus() {
           {BONUS2.items.map((b, i) => (
             <li key={b.title} className={cn("v2-bonus__row", i % 2 === 1 && "is-flip")}>
               <Reveal y={30} className="v2-bonus__text">
+                <span className={cn("v2-bonus__num", `is-${b.cover.tone}`)} aria-hidden="true">
+                  0{i + 1}
+                </span>
                 <p className={cn("v2-kicker", b.cover.tone === "red" && "is-red")}>Bonus {i + 1}</p>
                 <h3 className="v2-bonus__title">{b.title}</h3>
                 <p className="v2-bonus__value">
@@ -44,7 +47,16 @@ export function Bonus() {
               </Reveal>
 
               <Reveal y={32} className="v2-bonus__visual">
-                <BonusMockup cover={b.cover.text} kicker={`Bonus ${i + 1}`} tone={b.cover.tone} data={BONUS2.mocks[i]} />
+                <div className={cn("v2-bonus__stage", `is-${b.cover.tone}`)}>
+                  <span className="v2-bonus__chip" aria-hidden="true">
+                    Bonus {i + 1}
+                  </span>
+                  <span className="v2-bonus__sticker" aria-hidden="true">
+                    {BONUS2.free}
+                  </span>
+                  <BonusMockup cover={b.cover.text} kicker={`Bonus ${i + 1}`} tone={b.cover.tone} data={BONUS2.mocks[i]} />
+                  <span className="v2-bonus__floor" aria-hidden="true" />
+                </div>
               </Reveal>
             </li>
           ))}
