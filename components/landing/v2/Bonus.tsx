@@ -1,10 +1,6 @@
-"use client";
-
-import { motion, useReducedMotion } from "motion/react";
 import { GiftIcon } from "@hugeicons/core-free-icons";
 import { CTA } from "@/lib/landing/content.fr";
 import { BONUS2 } from "@/lib/landing/content.v2";
-import { EASE_OUT } from "@/lib/landing/highlight";
 import { fcfa } from "@/lib/landing/pricing";
 import { cn } from "@/lib/utils";
 import { CTAButton } from "../primitives/CTAButton";
@@ -20,7 +16,6 @@ import { Title } from "./Title";
  * Puis le récapitulatif de la valeur offerte et le bouton.
  */
 export function Bonus() {
-  const reduced = useReducedMotion();
   const total = BONUS2.items.reduce((s, b) => s + b.value, 0);
 
   return (
@@ -48,15 +43,9 @@ export function Bonus() {
                 <p className="v2-bonus__desc">{b.text}</p>
               </Reveal>
 
-              <motion.div
-                className="v2-bonus__visual"
-                initial={reduced ? false : { opacity: 0, y: 50, scale: 0.92, rotate: i % 2 === 1 ? -3 : 3 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 0.9, ease: EASE_OUT }}
-              >
-                <BonusMockup cover={b.cover.text} kicker={`Bonus ${i + 1}`} tone={b.cover.tone} data={BONUS2.mocks[i]} className="v2-mock--float" />
-              </motion.div>
+              <Reveal y={32} className="v2-bonus__visual">
+                <BonusMockup cover={b.cover.text} kicker={`Bonus ${i + 1}`} tone={b.cover.tone} data={BONUS2.mocks[i]} />
+              </Reveal>
             </li>
           ))}
         </ol>

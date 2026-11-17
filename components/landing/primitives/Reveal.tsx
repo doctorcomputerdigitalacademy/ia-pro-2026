@@ -1,45 +1,52 @@
-"use client";
-
-import type { ReactNode } from "react";
-import { motion } from "motion/react";
-import { EASE_OUT } from "@/lib/landing/highlight";
+import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-const TAGS = {
-  div: motion.div,
-  li: motion.li,
-  article: motion.article,
-  p: motion.p,
-  span: motion.span,
-  section: motion.section,
-} as const;
+type Tag = "div" | "li" | "article" | "p" | "span" | "section";
 
 type RevealProps = {
   children: ReactNode;
   delay?: number;
-  /** Décalage vertical de départ (référence : 48px) */
+  /** Décalage vertical de départ en px (par défaut 32) */
   y?: number;
   className?: string;
-  as?: keyof typeof TAGS;
+  as?: Tag;
+  /** Conservé pour compatibilité : le seuil d'apparition est commun à toute la page */
   amount?: number;
 };
 
 /**
- * Révélation au scroll, identique à la référence :
- * opacité 0→1, y→0, flou 14px→0, scale .97→1, easing expo-out, une seule fois.
+ * Apparition au défilement, en CSS (montée + fondu, une seule fois).
+ * Pas de bibliothèque JavaScript ni de flou : c'est beaucoup plus léger sur téléphone.
+ * Le déclenchement est assuré par <RevealScript /> (un seul observateur pour toute la page).
  */
-export function Reveal({ children, delay = 0, y = 48, className, as = "div", amount = 0.2 }: RevealProps) {
-  const Tag = TAGS[as];
+export function Reveal({ children, delay = 0, y = 32, className, as = "div" }: RevealProps) {
+  const Tag = as;
+  const style = { "--rv-y": `${Math.min(y, 32)}px`, transitionDelay: delay ? `${delay}s` : undefined } as CSSProperties;
   return (
-    <Tag
-      className={className}
-      initial={{ opacity: 0, y, filter: "blur(14px)", scale: 0.97 }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-      viewport={{ once: true, amount }}
-      transition={{ duration: 0.8, delay, ease: EASE_OUT }}
-    >
+    <Tag data-rv="" className={className} style={style}>
       {children}
     </Tag>
+  );
+}
+
+/**
+ * Déclencheur des apparitions : script minuscule exécuté dès la lecture de la page
+ * (avant le JavaScript de React). Il ajoute l'attribut `data-in` aux éléments `[data-rv]`
+ * quand ils entrent dans l'écran. Sans JavaScript, tout reste visible.
+ */
+const SCRIPT = `(function(){var d=document.documentElement;if(!('IntersectionObserver' in window)){return}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.setAttribute('data-in','');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:0});
+var seen=new WeakSet();function scan(){document.querySelectorAll('[data-rv]:not([data-in])').forEach(function(el){if(!seen.has(el)){seen.add(el);io.observe(el)}})}
+scan();new MutationObserver(scan).observe(document.body,{childList:true,subtree:true});d.setAttribute('data-rv-on','')})();`;
+
+export function RevealScript() {
+  return (
+    <>
+      <script dangerouslySetInnerHTML={{ __html: SCRIPT }} />
+      <noscript>
+        <style>{`[data-rv],[data-rv] .rv-w{opacity:1!important;transform:none!important}`}</style>
+      </noscript>
+    </>
   );
 }
 

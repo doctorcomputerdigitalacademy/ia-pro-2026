@@ -271,16 +271,143 @@ span.lp-hero-in.block {
   from {
     opacity: 0;
     transform: translateY(24px);
-    filter: blur(8px);
   }
   to {
     opacity: 1;
     transform: none;
-    filter: none;
   }
 }
 @media (prefers-reduced-motion: reduce) {
   .lp-hero-in {
     animation: none;
+  }
+}
+
+/* ------------------------------------------- Apparitions au défilement (CSS) */
+/* Actif seulement si le petit script de déclenchement tourne (attribut data-rv-on) : sinon tout reste visible. */
+[data-rv-on] [data-rv] {
+  opacity: 0;
+  transform: translateY(var(--rv-y, 32px));
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-rv-on] [data-rv][data-in] {
+  opacity: 1;
+  transform: none;
+}
+/* Titres : les mots montent l'un après l'autre */
+[data-rv-on] [data-rv] .rv-w {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em);
+  transition:
+    opacity 0.6s ease,
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i, 0) * 40ms);
+}
+[data-rv-on] [data-rv].v2-title {
+  opacity: 1;
+  transform: none;
+}
+[data-rv-on] [data-rv][data-in] .rv-w {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-rv-on] [data-rv],
+  [data-rv-on] [data-rv] .rv-w {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Barre de progression de lecture : animée par le navigateur au défilement (aucun JavaScript) */
+.lp-scroll-progress {
+  transform: scaleX(0);
+}
+@supports (animation-timeline: scroll()) {
+  .lp-scroll-progress {
+    animation: lp-progress linear both;
+    animation-timeline: scroll(root);
+  }
+}
+@supports not (animation-timeline: scroll()) {
+  .lp-scroll-progress {
+    display: none;
+  }
+}
+@keyframes lp-progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* -------------------------------------- Zoom « Le problème » piloté au défilement */
+/* Les plages (cover %) reproduisent l'ancienne animation JavaScript, sans aucun script. */
+.v2-zoom__card {
+  transform: rotate(var(--r, 0deg));
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .v2-zoom {
+      view-timeline: --zoom block;
+    }
+    .v2-zoom__screen {
+      animation: v2-zoom-screen linear both;
+      animation-timeline: --zoom;
+      animation-range: cover 4.2% cover 30%;
+    }
+    .v2-zoom__text {
+      animation: v2-zoom-text linear both;
+      animation-timeline: --zoom;
+      animation-range: cover 13.7% cover 24.6%;
+    }
+    .v2-zoom__card {
+      animation: v2-zoom-card linear both;
+      animation-timeline: --zoom;
+    }
+    .v2-zoom__card--0 {
+      animation-range: cover 24.6% cover 34.1%;
+    }
+    .v2-zoom__card--1 {
+      animation-range: cover 30% cover 39.6%;
+    }
+    .v2-zoom__card--2 {
+      animation-range: cover 35.4% cover 44.9%;
+    }
+  }
+}
+@keyframes v2-zoom-screen {
+  from {
+    transform: scale(0.78);
+    border-radius: 40px;
+    border-width: 12px;
+  }
+  to {
+    transform: none;
+    border-radius: 28px;
+    border-width: 0;
+  }
+}
+@keyframes v2-zoom-text {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes v2-zoom-card {
+  from {
+    opacity: 0;
+    transform: translateX(90px) rotate(var(--r, 0deg));
+  }
+  to {
+    opacity: 1;
+    transform: rotate(var(--r, 0deg));
   }
 }

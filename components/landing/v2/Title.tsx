@@ -1,23 +1,13 @@
-"use client";
-
-import { motion, type Variants } from "motion/react";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import { EASE_OUT } from "@/lib/landing/highlight";
 
-const container: Variants = { hidden: {}, show: { transition: { staggerChildren: 0.045 } } };
-const word: Variants = {
-  hidden: { opacity: 0, y: "0.6em", filter: "blur(8px)" },
-  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.7, ease: EASE_OUT } },
-};
-
-function Words({ text, className }: { text: string; className?: string }) {
+function Words({ text, className, start }: { text: string; className?: string; start: number }) {
   return (
     <>
       {text.split(" ").map((w, i) => (
-        <motion.span key={i} variants={word} className={cn("inline-block whitespace-pre", className)}>
+        <span key={i} className={cn("rv-w whitespace-pre", className)} style={{ "--i": start + i } as CSSProperties}>
           {w}{" "}
-        </motion.span>
+        </span>
       ))}
     </>
   );
@@ -25,7 +15,7 @@ function Words({ text, className }: { text: string; className?: string }) {
 
 /**
  * Titre en deux tons (façon ghostdesignco) : 1re phrase foncée, 2e atténuée.
- * Les mots apparaissent un à un (montée + défloutage) à l'entrée dans l'écran.
+ * Les mots montent un à un à l'entrée dans l'écran (en CSS, voir [data-rv] .rv-w).
  */
 export function Title({
   line1,
@@ -44,20 +34,15 @@ export function Title({
   after?: ReactNode;
   breakLine?: boolean;
 }) {
-  const Tag = motion[as];
+  const Tag = as;
+  const n1 = line1.split(" ").length;
   return (
-    <Tag
-      className={cn("v2-title", className)}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.4 }}
-      variants={container}
-    >
-      <Words text={line1} />
+    <Tag data-rv="" className={cn("v2-title", className)}>
+      <Words text={line1} start={0} />
       {line2 ? (
         <>
           {breakLine ? <br /> : null}
-          <Words text={line2} className={muted} />
+          <Words text={line2} className={muted} start={n1} />
         </>
       ) : null}
       {after}

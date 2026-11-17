@@ -38,7 +38,7 @@ export default function PrivacyPage() {
           <strong>Des statistiques de visite anonymes</strong> (Vercel Web Analytics) : page consultée, site d&apos;origine (par exemple Facebook), type d&apos;appareil, navigateur et pays. Ces statistiques n&apos;utilisent aucun cookie et ne permettent pas de vous identifier.
         </li>
         <li>
-          <strong>Des données de mesure publicitaire, seulement si vous les acceptez</strong> (Pixel Meta) : votre visite et vos clics vers WhatsApp, associés aux cookies de Meta. Voir la partie « Cookies » ci-dessous.
+          <strong>Des données de mesure publicitaire</strong> (Pixel Meta) : votre visite et vos clics vers WhatsApp, associés aux cookies de Meta. Vous pouvez les refuser à tout moment : voir la partie « Cookies » ci-dessous.
         </li>
       </ul>
 
@@ -47,7 +47,7 @@ export default function PrivacyPage() {
         <li>Répondre à vos questions et gérer votre inscription à une cohorte (exécution de votre demande).</li>
         <li>Assurer l&apos;accompagnement de 30 jours qui suit la formation (exécution de la formation).</li>
         <li>Savoir combien de personnes visitent le site et d&apos;où elles viennent, pour l&apos;améliorer (intérêt légitime, données anonymes).</li>
-        <li>Mesurer l&apos;efficacité de nos publicités Facebook et Instagram (uniquement avec votre accord).</li>
+        <li>Mesurer l&apos;efficacité de nos publicités Facebook et Instagram (intérêt légitime, sauf si vous refusez).</li>
       </ul>
       <p>Nous ne vendons pas vos données et nous ne les utilisons pas pour d&apos;autres finalités que celles-ci.</p>
 
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
       <ul>
         <li>L&apos;équipe de {BRAND.name}, pour répondre à vos messages et organiser la formation.</li>
         <li>
-          <strong>Meta</strong> (WhatsApp, Facebook, Instagram), qui fournit la messagerie et, si vous l&apos;acceptez, la mesure publicitaire.
+          <strong>Meta</strong> (WhatsApp, Facebook, Instagram), qui fournit la messagerie et la mesure publicitaire, sauf si vous la refusez.
         </li>
         <li>
           <strong>Vercel</strong>, qui héberge le site et produit les statistiques de visite anonymes.
@@ -66,13 +66,15 @@ export default function PrivacyPage() {
       </p>
 
       <h2 id="cookies">5. Cookies</h2>
-      <p>À votre arrivée sur le site, un bandeau vous laisse le choix :</p>
+      <p>
+        Le site utilise le Pixel Meta. Il dépose des cookies (par exemple <em>_fbp</em>) qui permettent à Meta de savoir qu&apos;une personne venue d&apos;une publicité a consulté la page ou cliqué vers WhatsApp. Un bandeau en bas de page, ainsi que le lien « Gérer mes cookies » du pied de page, vous laissent le choix :
+      </p>
       <ul>
         <li>
-          <strong>Accepter</strong> : le Pixel Meta est chargé. Il dépose des cookies (par exemple <em>_fbp</em>) qui permettent à Meta de savoir qu&apos;une personne venue d&apos;une publicité a consulté la page ou cliqué vers WhatsApp.
+          <strong>Accepter</strong> : la mesure publicitaire continue.
         </li>
         <li>
-          <strong>Refuser</strong> : aucun cookie publicitaire n&apos;est déposé. Le site fonctionne exactement de la même façon.
+          <strong>Refuser</strong> : le Pixel Meta s&apos;arrête et n&apos;est plus chargé lors de vos prochaines visites. Le site fonctionne exactement de la même façon.
         </li>
       </ul>
       <p>

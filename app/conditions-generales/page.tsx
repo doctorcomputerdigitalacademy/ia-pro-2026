@@ -10,10 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/conditions-generales" },
 };
 
-/*
- * Les articles 4 (paiement), 5 (report et annulation) et 8 (photos) sont des propositions
- * à valider par l'académie avant de s'y engager.
- */
+/* Conditions validées par l'académie le 17 novembre 2026. */
 export default function TermsPage() {
   return (
     <LegalShell title="Conditions générales" updated="17 novembre 2026">

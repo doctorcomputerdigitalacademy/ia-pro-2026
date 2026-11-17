@@ -21,11 +21,11 @@ export function track(event: string, params?: Record<string, unknown>) {
  * - ViewContent  : la vidéo de présentation est regardée 45 s ou jusqu'au bout ;
  * - Lead         : clic sur un bouton « Réserver ma place » (WhatsApp d'inscription) ;
  * - Contact      : clic sur « Écrivez-nous sur WhatsApp » (question).
- * Le Pixel n'est chargé qu'après l'accord du visiteur (bandeau cookies).
+ * Le Pixel est actif par défaut et s'arrête si le visiteur refuse (bandeau en bas de page).
  */
 export function MetaPixel() {
   const { watched } = useVideoGate();
-  const { consent } = useConsent();
+  const { consent, ready } = useConsent();
   const sent = useRef(false);
 
   /* Le visiteur change d'avis après coup : le Pixel déjà chargé suit son choix. */
@@ -36,7 +36,7 @@ export function MetaPixel() {
 
   /* ViewContent : une fois par visite, quand la vidéo a été regardée 45 s (ou jusqu'au bout). */
   useEffect(() => {
-    if (!watched || sent.current || consent !== "granted") return;
+    if (!watched || sent.current || consent === "denied") return;
     sent.current = true;
     track("ViewContent", { content_name: "Vidéo IA PRO 2026", content_category: "VSL" });
   }, [watched, consent]);
@@ -54,7 +54,7 @@ export function MetaPixel() {
     return () => document.removeEventListener("click", onClick, true);
   }, []);
 
-  if (!META_PIXEL_ID || consent !== "granted") return null;
+  if (!META_PIXEL_ID || !ready || consent === "denied") return null;
   return (
     <>
       <Script id="meta-pixel" strategy="afterInteractive">
@@ -63,7 +63,7 @@ n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('consent','grant');fbq('init','${META_PIXEL_ID}');fbq('track','PageView');`}
+fbq('init','${META_PIXEL_ID}');fbq('track','PageView');`}
       </Script>
       <noscript>
         {/* eslint-disable-next-line @next/next/no-img-element */}

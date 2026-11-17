@@ -1,5 +1,6 @@
 import { MetaPixel } from "./primitives/MetaPixel";
-import { MotionRoot, ScrollProgressBar } from "./primitives/ScrollEffects";
+import { RevealScript } from "./primitives/Reveal";
+import { MotionRoot } from "./primitives/ScrollEffects";
 import { StickyCTA } from "./primitives/StickyCTA";
 import { Gated, VideoGateProvider } from "./primitives/VideoGate";
 import { Header } from "./sections/Header";
@@ -36,7 +37,7 @@ export function LandingPage() {
         >
           Aller au contenu
         </a>
-        <ScrollProgressBar />
+        <div className="lp-scroll-progress" aria-hidden="true" />
         <Header />
         <main id="contenu">
           <Hero />
@@ -62,6 +63,7 @@ export function LandingPage() {
         </Gated>
         <StickyCTA />
       </div>
+      <RevealScript />
       </VideoGateProvider>
     </MotionRoot>
   );
