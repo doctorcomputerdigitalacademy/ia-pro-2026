@@ -32,7 +32,7 @@ export default function PrivacyPage() {
       <p>Le site ne demande ni mot de passe ni paiement en ligne. Nous recueillons uniquement :</p>
       <ul>
         <li>
-          <strong>Les réponses au formulaire de réservation</strong> : votre nom et prénom, votre situation (salarié, entrepreneur, étudiant…), l&apos;horaire et les jours choisis, la date à laquelle vous souhaitez commencer et le mode de paiement choisi. Ces réponses composent le message WhatsApp que vous nous envoyez, et une copie est enregistrée dans notre tableau de suivi des réservations (Google Sheets).
+          <strong>Les réponses au formulaire de réservation</strong> : votre nom et prénom, votre numéro WhatsApp, votre situation (salarié, entrepreneur, étudiant…), l&apos;horaire et les jours choisis, la date à laquelle vous souhaitez commencer et le mode de paiement choisi. Ces réponses composent le message WhatsApp que vous nous envoyez, et une copie est enregistrée dans notre tableau de suivi des réservations (Google Sheets). Si vous commencez le formulaire sans l&apos;envoyer, les réponses déjà remplies sont aussi enregistrées dès que vous avez indiqué votre nom ou votre numéro, afin que nous puissions vous recontacter pour finaliser votre inscription. Le formulaire vous l&apos;indique sous le champ du numéro.
         </li>
         <li>
           <strong>Les messages que vous nous envoyez sur WhatsApp</strong> : votre nom, votre numéro de téléphone, la cohorte choisie et le contenu de vos échanges avec nous.

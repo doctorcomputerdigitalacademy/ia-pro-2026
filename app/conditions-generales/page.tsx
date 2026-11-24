@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 /* Conditions validées par l'académie le 17 novembre 2026. */
 export default function TermsPage() {
   return (
-    <LegalShell title="Conditions générales" updated="17 novembre 2026">
+    <LegalShell title="Conditions générales" updated="24 novembre 2026">
       <p>
         Les présentes conditions s&apos;appliquent à toute inscription à la formation <strong>IA PRO 2026</strong> proposée par <strong>{BRAND.name}</strong>, {BRAND.address}, Bénin. En réservant votre place, vous les acceptez.
       </p>
@@ -34,12 +34,12 @@ export default function TermsPage() {
 
       <h2>2. Inscription</h2>
       <p>
-        L&apos;inscription se fait en nous écrivant sur <a href={CONTACT_URL} target="_blank" rel="noopener noreferrer">WhatsApp</a> au +229 01 44 42 99 63. Vous y choisissez votre cohorte. Les places sont attribuées dans l&apos;ordre des inscriptions confirmées, dans la limite de 20 par cohorte.
+        L&apos;inscription se fait en remplissant le formulaire de réservation du site, qui ouvre WhatsApp, ou en nous écrivant directement sur <a href={CONTACT_URL} target="_blank" rel="noopener noreferrer">WhatsApp</a> au +229 01 44 42 99 63. Vous y choisissez votre cohorte. Les places sont attribuées dans l&apos;ordre des inscriptions confirmées, dans la limite de 20 par cohorte.
       </p>
 
       <h2>3. Prix</h2>
       <p>
-        Le prix de la formation est de <strong>{PRICE_LABEL}</strong> par personne, en un seul paiement. Il comprend les 3 jours de formation, les supports pédagogiques et les 30 jours d&apos;accompagnement. Aucun autre frais n&apos;est demandé pour suivre le programme.
+        Le prix de la formation est de <strong>{PRICE_LABEL}</strong> par personne. Il comprend les 3 jours de formation, les supports pédagogiques et les 30 jours d&apos;accompagnement. Aucun autre frais n&apos;est demandé pour suivre le programme.
       </p>
       <p>
         Les bonus annoncés sur le site sont réservés aux 10 premiers inscrits. Ils sont offerts en plus de la formation et ne peuvent pas être échangés contre de l&apos;argent.
@@ -47,7 +47,7 @@ export default function TermsPage() {
 
       <h2>4. Paiement</h2>
       <p>
-        Les moyens et la date de paiement vous sont indiqués sur WhatsApp au moment de l&apos;inscription. Votre place est confirmée à réception du paiement.
+        Deux possibilités vous sont proposées : payer les {PRICE_LABEL} en une fois, ou réserver votre place avec un acompte de 5 000 FCFA et régler les 15 000 FCFA restants sur place, au centre de formation, le premier jour. Les moyens de paiement vous sont indiqués sur WhatsApp au moment de l&apos;inscription. Votre place est confirmée à réception du paiement ou de l&apos;acompte.
       </p>
 
       <h2>5. Report et annulation</h2>

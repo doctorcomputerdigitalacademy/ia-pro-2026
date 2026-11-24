@@ -8,34 +8,79 @@ import { Icon } from "./Icon";
 import { track } from "./MetaPixel";
 
 const REF_KEY = "iapro-ref";
+const ID_KEY = "iapro-form-id";
 
-type Answers = { name: string; status: string; slot: string; days: string; start: string; pay: string };
-const EMPTY: Answers = { name: "", status: "", slot: "", days: "", start: "", pay: "" };
+type Answers = { name: string; phone: string; status: string; slot: string; days: string; start: string; pay: string };
+const EMPTY: Answers = { name: "", phone: "", status: "", slot: "", days: "", start: "", pay: "" };
 
-const label = (list: { value: string; label: string; detail?: string }[], v: string) => list.find((o) => o.value === v);
+/* Étapes du formulaire, dans l'ordre. Les libellés « arret » sont ceux de l'onglet Résumé de la feuille Google. */
+const STEPS: { key: keyof Answers | "slotdays"; arret: string }[] = [
+  { key: "name", arret: "Nom et prénom" },
+  { key: "phone", arret: "Numéro WhatsApp" },
+  { key: "status", arret: "Profil" },
+  { key: "slotdays", arret: "Horaire et jours" },
+  { key: "start", arret: "Démarrage" },
+  { key: "pay", arret: "Paiement" },
+];
+const ALL_FILLED = "Tout rempli, mais pas envoyé";
+
+const find = (list: { value: string; label: string; detail?: string }[], v: string) => list.find((o) => o.value === v);
 
 /** Référence de la pub d'origine : ?ref=… ou ?utm_content=… (gardée pendant la visite). */
 function readRef(): string {
   try {
     const q = new URLSearchParams(window.location.search);
-    const fromUrl = q.get("ref") || q.get("utm_content") || "";
-    if (fromUrl) sessionStorage.setItem(REF_KEY, fromUrl.slice(0, 60));
-    return fromUrl.slice(0, 60) || sessionStorage.getItem(REF_KEY) || "";
+    const fromUrl = (q.get("ref") || q.get("utm_content") || "").slice(0, 60);
+    if (fromUrl) sessionStorage.setItem(REF_KEY, fromUrl);
+    return fromUrl || sessionStorage.getItem(REF_KEY) || "";
   } catch {
     return "";
   }
 }
 
-/** Le nom doit contenir au moins deux mots de 2 lettres ou plus. */
-function validName(v: string) {
-  const words = v.trim().split(/\s+/).filter((w) => /\p{L}{2,}/u.test(w));
-  return words.length >= 2;
+/** Identifiant de la visite : une même personne met à jour sa ligne dans la feuille au lieu d'en créer plusieurs. */
+function formId(): string {
+  try {
+    const saved = sessionStorage.getItem(ID_KEY);
+    if (saved) return saved;
+    const id = typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID().slice(0, 13) : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+    sessionStorage.setItem(ID_KEY, id);
+    return id;
+  } catch {
+    return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+  }
+}
+
+/** Au moins deux mots de 2 lettres ou plus. */
+const validName = (v: string) => v.trim().split(/\s+/).filter((w) => /\p{L}{2,}/u.test(w)).length >= 2;
+/** Entre 8 et 15 chiffres (espaces, tirets et « + » acceptés). */
+const validPhone = (v: string) => /^[+\d\s().-]*$/.test(v.trim()) && (v.match(/\d/g)?.length ?? 0) >= 8 && (v.match(/\d/g)?.length ?? 0) <= 15;
+
+function invalid(a: Answers) {
+  return {
+    name: !validName(a.name),
+    phone: !validPhone(a.phone),
+    status: !a.status,
+    slot: !a.slot,
+    days: !a.days,
+    start: !a.start,
+    pay: a.start !== "info" && !a.pay,
+  };
+}
+
+/** Première étape non remplie : là où la personne s'est arrêtée. */
+function stoppedAt(a: Answers) {
+  const bad = invalid(a);
+  for (const s of STEPS) {
+    if (s.key === "slotdays" ? bad.slot || bad.days : bad[s.key as keyof typeof bad]) return s.arret;
+  }
+  return ALL_FILLED;
 }
 
 function buildMessage(a: Answers, ref: string) {
-  const slot = label(R.slots, a.slot);
-  const days = label(R.days, a.days);
-  const start = label(R.starts, a.start);
+  const slot = find(R.slots, a.slot);
+  const days = find(R.days, a.days);
+  const start = find(R.starts, a.start);
   const lines = [
     "Bonjour Doctor Computer Digital Academy,",
     `Je m'appelle ${a.name.trim()} (${a.status}).`,
@@ -56,17 +101,22 @@ function buildMessage(a: Answers, ref: string) {
   return lines.join("\n");
 }
 
-/** Copie de la réponse dans Google Sheets (sans effet si l'adresse n'est pas configurée). */
-function sendToSheets(a: Answers, ref: string) {
+/** Copie dans Google Sheets (sans effet si l'adresse n'est pas configurée). */
+function sendToSheets(a: Answers, etat: "Envoyé" | "Abandon") {
   if (!SHEETS_WEBHOOK_URL) return;
+  const slot = find(R.slots, a.slot);
   const payload = JSON.stringify({
+    id: formId(),
+    etat,
     nom: a.name.trim(),
-    statut: a.status,
-    horaire: label(R.slots, a.slot)?.detail ?? "",
-    jours: label(R.days, a.days)?.detail ?? "",
-    demarrage: label(R.starts, a.start)?.label ?? "",
-    paiement: a.start === "info" ? "" : a.pay === "total" ? "20 000 FCFA" : "Acompte 5 000 FCFA",
-    ref,
+    whatsapp: a.phone.trim(),
+    profil: a.status,
+    horaire: slot ? `${slot.label} (${slot.detail})` : "",
+    jours: find(R.days, a.days)?.detail ?? "",
+    demarrage: find(R.starts, a.start)?.label ?? "",
+    paiement: a.start === "info" ? "" : (find(R.pays, a.pay)?.label ?? ""),
+    arret: etat === "Envoyé" ? "" : stoppedAt(a),
+    ref: readRef(),
   });
   try {
     const blob = new Blob([payload], { type: "text/plain;charset=UTF-8" });
@@ -106,15 +156,32 @@ function Choice({
 
 /**
  * FORMULAIRE DE RÉSERVATION — s'ouvre au clic sur tous les boutons « Réserver ma place »
- * (liens vers REGISTRATION_URL). Si le script ne se charge pas, le lien WhatsApp direct reste actif.
+ * (liens vers REGISTRATION_URL), ou directement avec l'adresse du site suivie de ?reserver.
+ * Si le script ne se charge pas, le lien WhatsApp direct reste actif.
  * À l'envoi : Pixel Meta (Lead si la personne est prête, Contact si elle se renseigne),
- * copie facultative dans Google Sheets, puis ouverture de WhatsApp avec le message pré-rempli.
+ * copie dans Google Sheets, puis ouverture de WhatsApp avec le message pré-rempli.
+ * Formulaire commencé puis abandonné (fermé ou page quittée) : copie « Abandon » dans Google Sheets,
+ * avec l'étape où la personne s'est arrêtée, dès qu'elle a donné son nom ou son numéro.
  */
 export function ReservationForm() {
   const dialog = useRef<HTMLDialogElement>(null);
   const [a, setA] = useState<Answers>(EMPTY);
+  const latest = useRef<Answers>(EMPTY);
+  const sent = useRef(false);
   const [tried, setTried] = useState(false);
-  const set = (k: keyof Answers) => (v: string) => setA((p) => ({ ...p, [k]: v }));
+  const set = (k: keyof Answers) => (v: string) =>
+    setA((p) => {
+      const next = { ...p, [k]: v };
+      latest.current = next;
+      return next;
+    });
+
+  /** Garde une trace d'une inscription commencée mais pas terminée. */
+  const saveDraft = useCallback(() => {
+    const cur = latest.current;
+    if (sent.current || (!cur.name.trim() && !cur.phone.trim())) return;
+    sendToSheets(cur, "Abandon");
+  }, []);
 
   const open = useCallback(() => {
     const d = dialog.current;
@@ -134,25 +201,38 @@ export function ReservationForm() {
       e.preventDefault();
       open();
     };
+    /* page quittée ou appli mise en arrière-plan avec le formulaire ouvert */
+    const onHide = () => {
+      if (document.visibilityState === "hidden" && dialog.current?.open) saveDraft();
+    };
+    const onPageHide = () => {
+      if (dialog.current?.open) saveDraft();
+    };
     document.addEventListener("click", onClick);
+    document.addEventListener("visibilitychange", onHide);
+    window.addEventListener("pagehide", onPageHide);
     const d = dialog.current;
-    const onClose = () => document.documentElement.classList.remove("rf-lock");
+    const onClose = () => {
+      document.documentElement.classList.remove("rf-lock");
+      saveDraft();
+    };
     d?.addEventListener("close", onClose);
+
+    /* lien direct vers le formulaire : https://ia-pro-2026.vercel.app/?reserver */
+    let timer: number | undefined;
+    if (new URLSearchParams(window.location.search).has("reserver")) timer = window.setTimeout(open, 400);
+
     return () => {
       document.removeEventListener("click", onClick);
+      document.removeEventListener("visibilitychange", onHide);
+      window.removeEventListener("pagehide", onPageHide);
       d?.removeEventListener("close", onClose);
+      if (timer) window.clearTimeout(timer);
     };
-  }, [open]);
+  }, [open, saveDraft]);
 
+  const errors = invalid(a);
   const needsPay = a.start !== "info";
-  const errors = {
-    name: !validName(a.name),
-    status: !a.status,
-    slot: !a.slot,
-    days: !a.days,
-    start: !a.start,
-    pay: needsPay && !a.pay,
-  };
   const show = (k: keyof typeof errors) => tried && errors[k];
 
   const submitLabel = !a.start ? R.submit.empty : a.start === "info" ? R.submit.info : a.pay === "total" ? R.submit.total : a.pay === "acompte" ? R.submit.acompte : R.submit.empty;
@@ -165,6 +245,7 @@ export function ReservationForm() {
       dialog.current?.querySelector<HTMLElement>(`[data-field="${firstError}"]`)?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
+    sent.current = true;
     const ref = readRef();
     if (a.start === "info") {
       track("Contact", { content_name: "Formulaire IA PRO 2026 (renseignement)" });
@@ -175,7 +256,7 @@ export function ReservationForm() {
         content_name: a.pay === "total" ? "Inscription IA PRO 2026 (paiement complet)" : "Inscription IA PRO 2026 (acompte)",
       });
     }
-    sendToSheets(a, ref);
+    sendToSheets(a, "Envoyé");
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildMessage(a, ref))}`;
     /* petit délai pour laisser partir le Pixel et la copie Sheets avant de quitter la page */
     window.setTimeout(() => {
@@ -228,6 +309,33 @@ export function ReservationForm() {
                 {R.nameError}
               </p>
             ) : null}
+          </div>
+
+          <div className="rf-field" data-field="phone">
+            <label className="rf-label" htmlFor="rf-phone">
+              {R.phoneLabel}
+            </label>
+            <input
+              id="rf-phone"
+              className="rf-input"
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel"
+              placeholder={R.phonePlaceholder}
+              value={a.phone}
+              onChange={(e) => set("phone")(e.target.value)}
+              aria-invalid={show("phone") || undefined}
+              aria-describedby={show("phone") ? "rf-phone-err rf-phone-note" : "rf-phone-note"}
+              maxLength={25}
+            />
+            {show("phone") ? (
+              <p id="rf-phone-err" className="rf-error">
+                {R.phoneError}
+              </p>
+            ) : null}
+            <p id="rf-phone-note" className="rf-help">
+              {R.phoneNote}
+            </p>
           </div>
 
           <fieldset className="rf-field" data-field="status">

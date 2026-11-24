@@ -594,8 +594,8 @@ export const PRICING = {
   receiveCol: "Valeur",
   includedTag: "Inclus",
   todayLabel: "Aujourd'hui, toute la formation pour",
-  payNote: "Un seul paiement. Les deux spécialités et l'accompagnement sont compris.",
-  trust: ["Formation en présentiel", "Petits groupes", "Suivi d'un mois", "Paiement unique", "Supports inclus"],
+  payNote: "Paiement en une fois, ou réservation avec 5 000 FCFA et le reste sur place le premier jour. Les deux spécialités et l'accompagnement sont compris.",
+  trust: ["Formation en présentiel", "Petits groupes", "Suivi d'un mois", "Réservation dès 5 000 FCFA", "Supports inclus"],
   totalLabel: "Votre investissement total",
   amount: "20 000",
   currency: "FCFA",
@@ -712,7 +712,7 @@ export const FAQ = {
     {
       id: "prix", category: "tarif",
       question: "Quel est le prix de la formation ?",
-      answer: "20 000 FCFA, en un seul paiement. Ce montant couvre la formation, les supports pédagogiques et le mois de suivi.",
+      answer: "20 000 FCFA tout compris. Vous pouvez payer en une fois, ou réserver votre place avec 5 000 FCFA et régler les 15 000 FCFA restants sur place, le premier jour de formation. Ce montant couvre la formation, les supports pédagogiques et le mois de suivi.",
     },
   ],
 };
@@ -742,7 +742,7 @@ export const FINAL_CTA = {
       ],
     },
   ],
-  priceNote: "Tout compris. Un seul paiement.",
+  priceNote: "Tout compris. Réservation possible dès 5 000 FCFA.",
 };
 
 /* --------------------------------------------- FORMULAIRE DE RÉSERVATION
@@ -755,6 +755,10 @@ export const RESERVATION = {
   nameLabel: "Nom et prénom",
   namePlaceholder: "Ex. : Koffi Adjovi",
   nameError: "Indiquez votre nom et votre prénom.",
+  phoneLabel: "Votre numéro WhatsApp",
+  phonePlaceholder: "Ex. : 01 97 00 00 00",
+  phoneError: "Indiquez un numéro WhatsApp valide.",
+  phoneNote: "Pour vous recontacter si le message n'arrive pas. Vos réponses sont enregistrées au fur et à mesure.",
   statusLabel: "Vous êtes",
   statuses: ["Salarié", "Entrepreneur", "Étudiant", "En recherche d'emploi", "Autre"],
   slotLabel: "Votre horaire",

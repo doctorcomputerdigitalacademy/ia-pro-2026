@@ -247,7 +247,7 @@ export const PRICE2 = {
     "30 jours de suivi",
     "3 bonus offerts (10 premiers inscrits)",
   ],
-  payNote: "Paiement unique · Tout compris",
+  payNote: "En une fois ou dès 5 000 FCFA · Tout compris",
   whenTitle: "Quand et où ?",
   formulas: Array.from(new Set(SCHEDULE.cohorts.map((c) => c.days))),
   hours: ["10h00 – 13h00", "19h00 – 22h00"],
