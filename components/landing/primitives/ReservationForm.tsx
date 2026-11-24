@@ -18,8 +18,8 @@ const STEPS: { key: keyof Answers | "slotdays"; arret: string }[] = [
   { key: "name", arret: "Nom et prénom" },
   { key: "phone", arret: "Numéro WhatsApp" },
   { key: "status", arret: "Profil" },
-  { key: "slotdays", arret: "Horaire et jours" },
-  { key: "start", arret: "Démarrage" },
+  { key: "slotdays", arret: "Disponibilité et jours" },
+  { key: "start", arret: "Cohorte" },
   { key: "pay", arret: "Paiement" },
 ];
 const ALL_FILLED = "Tout rempli, mais pas envoyé";
@@ -64,7 +64,7 @@ function invalid(a: Answers) {
     slot: !a.slot,
     days: !a.days,
     start: !a.start,
-    pay: a.start !== "info" && !a.pay,
+    pay: !a.pay,
   };
 }
 
@@ -86,13 +86,11 @@ function buildMessage(a: Answers, ref: string) {
     `Je m'appelle ${a.name.trim()} (${a.status}).`,
     "",
     "Je souhaite rejoindre IA PRO 2026, en présentiel :",
-    `- Horaire : ${slot?.label} (${slot?.detail})`,
+    `- Disponibilité : ${slot?.label} (${slot?.detail})`,
     `- Jours : ${days?.detail}`,
-    `- Démarrage : ${start?.label}`,
+    `- Cohorte : ${start?.label}`,
   ];
-  if (a.start === "info") {
-    lines.push("", "J'aimerais d'abord avoir plus d'informations.");
-  } else if (a.pay === "total") {
+  if (a.pay === "total") {
     lines.push("- Paiement : les 20 000 FCFA en une fois", "", "JE VEUX PAYER.");
   } else {
     lines.push("- Paiement : réservation avec 5 000 FCFA, les 15 000 FCFA restants sur place le premier jour", "", "JE VEUX M'INSCRIRE.");
@@ -114,7 +112,7 @@ function sendToSheets(a: Answers, etat: "Envoyé" | "Abandon") {
     horaire: slot ? `${slot.label} (${slot.detail})` : "",
     jours: find(R.days, a.days)?.detail ?? "",
     demarrage: find(R.starts, a.start)?.label ?? "",
-    paiement: a.start === "info" ? "" : (find(R.pays, a.pay)?.label ?? ""),
+    paiement: find(R.pays, a.pay)?.label ?? "",
     arret: etat === "Envoyé" ? "" : stoppedAt(a),
     ref: readRef(),
   });
@@ -158,7 +156,7 @@ function Choice({
  * FORMULAIRE DE RÉSERVATION — s'ouvre au clic sur tous les boutons « Réserver ma place »
  * (liens vers REGISTRATION_URL), ou directement avec l'adresse du site suivie de ?reserver.
  * Si le script ne se charge pas, le lien WhatsApp direct reste actif.
- * À l'envoi : Pixel Meta (Lead si la personne est prête, Contact si elle se renseigne),
+ * À l'envoi : Pixel Meta (Lead, avec la valeur du paiement ou de l'acompte),
  * copie dans Google Sheets, puis ouverture de WhatsApp avec le message pré-rempli.
  * Formulaire commencé puis abandonné (fermé ou page quittée) : copie « Abandon » dans Google Sheets,
  * avec l'étape où la personne s'est arrêtée, dès qu'elle a donné son nom ou son numéro.
@@ -232,10 +230,9 @@ export function ReservationForm() {
   }, [open, saveDraft]);
 
   const errors = invalid(a);
-  const needsPay = a.start !== "info";
   const show = (k: keyof typeof errors) => tried && errors[k];
 
-  const submitLabel = !a.start ? R.submit.empty : a.start === "info" ? R.submit.info : a.pay === "total" ? R.submit.total : a.pay === "acompte" ? R.submit.acompte : R.submit.empty;
+  const submitLabel = a.pay === "total" ? R.submit.total : a.pay === "acompte" ? R.submit.acompte : R.submit.empty;
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -247,15 +244,11 @@ export function ReservationForm() {
     }
     sent.current = true;
     const ref = readRef();
-    if (a.start === "info") {
-      track("Contact", { content_name: "Formulaire IA PRO 2026 (renseignement)" });
-    } else {
-      track("Lead", {
-        value: a.pay === "total" ? PRICE_VALUE : DEPOSIT_VALUE,
-        currency: "XOF",
-        content_name: a.pay === "total" ? "Inscription IA PRO 2026 (paiement complet)" : "Inscription IA PRO 2026 (acompte)",
-      });
-    }
+    track("Lead", {
+      value: a.pay === "total" ? PRICE_VALUE : DEPOSIT_VALUE,
+      currency: "XOF",
+      content_name: a.pay === "total" ? "Inscription IA PRO 2026 (paiement complet)" : "Inscription IA PRO 2026 (acompte)",
+    });
     sendToSheets(a, "Envoyé");
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildMessage(a, ref))}`;
     /* petit délai pour laisser partir le Pixel et la copie Sheets avant de quitter la page */
@@ -378,8 +371,7 @@ export function ReservationForm() {
             {show("start") ? <p className="rf-error">{R.requiredError}</p> : null}
           </fieldset>
 
-          {needsPay ? (
-            <fieldset className="rf-field" data-field="pay">
+          <fieldset className="rf-field" data-field="pay">
               <legend className="rf-label">{R.payLabel}</legend>
               <div className="rf-stack">
                 {R.pays.map((o) => (
@@ -388,7 +380,6 @@ export function ReservationForm() {
               </div>
               {show("pay") ? <p className="rf-error">{R.requiredError}</p> : null}
             </fieldset>
-          ) : null}
 
           <div className="rf-benefits">
             <p className="rf-benefits__t">{R.benefitsTitle}</p>

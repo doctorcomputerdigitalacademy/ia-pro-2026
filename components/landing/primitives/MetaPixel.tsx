@@ -20,8 +20,8 @@ export function track(event: string, params?: Record<string, unknown>) {
  * - PageView     : chaque visite de la page ;
  * - ViewContent  : la vidéo de présentation est regardée 45 s ou jusqu'au bout ;
  * - InitiateCheckout : ouverture du formulaire de réservation (ReservationForm) ;
- * - Lead         : formulaire envoyé par une personne prête à s'inscrire (paiement complet ou acompte) ;
- * - Contact      : formulaire envoyé en « je me renseigne », ou clic sur « Écrivez-nous sur WhatsApp ».
+ * - Lead         : formulaire de réservation envoyé (paiement complet ou acompte) ;
+ * - Contact      : clic sur « Écrivez-nous sur WhatsApp » (question).
  * Le Pixel est actif par défaut et s'arrête si le visiteur refuse (bandeau en bas de page).
  */
 export function MetaPixel() {
