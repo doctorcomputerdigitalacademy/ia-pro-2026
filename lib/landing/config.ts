@@ -6,7 +6,7 @@
  * Lien d'inscription utilisé par TOUS les boutons d'appel à l'action.
  * Numéro WhatsApp au format international, sans "+" ni espaces.
  */
-const WHATSAPP_NUMBER = "2290144429963";
+export const WHATSAPP_NUMBER = "2290144429963";
 const WHATSAPP_MESSAGE =
   "Bonjour Doctor Computer Digital Academy, je souhaite réserver ma place pour la formation IA PRO 2026.";
 
@@ -36,6 +36,16 @@ export const VSL_POSTER = "/videos/vsl-poster.webp";
  * Laisser vide ("") pour désactiver complètement le suivi.
  */
 export const META_PIXEL_ID = "1478490317553651";
+
+/**
+ * Formulaire de réservation : copie de chaque réponse dans Google Sheets.
+ * Coller ici l'adresse de l'application web Google Apps Script
+ * (voir docs/formulaire-google-sheets.md). Laisser vide ("") pour ne rien copier.
+ */
+export const SHEETS_WEBHOOK_URL = "";
+
+/** Acompte pour réserver une place (le solde est réglé sur place le premier jour). */
+export const DEPOSIT_VALUE = 5000;
 
 /** Prix affiché sur tous les boutons d'appel à l'action. */
 export const PRICE_LABEL = "20 000 FCFA";

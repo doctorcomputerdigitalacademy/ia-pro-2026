@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalShell title="Politique de confidentialité" updated="17 novembre 2026">
+    <LegalShell title="Politique de confidentialité" updated="24 novembre 2026">
       <p>
         Cette page explique quelles données personnelles nous recueillons quand vous visitez le site de la formation <strong>IA PRO 2026</strong> ou quand vous nous écrivez sur WhatsApp, pourquoi nous les utilisons et quels sont vos droits. Elle s&apos;appuie sur la loi n° 2017-20 du 20 avril 2018 portant Code du numérique en République du Bénin.
       </p>
@@ -29,8 +29,11 @@ export default function PrivacyPage() {
       </div>
 
       <h2>2. Les données que nous recueillons</h2>
-      <p>Le site ne contient aucun formulaire et ne demande ni mot de passe ni paiement en ligne. Nous recueillons uniquement :</p>
+      <p>Le site ne demande ni mot de passe ni paiement en ligne. Nous recueillons uniquement :</p>
       <ul>
+        <li>
+          <strong>Les réponses au formulaire de réservation</strong> : votre nom et prénom, votre situation (salarié, entrepreneur, étudiant…), l&apos;horaire et les jours choisis, la date à laquelle vous souhaitez commencer et le mode de paiement choisi. Ces réponses composent le message WhatsApp que vous nous envoyez, et une copie est enregistrée dans notre tableau de suivi des réservations (Google Sheets).
+        </li>
         <li>
           <strong>Les messages que vous nous envoyez sur WhatsApp</strong> : votre nom, votre numéro de téléphone, la cohorte choisie et le contenu de vos échanges avec nous.
         </li>
@@ -38,13 +41,13 @@ export default function PrivacyPage() {
           <strong>Des statistiques de visite anonymes</strong> (Vercel Web Analytics) : page consultée, site d&apos;origine (par exemple Facebook), type d&apos;appareil, navigateur et pays. Ces statistiques n&apos;utilisent aucun cookie et ne permettent pas de vous identifier.
         </li>
         <li>
-          <strong>Des données de mesure publicitaire</strong> (Pixel Meta) : votre visite et vos clics vers WhatsApp, associés aux cookies de Meta. Vous pouvez les refuser à tout moment : voir la partie « Cookies » ci-dessous.
+          <strong>Des données de mesure publicitaire</strong> (Pixel Meta) : votre visite, l&apos;ouverture et l&apos;envoi du formulaire et vos clics vers WhatsApp, associés aux cookies de Meta. Vous pouvez les refuser à tout moment : voir la partie « Cookies » ci-dessous.
         </li>
       </ul>
 
       <h2>3. Pourquoi nous les utilisons</h2>
       <ul>
-        <li>Répondre à vos questions et gérer votre inscription à une cohorte (exécution de votre demande).</li>
+        <li>Répondre à vos questions et gérer votre inscription à une cohorte, y compris le suivi des réservations faites par le formulaire (exécution de votre demande).</li>
         <li>Assurer l&apos;accompagnement de 30 jours qui suit la formation (exécution de la formation).</li>
         <li>Savoir combien de personnes visitent le site et d&apos;où elles viennent, pour l&apos;améliorer (intérêt légitime, données anonymes).</li>
         <li>Mesurer l&apos;efficacité de nos publicités Facebook et Instagram (intérêt légitime, sauf si vous refusez).</li>
@@ -60,6 +63,9 @@ export default function PrivacyPage() {
         <li>
           <strong>Vercel</strong>, qui héberge le site et produit les statistiques de visite anonymes.
         </li>
+        <li>
+          <strong>Google</strong>, qui héberge notre tableau de suivi des réservations (Google Sheets).
+        </li>
       </ul>
       <p>
         Ces prestataires peuvent traiter des données en dehors du Bénin, notamment aux États-Unis et dans l&apos;Union européenne. Ils s&apos;engagent à les protéger dans leurs propres conditions d&apos;utilisation et politiques de confidentialité.
@@ -67,7 +73,7 @@ export default function PrivacyPage() {
 
       <h2 id="cookies">5. Cookies</h2>
       <p>
-        Le site utilise le Pixel Meta. Il dépose des cookies (par exemple <em>_fbp</em>) qui permettent à Meta de savoir qu&apos;une personne venue d&apos;une publicité a consulté la page ou cliqué vers WhatsApp. Un bandeau en bas de page, ainsi que le lien « Gérer mes cookies » du pied de page, vous laissent le choix :
+        Le site utilise le Pixel Meta. Il dépose des cookies (par exemple <em>_fbp</em>) qui permettent à Meta de savoir qu&apos;une personne venue d&apos;une publicité a consulté la page, ouvert ou envoyé le formulaire de réservation, ou cliqué vers WhatsApp. Un bandeau en bas de page, ainsi que le lien « Gérer mes cookies » du pied de page, vous laissent le choix :
       </p>
       <ul>
         <li>
@@ -84,7 +90,7 @@ export default function PrivacyPage() {
 
       <h2>6. Combien de temps nous les gardons</h2>
       <ul>
-        <li>Échanges WhatsApp et informations d&apos;inscription : pendant la formation et l&apos;accompagnement, puis au maximum 3 ans après votre dernier échange avec nous.</li>
+        <li>Échanges WhatsApp, réponses au formulaire et informations d&apos;inscription : pendant la formation et l&apos;accompagnement, puis au maximum 3 ans après votre dernier échange avec nous.</li>
         <li>Statistiques de visite : données anonymes, conservées selon les règles de Vercel.</li>
         <li>Cookies Meta : au maximum 13 mois. Votre choix sur le bandeau : jusqu&apos;à ce que vous le changiez ou effaciez les données de votre navigateur.</li>
       </ul>

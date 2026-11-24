@@ -744,3 +744,62 @@ export const FINAL_CTA = {
   ],
   priceNote: "Tout compris. Un seul paiement.",
 };
+
+/* --------------------------------------------- FORMULAIRE DE RÉSERVATION
+   S'ouvre au clic sur n'importe quel bouton « Réserver ma place ».
+   Les réponses composent le message WhatsApp envoyé à l'académie. */
+export const RESERVATION = {
+  eyebrow: "Réservation · IA PRO 2026",
+  title: "Réservez votre place en 30 secondes",
+  intro: "Formation en présentiel au Centre Baha'i de Calavi. 20 places par cohorte.",
+  nameLabel: "Nom et prénom",
+  namePlaceholder: "Ex. : Koffi Adjovi",
+  nameError: "Indiquez votre nom et votre prénom.",
+  statusLabel: "Vous êtes",
+  statuses: ["Salarié", "Entrepreneur", "Étudiant", "En recherche d'emploi", "Autre"],
+  slotLabel: "Votre horaire",
+  slots: [
+    { value: "matin", label: "Matin", detail: "10h – 13h" },
+    { value: "soir", label: "Soir", detail: "19h – 22h" },
+  ],
+  daysLabel: "Vos jours",
+  days: [
+    { value: "lun-mer", label: "Début de semaine", detail: "Lundi, mardi, mercredi" },
+    { value: "jeu-sam", label: "Fin de semaine", detail: "Jeudi, vendredi, samedi" },
+  ],
+  startLabel: "Quand êtes-vous prêt à commencer ?",
+  starts: [
+    { value: "prochaine", label: "Dès la prochaine cohorte" },
+    { value: "mois", label: "Dans le mois" },
+    { value: "info", label: "Je me renseigne pour l'instant" },
+  ],
+  payLabel: "Comment souhaitez-vous régler ?",
+  pays: [
+    {
+      value: "total",
+      label: "Je paie les 20 000 FCFA",
+      detail: "Ma place est confirmée tout de suite.",
+    },
+    {
+      value: "acompte",
+      label: "Je réserve avec 5 000 FCFA",
+      detail: "Je règle les 15 000 FCFA restants sur place, au centre, le premier jour de formation.",
+    },
+  ],
+  requiredError: "Faites un choix pour continuer.",
+  benefitsTitle: "Ce que vous allez gagner",
+  benefits: [
+    "Vos rapports et vos présentations, de qualité professionnelle, en beaucoup moins de temps.",
+    "Vos tâches répétitives confiées à l'IA, avec votre propre méthode.",
+    "Vos affiches, photos produits et vidéos, créées par vous-même.",
+    "3 jours en salle, puis 30 jours de suivi pour continuer à avancer.",
+  ],
+  submit: {
+    total: "Je veux payer, sur WhatsApp",
+    acompte: "Je m'inscris, sur WhatsApp",
+    info: "Envoyer ma demande sur WhatsApp",
+    empty: "Continuer sur WhatsApp",
+  },
+  note: "Votre message WhatsApp est prêt : il ne reste qu'à appuyer sur « Envoyer ».",
+  close: "Fermer",
+};

@@ -11,6 +11,7 @@ import "./landing-v2-extra.css";
 import "./landing-v2-hero.css";
 import "./landing-v2-bonus.css";
 import "./landing-legal.css";
+import "./landing-form.css";
 import { CookieConsent } from "@/components/landing/primitives/CookieConsent";
 import { SITE_URL } from "@/lib/landing/config";
 

@@ -2,7 +2,7 @@
 
 import Script from "next/script";
 import { useEffect, useRef } from "react";
-import { CONTACT_URL, META_PIXEL_ID, PRICE_VALUE } from "@/lib/landing/config";
+import { CONTACT_URL, META_PIXEL_ID } from "@/lib/landing/config";
 import { useConsent } from "@/lib/landing/consent";
 import { useVideoGate } from "./VideoGate";
 
@@ -19,8 +19,9 @@ export function track(event: string, params?: Record<string, unknown>) {
  * META PIXEL — événements suivis :
  * - PageView     : chaque visite de la page ;
  * - ViewContent  : la vidéo de présentation est regardée 45 s ou jusqu'au bout ;
- * - Lead         : clic sur un bouton « Réserver ma place » (WhatsApp d'inscription) ;
- * - Contact      : clic sur « Écrivez-nous sur WhatsApp » (question).
+ * - InitiateCheckout : ouverture du formulaire de réservation (ReservationForm) ;
+ * - Lead         : formulaire envoyé par une personne prête à s'inscrire (paiement complet ou acompte) ;
+ * - Contact      : formulaire envoyé en « je me renseigne », ou clic sur « Écrivez-nous sur WhatsApp ».
  * Le Pixel est actif par défaut et s'arrête si le visiteur refuse (bandeau en bas de page).
  */
 export function MetaPixel() {
@@ -41,14 +42,12 @@ export function MetaPixel() {
     track("ViewContent", { content_name: "Vidéo IA PRO 2026", content_category: "VSL" });
   }, [watched, consent]);
 
-  /* Clics vers WhatsApp : Lead (inscription) ou Contact (question). */
+  /* Clic sur le WhatsApp de question : Contact. Les inscriptions (Lead) partent du formulaire. */
   useEffect(() => {
     if (!META_PIXEL_ID) return;
     const onClick = (e: MouseEvent) => {
       const a = (e.target as Element | null)?.closest?.("a[href^='https://wa.me/']") as HTMLAnchorElement | null;
-      if (!a) return;
-      if (a.getAttribute("href") === CONTACT_URL) track("Contact");
-      else track("Lead", { value: PRICE_VALUE, currency: "XOF", content_name: "Inscription IA PRO 2026" });
+      if (a && a.getAttribute("href") === CONTACT_URL) track("Contact");
     };
     document.addEventListener("click", onClick, true);
     return () => document.removeEventListener("click", onClick, true);

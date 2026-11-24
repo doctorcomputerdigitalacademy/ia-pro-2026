@@ -1,0 +1,279 @@
+/* ==========================================================================
+   FORMULAIRE DE RÉSERVATION (components/landing/primitives/ReservationForm.tsx)
+   Feuille qui monte du bas sur mobile, fenêtre centrée sur ordinateur.
+   ========================================================================== */
+html.rf-lock {
+  overflow: hidden;
+}
+
+.rf-dialog {
+  width: 100%;
+  max-width: 560px;
+  max-height: 100dvh;
+  margin: auto auto 0;
+  padding: 0;
+  border: none;
+  border-radius: 24px 24px 0 0;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  box-shadow: 0 -20px 60px -20px rgb(15 26 46 / 0.45);
+  overflow: hidden;
+}
+.rf-dialog[open] {
+  display: flex;
+  animation: rf-up 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.rf-dialog::backdrop {
+  background: rgb(15 26 46 / 0.55);
+  backdrop-filter: blur(3px);
+}
+@keyframes rf-up {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+@media (min-width: 640px) {
+  .rf-dialog {
+    margin: auto;
+    max-height: calc(100dvh - 48px);
+    border-radius: 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rf-dialog[open] { animation: none; }
+}
+
+.rf-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: inherit;
+  min-height: 0;
+}
+
+/* en-tête */
+.rf-head {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 22px 20px 16px;
+  border-bottom: 1px solid var(--color-line);
+}
+.rf-eyebrow {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+.rf-title {
+  margin: 6px 0 0;
+  font-family: var(--font-satoshi), var(--font-dm-sans), sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+}
+.rf-intro {
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-ink-soft);
+}
+.rf-close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-primary-soft);
+  color: var(--color-ink);
+  cursor: pointer;
+}
+.rf-close:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* corps qui défile */
+.rf-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 18px 20px 8px;
+}
+.rf-field {
+  margin: 0 0 18px;
+  padding: 0;
+  border: none;
+  min-width: 0;
+}
+.rf-label {
+  display: block;
+  margin: 0 0 8px;
+  padding: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+.rf-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: 14px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 16px; /* 16px minimum : évite le zoom automatique sur iPhone */
+}
+.rf-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px var(--color-primary-soft);
+}
+.rf-input[aria-invalid="true"] {
+  border-color: var(--color-secondary);
+}
+.rf-error {
+  margin: 6px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+/* choix */
+.rf-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.rf-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.rf-stack {
+  display: grid;
+  gap: 8px;
+}
+.rf-choice {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 11px 16px;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: 14px;
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.rf-chips .rf-choice {
+  border-radius: 999px;
+  padding: 9px 16px;
+}
+.rf-choice input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.rf-choice__t {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.rf-choice__d {
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--color-ink-soft);
+}
+.rf-choice.is-on {
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
+  box-shadow: inset 0 0 0 1px var(--color-primary);
+}
+.rf-choice.is-on .rf-choice__t {
+  color: var(--color-primary);
+}
+.rf-choice:has(input:focus-visible) {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* rappel des bénéfices */
+.rf-benefits {
+  margin: 4px 0 10px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--color-secondary-soft);
+  border: 1px solid var(--color-secondary-line);
+}
+.rf-benefits__t {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--color-secondary);
+}
+.rf-benefits ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.rf-benefits li {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.rf-benefits__i {
+  flex: none;
+  margin-top: 1px;
+  color: var(--color-path);
+}
+
+/* pied fixe : bouton d'envoi */
+.rf-foot {
+  padding: 12px 20px calc(14px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--color-line);
+  background: var(--color-surface);
+}
+.rf-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-whatsapp);
+  color: #fff;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 12px 28px -12px color-mix(in srgb, var(--color-whatsapp) 70%, transparent);
+}
+.rf-submit:active {
+  transform: scale(0.98);
+}
+.rf-submit:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+.rf-note {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  text-align: center;
+  color: var(--color-ink-soft);
+}
