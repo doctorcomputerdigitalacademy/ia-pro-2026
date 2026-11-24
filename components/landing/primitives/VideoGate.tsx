@@ -129,7 +129,7 @@ export function GateHint() {
         >
           <p className="v2-gate-hint__text">
             <Icon icon={PlayIcon} size={16} strokeWidth={2.2} />
-            {started ? "Continuez la vidéo : la suite s'affiche dans un instant." : "Lancez la vidéo pour découvrir la formation."}
+            {started ? "Continue la vidéo : la suite s'affiche dans un instant." : "Lance la vidéo pour découvrir la formation."}
           </p>
           <span className="v2-gate-hint__bar" aria-hidden="true">
             <i style={{ transform: `scaleX(${progress})` }} />

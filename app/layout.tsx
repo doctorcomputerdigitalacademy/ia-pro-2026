@@ -69,7 +69,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   openGraph: {
     title: "IA PRO 2026 | Formation IA en présentiel à Calavi",
-    description: "Apprenez l'IA en 3 jours, en présentiel à Calavi. Et utilisez-la comme un pro. 20 000 FCFA tout compris.",
+    description: "Apprends l'IA en 3 jours, en présentiel à Calavi. Et utilise-la comme un pro. 20 000 FCFA tout compris.",
     url: "/",
     siteName: "IA PRO 2026 · Doctor Computer Digital Academy",
     locale: "fr_FR",
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "IA PRO 2026 | Formation IA en présentiel à Calavi",
-    description: "Apprenez l'IA en 3 jours, en présentiel à Calavi. 20 000 FCFA tout compris.",
+    description: "Apprends l'IA en 3 jours, en présentiel à Calavi. 20 000 FCFA tout compris.",
   },
   formatDetection: { telephone: false },
   /* Vérification du domaine dans Meta Business (Sécurité de la marque > Domaines) */

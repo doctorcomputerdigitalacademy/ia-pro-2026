@@ -42,7 +42,7 @@ export const META_PIXEL_ID = "1478490317553651";
  * Coller ici l'adresse de l'application web Google Apps Script
  * (voir docs/formulaire-google-sheets.md). Laisser vide ("") pour ne rien copier.
  */
-export const SHEETS_WEBHOOK_URL = "";
+export const SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzyTdgRXvdLTutH9WHKD4whQrPSNHr_egPGLcXoBd3Zt99M3vhTQqnYwqh2Gp76DipI/exec";
 
 /** Acompte pour réserver une place (le solde est réglé sur place le premier jour). */
 export const DEPOSIT_VALUE = 5000;

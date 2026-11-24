@@ -67,7 +67,7 @@ export const BRAND = {
   program: "IA PRO 2026",
   logoAlt: "Doctor Computer Digital Academy",
   slogan:
-    "Ne vous contentez pas de découvrir l'IA. Apprenez à l'utiliser pour produire, créer et développer vos compétences professionnelles.",
+    "Ne te contente pas de découvrir l'IA. Apprends à l'utiliser pour produire, créer et développer tes compétences professionnelles.",
   address: "Centre Baha'i de Calavi, Bidossessi, après le carrefour de l'ORTB",
   year: 2026,
 };
@@ -84,15 +84,15 @@ export const NAV = [
 /* ------------------------------------------------------------- SECTION 1 */
 export const HERO = {
   badge: "Formation pratique en intelligence artificielle – Calavi",
-  titleLine1: "Ne soyez plus un simple utilisateur de l'IA.",
-  titleLine2Before: "Apprenez à en faire votre véritable",
+  titleLine1: "Ne sois plus un simple utilisateur de l'IA.",
+  titleLine2Before: "Apprends à en faire ton véritable",
   titleHighlight: "assistant professionnel.",
-  cursorLabel: "Vous",
+  cursorLabel: "Toi",
   rotatingPrefix: "Avec l'IA,",
-  rotatingWords: ["rédigez", "analysez", "présentez", "organisez", "créez"],
+  rotatingWords: ["rédige", "analyse", "présente", "organise", "crée"],
   rotatingSuffix: "plus intelligemment.",
   description:
-    "En 3 jours de pratique, maîtrisez ChatGPT, Claude, Gemini et NotebookLM, et créez vos visuels et vidéos avec l'IA.",
+    "En 3 jours de pratique, maîtrise ChatGPT, Claude, Gemini et NotebookLM, et crée tes visuels et vidéos avec l'IA.",
   vslLabel: "Regarder la présentation de IA PRO 2026",
   notes: ["Formation 100 % en présentiel à Calavi, Bidossessi.", "20 places maximum par cohorte."],
   /** Étiquettes inclinées qui flottent autour du titre (inspiré de ghostdesignco) */
@@ -116,36 +116,36 @@ export const KEY_FACTS = [
 /* ------------------------------------------------------------- SECTION 2 */
 export const PROBLEM = {
   eyebrow: "Le problème",
-  title: "Vous passez à côté du véritable [[potentiel de l'IA]]",
-  lead: "Vous connaissez ChatGPT. Mais savez-vous vraiment tout ce que ces outils peuvent faire pour vous ?",
+  title: "Tu passes à côté du véritable [[potentiel de l'IA]]",
+  lead: "Tu connais ChatGPT. Mais sais-tu vraiment tout ce que ces outils peuvent faire pour toi ?",
   paragraphs: [
     "Aujourd'hui, beaucoup de personnes utilisent ChatGPT pour poser des questions, demander des rédactions ou obtenir quelques informations.",
     "Très peu savent en tirer parti dans leur travail de tous les jours.",
   ],
-  listIntro: "Imaginez tout ce que vous pourriez accomplir si vous saviez réellement utiliser ces outils :",
+  listIntro: "Imagine tout ce que tu pourrais accomplir si tu savais réellement utiliser ces outils :",
   possibilities: [
     { text: "Préparer un rapport professionnel sans partir de zéro.", icon: File01Icon },
     { text: "Analyser rapidement des documents et des informations complexes.", icon: Analytics01Icon },
     { text: "Créer des présentations structurées et convaincantes.", icon: PresentationBarChart01Icon },
-    { text: "Effectuer des recherches approfondies pour vos études ou votre entreprise.", icon: Search01Icon },
-    { text: "Organiser vos projets avec des assistants IA personnalisés.", icon: AiBrain01Icon },
+    { text: "Effectuer des recherches approfondies pour tes études ou ton entreprise.", icon: Search01Icon },
+    { text: "Organiser tes projets avec des assistants IA personnalisés.", icon: AiBrain01Icon },
     { text: "Développer des stratégies commerciales et marketing.", icon: Target02Icon },
     { text: "Gagner du temps sur certaines tâches répétitives.", icon: Clock01Icon },
-    { text: "Transformer vos idées en projets concrets.", icon: Idea01Icon },
+    { text: "Transformer tes idées en projets concrets.", icon: Idea01Icon },
   ],
   /** Comparatif visuel « usage basique » / « usage maîtrisé » */
   compare: {
     basic: {
       tag: "La plupart des utilisateurs",
       prompt: "Écris-moi un texte pour présenter mon entreprise.",
-      reply: "Voici un texte de présentation pour votre entreprise…",
+      reply: "Voici un texte de présentation pour ton entreprise…",
       verdict: "Une réponse générique, à refaire.",
     },
     pro: {
       tag: "Ceux qui maîtrisent l'IA",
-      assistant: "Votre assistant IA",
+      assistant: "Ton assistant IA",
       steps: [
-        { state: "analyzing", label: "Analyse de vos documents" },
+        { state: "analyzing", label: "Analyse de tes documents" },
         { state: "researching", label: "Recherche de sources fiables" },
         { state: "thinking", label: "Construction du plan" },
         { state: "writing", label: "Rédaction du rapport" },
@@ -159,13 +159,13 @@ export const PROBLEM = {
   /** Point d'arrivée du chemin : bénéfices et valeurs */
   arrival: {
     eyebrow: "Point d'arrivée",
-    title: "Ce que vous gagnez au bout du chemin",
-    benefitsTitle: "Vos bénéfices",
+    title: "Ce que tu gagnes au bout du chemin",
+    benefitsTitle: "Tes bénéfices",
     benefits: [
-      "Vous gagnez du temps sur vos tâches de tous les jours.",
-      "Vous produisez des documents et des présentations de qualité professionnelle.",
-      "Vous créez vous-même vos visuels et vos vidéos.",
-      "Vous repartez avec des réalisations concrètes à montrer.",
+      "Tu gagnes du temps sur tes tâches de tous les jours.",
+      "Tu produis des documents et des présentations de qualité professionnelle.",
+      "Tu crées toi-même tes visuels et tes vidéos.",
+      "Tu repars avec des réalisations concrètes à montrer.",
     ],
     valuesTitle: "Nos valeurs",
     values: [
@@ -177,18 +177,18 @@ export const PROBLEM = {
   },
   manifesto:
     "Le véritable avantage ne consiste pas simplement à connaître ChatGPT. Il consiste à savoir comment utiliser intelligemment l'IA pour produire de meilleurs résultats.",
-  conclusion: "Et c'est précisément ce que vous allez apprendre avec [[IA PRO 2026]].",
+  conclusion: "Et c'est précisément ce que tu vas apprendre avec [[IA PRO 2026]].",
 };
 
 /* ------------------------------------------- DEUX SITUATIONS (après la section 2) */
 export const SITUATIONS = {
   eyebrow: "Deux situations",
-  title: "Dans laquelle vous [[reconnaissez-vous]] ?",
+  title: "Dans laquelle te [[reconnais-tu]] ?",
   items: [
     {
       tag: "Situation 1",
-      title: "Vous avancez seul, sans méthode.",
-      text: "Rapports, présentations, recherches : tout vous prend des heures. Vous ouvrez ChatGPT de temps en temps, mais les réponses restent moyennes et vous ne savez pas comment faire mieux.",
+      title: "Tu avances seul, sans méthode.",
+      text: "Rapports, présentations, recherches : tout te prend des heures. Tu ouvres ChatGPT de temps en temps, mais les réponses restent moyennes et tu ne sais pas comment faire mieux.",
       points: ["Des heures perdues sur des tâches répétitives", "Des résultats moyens, faute de bonnes instructions", "L'impression de passer à côté de quelque chose"],
       photo: "/situations/situation-1-fatigue.jpg",
       // Photo : Oladimeji Ajegbile sur Pexels (licence Pexels, usage commercial gratuit)
@@ -196,8 +196,8 @@ export const SITUATIONS = {
     },
     {
       tag: "Situation 2",
-      title: "Vous travaillez avec l'IA comme un pro.",
-      text: "Vous savez quel outil choisir, comment le guider et comment vérifier ce qu'il produit. Vos documents sortent plus vite, vos visuels aussi, et vous gagnez en assurance.",
+      title: "Tu travailles avec l'IA comme un pro.",
+      text: "Tu sais quel outil choisir, comment le guider et comment vérifier ce qu'il produit. Tes documents sortent plus vite, tes visuels aussi, et tu gagnes en assurance.",
       points: ["Le bon outil pour chaque tâche", "Des documents et visuels de qualité, plus vite", "Des réalisations concrètes à montrer"],
       photo: "/situations/situation-avec-methode.jpg",
       alt: "Apprenants de Doctor Computer Digital Academy en atelier sur ordinateur",
@@ -211,16 +211,16 @@ export const HOW_IT_WORKS = {
   title: "COMMENT ÇA MARCHE ?",
   steps: [
     {
-      title: "Réservez votre place",
-      text: "Écrivez-nous sur WhatsApp et choisissez votre cohorte : début ou fin de semaine, en journée ou en soirée.",
+      title: "Réserve ta place",
+      text: "Remplis le formulaire et choisis ta cohorte : début ou fin de semaine, en journée ou en soirée.",
     },
     {
-      title: "Pratiquez en présentiel",
-      text: "Trois jours d'ateliers à Calavi : vous manipulez les outils et fabriquez vos propres réalisations.",
+      title: "Pratique en présentiel",
+      text: "Trois jours d'ateliers à Calavi : tu manipules les outils et fabriques tes propres réalisations.",
     },
     {
-      title: "Progressez avec le groupe",
-      text: "Pendant un mois, exercices, corrections et conseils dans le groupe privé pour finaliser votre projet.",
+      title: "Progresse avec le groupe",
+      text: "Pendant un mois, exercices, corrections et conseils dans le groupe privé pour finaliser ton projet.",
     },
   ],
 };
@@ -235,35 +235,35 @@ export const BONUS = {
   free: "GRATUIT",
   items: [
     { title: "Plus de 1 650 ressources IA", text: "Prompts, outils et templates prêts à l'emploi.", icon: FolderLibraryIcon, value: 20000, cover: { text: "+1 650 RESSOURCES IA", tone: "blue" as const }, image: "" },
-    { title: "Création de photo-shootings avec l'IA", text: "Réalisez des séances photo professionnelles sans studio : portraits, photos produits et visuels de marque générés par l'IA.", icon: Camera01Icon, value: 15000, cover: { text: "PHOTO-SHOOTING IA", tone: "red" as const }, image: "" },
-    { title: "Création de publicités vidéo IA", text: "Écrivez, générez et montez vos propres publicités vidéo réalisées avec l'intelligence artificielle.", icon: Film01Icon, value: 20000, cover: { text: "PUBLICITÉS VIDÉO IA", tone: "ink" as const }, image: "" },
+    { title: "Création de photo-shootings avec l'IA", text: "Réalise des séances photo professionnelles sans studio : portraits, photos produits et visuels de marque générés par l'IA.", icon: Camera01Icon, value: 15000, cover: { text: "PHOTO-SHOOTING IA", tone: "red" as const }, image: "" },
+    { title: "Création de publicités vidéo IA", text: "Écris, génère et monte tes propres publicités vidéo réalisées avec l'intelligence artificielle.", icon: Film01Icon, value: 20000, cover: { text: "PUBLICITÉS VIDÉO IA", tone: "ink" as const }, image: "" },
   ],
 };
 
 /* ------------------------------------------------------------- SECTION 3 */
 export const SOLUTION = {
   eyebrow: "La solution",
-  title: "Passez de la simple utilisation de l'IA à une véritable [[maîtrise professionnelle]]",
-  text: "IA PRO 2026 est une formation intensive pensée pour une chose : vous rendre efficace avec l'IA, au travail, dans vos études et dans vos projets.",
+  title: "Passe de la simple utilisation de l'IA à une véritable [[maîtrise professionnelle]]",
+  text: "IA PRO 2026 est une formation intensive pensée pour une chose : te rendre efficace avec l'IA, au travail, dans tes études et dans tes projets.",
   intro: "Deux spécialités complémentaires, un seul programme.",
   specialties: [
     {
       tag: "Spécialité 1",
       title: "IA Professionnelle",
-      text: "Travaillez plus vite, exploitez vos documents et construisez vos propres assistants IA.",
+      text: "Travaille plus vite, exploite tes documents et construis tes propres assistants IA.",
       icon: Briefcase01Icon,
       tone: "primary" as const,
     },
     {
       tag: "Spécialité 2",
       title: "IA Visuelle et Cinématographique",
-      text: "Transformez vos idées en visuels publicitaires, en vidéos et en séquences de style cinéma.",
+      text: "Transforme tes idées en visuels publicitaires, en vidéos et en séquences de style cinéma.",
       icon: ClapperboardIcon,
       tone: "primary" as const,
     },
   ],
   support:
-    "Et la formation ne s'arrête pas au dernier jour : un mois de suivi vous attend ensuite.",
+    "Et la formation ne s'arrête pas au dernier jour : un mois de suivi t'attend ensuite.",
   statement:
     "Ce n'est pas seulement une formation pour découvrir des outils. [[C'est une formation pour apprendre à les utiliser concrètement.]]",
 };
@@ -271,16 +271,16 @@ export const SOLUTION = {
 /* ------------------------------------------------------------- SECTION 4 */
 export const PRO_AI = {
   eyebrow: "Le cœur de la formation · IA Professionnelle",
-  title: "Faites de l'IA votre véritable [[assistant de travail]]",
-  text: "C'est la priorité du programme : maîtriser les meilleurs assistants du moment pour mieux travailler, étudier, entreprendre et gérer vos projets.",
+  title: "Fais de l'IA ton véritable [[assistant de travail]]",
+  text: "C'est la priorité du programme : maîtriser les meilleurs assistants du moment pour mieux travailler, étudier, entreprendre et gérer tes projets.",
   modules: [
     {
       title: "ChatGPT, Claude et Gemini",
       cover: { text: "CHATGPT CLAUDE GEMINI", tone: "blue" as const },
       /** Image de la carte (ex. "/modules/module-01.jpg"). Vide = couverture générée. */
       image: "",
-      lead: "Maîtrisez les trois assistants IA incontournables.",
-      text: "Utilisez-les pour rédiger, analyser, organiser, réfléchir, résoudre des problèmes et accomplir vos tâches professionnelles, bien au-delà des simples questions-réponses.",
+      lead: "Maîtrise les trois assistants IA incontournables.",
+      text: "Utilise-les pour rédiger, analyser, organiser, réfléchir, résoudre des problèmes et accomplir tes tâches professionnelles, bien au-delà des simples questions-réponses.",
       icon: AiChat02Icon,
     },
     {
@@ -288,8 +288,8 @@ export const PRO_AI = {
       cover: { text: "PROMPT ENGINEERING", tone: "ink" as const },
       /** Image de la carte (ex. "/modules/module-01.jpg"). Vide = couverture générée. */
       image: "",
-      lead: "Donnez les bonnes instructions pour obtenir de meilleurs résultats.",
-      text: "Construisez des prompts précis, structurés et adaptés aux tâches complexes, et guidez l'IA vers des réponses réellement exploitables.",
+      lead: "Donne les bonnes instructions pour obtenir de meilleurs résultats.",
+      text: "Construis des prompts précis, structurés et adaptés aux tâches complexes, et guide l'IA vers des réponses réellement exploitables.",
       icon: MagicWand01Icon,
     },
     {
@@ -297,8 +297,8 @@ export const PRO_AI = {
       cover: { text: "NOTEBOOK LM", tone: "red" as const },
       /** Image de la carte (ex. "/modules/module-01.jpg"). Vide = couverture générée. */
       image: "",
-      lead: "Transformez vos documents en véritables sources de connaissance.",
-      text: "Effectuez des recherches approfondies, exploitez vos documents et organisez les informations pour vos études, vos analyses et vos projets.",
+      lead: "Transforme tes documents en véritables sources de connaissance.",
+      text: "Effectue des recherches approfondies, exploite tes documents et organise les informations pour tes études, tes analyses et tes projets.",
       icon: NotebookIcon,
     },
     {
@@ -306,8 +306,8 @@ export const PRO_AI = {
       cover: { text: "RAPPORTS & PRÉSENTATIONS", tone: "ink" as const },
       /** Image de la carte (ex. "/modules/module-01.jpg"). Vide = couverture générée. */
       image: "",
-      lead: "Gagnez du temps dans la production de vos documents.",
-      text: "Utilisez l'IA pour structurer des informations, rédiger des rapports et préparer des présentations professionnelles.",
+      lead: "Gagne du temps dans la production de tes documents.",
+      text: "Utilise l'IA pour structurer des informations, rédiger des rapports et préparer des présentations professionnelles.",
       icon: PresentationBarChart01Icon,
     },
     {
@@ -315,8 +315,8 @@ export const PRO_AI = {
       cover: { text: "CLAUDE SKILLS", tone: "blue" as const },
       /** Image de la carte (ex. "/modules/module-01.jpg"). Vide = couverture générée. */
       image: "",
-      lead: "Créez vos propres compétences personnalisées dans Claude.",
-      text: "Construisez des Skills pour adapter Claude à vos tâches, vos méthodes de travail et vos besoins spécifiques.",
+      lead: "Crée tes propres compétences personnalisées dans Claude.",
+      text: "Construis des Skills pour adapter Claude à tes tâches, tes méthodes de travail et tes besoins spécifiques.",
       icon: PuzzleIcon,
     },
     {
@@ -324,39 +324,39 @@ export const PRO_AI = {
       cover: { text: "PROJECTS IA", tone: "red" as const },
       /** Image de la carte (ex. "/modules/module-01.jpg"). Vide = couverture générée. */
       image: "",
-      lead: "Organisez vos assistants IA autour de vos propres objectifs.",
-      text: "Configurez des Projects pour centraliser vos instructions, vos ressources et vos travaux : un environnement IA adapté à votre entreprise, vos études ou votre métier.",
+      lead: "Organise tes assistants IA autour de tes propres objectifs.",
+      text: "Configure des Projects pour centraliser tes instructions, tes ressources et tes travaux : un environnement IA adapté à ton entreprise, tes études ou ton métier.",
       icon: FolderLibraryIcon,
     },
   ],
   includedLabel: "Inclus dans la formation",
   outcome:
-    "À la fin de cette spécialité, vous saurez mieux intégrer l'IA dans votre quotidien professionnel.",
+    "À la fin de cette spécialité, tu sauras mieux intégrer l'IA dans ton quotidien professionnel.",
 };
 
 /* ------------------------------------------------------------- SECTION 5 */
 export const VISUAL_AI = {
   eyebrow: "Un avantage supplémentaire · IA Visuelle et Cinématographique",
-  title: "Ne vous limitez pas à travailler avec l'IA. Apprenez aussi à [[créer avec elle]]",
-  text: "Images, affiches, voix off, vidéos : passez de l'idée à la création, étape par étape.",
+  title: "Ne te limite pas à travailler avec l'IA. Apprends aussi à [[créer avec elle]]",
+  text: "Images, affiches, voix off, vidéos : passe de l'idée à la création, étape par étape.",
   skills: [
-    { title: "Générer des images professionnelles", text: "Créez des images réalistes et créatives avec Google Flow et Kling AI.", icon: Image01Icon },
-    { title: "Concevoir des visuels publicitaires avec Google Flow et Kling AI", text: "Réalisez des affiches et supports de communication pour votre activité.", icon: PaintBoardIcon },
-    { title: "Créer des personnages IA cohérents", text: "Développez des personnages utilisables dans vos projets créatifs.", icon: AiUserIcon },
-    { title: "Écrire des scripts et storyboards", text: "Structurez vos idées avant la production de vos contenus.", icon: Edit02Icon },
-    { title: "Réaliser des publicités vidéo avec Google Flow et Kling AI", text: "Transformez vos concepts en séquences vidéo grâce à l'IA.", icon: VideoCameraAiIcon },
-    { title: "Générer des voix off avec ElevenLabs", text: "Donnez une identité vocale à vos productions.", icon: Mic01Icon },
-    { title: "Monter vos vidéos avec CapCut", text: "Assemblez et finalisez vos créations.", icon: ScissorIcon },
+    { title: "Générer des images professionnelles", text: "Crée des images réalistes et créatives avec Google Flow et Kling AI.", icon: Image01Icon },
+    { title: "Concevoir des visuels publicitaires avec Google Flow et Kling AI", text: "Réalise des affiches et supports de communication pour ton activité.", icon: PaintBoardIcon },
+    { title: "Créer des personnages IA cohérents", text: "Développe des personnages utilisables dans tes projets créatifs.", icon: AiUserIcon },
+    { title: "Écrire des scripts et storyboards", text: "Structure tes idées avant la production de tes contenus.", icon: Edit02Icon },
+    { title: "Réaliser des publicités vidéo avec Google Flow et Kling AI", text: "Transforme tes concepts en séquences vidéo grâce à l'IA.", icon: VideoCameraAiIcon },
+    { title: "Générer des voix off avec ElevenLabs", text: "Donne une identité vocale à tes productions.", icon: Mic01Icon },
+    { title: "Monter tes vidéos avec CapCut", text: "Assemble et finalise tes créations.", icon: ScissorIcon },
   ],
   conclusion:
-    "Que vous soyez entrepreneur, communicant ou créateur de contenu, ces compétences constituent un véritable complément à votre maîtrise de l'IA professionnelle.",
+    "Que tu sois entrepreneur, communicant ou créateur de contenu, ces compétences sont un véritable complément à ta maîtrise de l'IA professionnelle.",
 };
 
 /* ------------------------------------------------------------- SECTION 6 */
 export const ACHIEVEMENTS = {
   eyebrow: "Des compétences concrètes",
-  title: "Ce que vous saurez [[faire à la fin]]",
-  text: "Pas seulement des notions : des livrables que vous fabriquez vous-même, en atelier.",
+  title: "Ce que tu sauras [[faire à la fin]]",
+  text: "Pas seulement des notions : des livrables que tu fabriques toi-même, en atelier.",
   items: [
     {
       group: "IA professionnelle",
@@ -368,35 +368,35 @@ export const ACHIEVEMENTS = {
     {
       group: "IA professionnelle",
       title: "Un Skill Claude personnalisé.",
-      text: "Une compétence sur mesure qui adapte Claude à vos tâches et à votre méthode de travail.",
+      text: "Une compétence sur mesure qui adapte Claude à tes tâches et à ta méthode de travail.",
       file: "mon-skill-claude",
       chips: ["Instructions", "Méthode", "Exemples", "Prêt à l'emploi"],
     },
     {
       group: "IA professionnelle",
       title: "Un Project IA configuré.",
-      text: "Vos instructions et vos ressources réunies dans un espace IA dédié à votre activité.",
+      text: "Tes instructions et tes ressources réunies dans un espace IA dédié à ton activité.",
       file: "mon-project-ia",
       chips: ["Instructions", "Documents", "Ressources", "Objectifs"],
     },
     {
       group: "IA visuelle",
       title: "Trois visuels publicitaires.",
-      text: "Des affiches et supports de communication pour votre activité, conçus avec Google Flow et Kling AI.",
+      text: "Des affiches et supports de communication pour ton activité, conçus avec Google Flow et Kling AI.",
       file: "visuels-publicitaires",
       chips: ["Visuel 1", "Visuel 2", "Google Flow", "Kling AI"],
     },
     {
       group: "IA visuelle",
       title: "Un script publicitaire et son storyboard.",
-      text: "Votre idée structurée scène par scène, avant la production.",
+      text: "Ton idée structurée scène par scène, avant la production.",
       file: "storyboard",
       chips: ["Accroche", "Scènes", "Voix off", "Appel à l'action"],
     },
     {
       group: "IA visuelle",
       title: "Une publicité vidéo générée avec Google Flow et Kling AI.",
-      text: "Votre concept transformé en séquence vidéo, prête à être diffusée.",
+      text: "Ton concept transformé en séquence vidéo, prête à être diffusée.",
       file: "publicite-video.mp4",
       chips: ["Script", "Génération", "Voix off", "Montage"],
     },
@@ -416,25 +416,25 @@ export const ACHIEVEMENTS = {
 /* ------------------------------------------------------------- SECTION 7 */
 export const SUPPORT = {
   eyebrow: "30 jours d'accompagnement offerts",
-  title: "Votre progression continue [[après la formation]]",
-  text: "Une formation pratique est encore plus efficace lorsqu'elle est suivie d'un accompagnement. C'est pourquoi nous avons prévu 30 jours supplémentaires pour vous aider à consolider vos compétences.",
+  title: "Ta progression continue [[après la formation]]",
+  text: "Une formation pratique est encore plus efficace lorsqu'elle est suivie d'un accompagnement. C'est pourquoi nous avons prévu 30 jours supplémentaires pour t'aider à consolider tes compétences.",
   ringText: "30 JOURS D'ACCOMPAGNEMENT • OFFERTS • ",
-  listTitle: "Pendant cette période, vous bénéficierez de :",
+  listTitle: "Pendant cette période, tu bénéficieras de :",
   benefits: [
     { text: "Un groupe privé WhatsApp.", icon: WhatsappIcon },
     { text: "Des exercices pratiques.", icon: Task01Icon },
-    { text: "Des corrections de vos réalisations.", icon: CheckListIcon },
+    { text: "Des corrections de tes réalisations.", icon: CheckListIcon },
     { text: "Des conseils et ressources complémentaires.", icon: Book02Icon },
-    { text: "Un accompagnement pour finaliser votre projet personnel.", icon: Rocket01Icon },
+    { text: "Un accompagnement pour finaliser ton projet personnel.", icon: Rocket01Icon },
   ],
-  after: "Vous pourrez continuer à pratiquer, poser vos questions et améliorer vos productions.",
+  after: "Tu pourras continuer à pratiquer, poser tes questions et améliorer tes productions.",
   slogan: "3 jours pour apprendre. [[30 jours pour continuer à progresser.]]",
 };
 
 /* ------------------------------------------------------------- SECTION 8 */
 export const TRUST = {
   eyebrow: "Ils nous ont déjà fait confiance",
-  title: "Et si vous étiez les [[prochains]] ?",
+  title: "Et si tu étais le [[prochain]] ?",
   count: 20,
   countLabel: "personnes déjà formées",
   paragraphs: [
@@ -517,49 +517,49 @@ export const testimonials: { name: string; role: string; title: string; quote: s
 /* ------------------------------------------------------------- SECTION 9 */
 export const AUDIENCE = {
   eyebrow: "Pour qui ?",
-  title: "Cette formation est [[faite pour vous]] si vous êtes :",
-  text: "Peu importe votre métier ou votre niveau : ce programme s'adapte à vos objectifs.",
+  title: "Cette formation est [[faite pour toi]] si tu es :",
+  text: "Peu importe ton métier ou ton niveau : ce programme s'adapte à tes objectifs.",
   profiles: [
     {
       title: "Étudiant",
       photo: "/profils/etudiant.jpg", // Pexels : Yan Krukau
       alt: "Étudiant travaillant sur son ordinateur portable en amphithéâtre",
-      text: "Recherches, analyse de documents, exposés et présentations : gagnez en qualité et en temps.",
+      text: "Recherches, analyse de documents, exposés et présentations : gagne en qualité et en temps.",
       icon: Mortarboard01Icon,
     },
     {
       title: "Entrepreneur",
       photo: "/profils/entrepreneur.jpg", // Pexels : Mikhail Nilov
       alt: "Entrepreneur souriant dans ses bureaux",
-      text: "Utilisez l'IA pour organiser vos activités, préparer vos documents, développer vos stratégies et améliorer votre communication.",
+      text: "Utilise l'IA pour organiser tes activités, préparer tes documents, développer tes stratégies et améliorer ta communication.",
       icon: Rocket01Icon,
     },
     {
       title: "Commerçant",
       photo: "/profils/commercant.jpg", // Pexels : Hakim LEVEL
       alt: "Commerçante sur son étal de fruits au marché",
-      text: "Découvrez comment exploiter l'IA pour développer vos idées commerciales et créer des publicités pour vos produits.",
+      text: "Découvre comment exploiter l'IA pour développer tes idées commerciales et créer des publicités pour tes produits.",
       icon: Store01Icon,
     },
     {
       title: "Salarié ou professionnel",
       photo: "/profils/salarie.jpg", // Pexels : Gustavo Fring
       alt: "Professionnelle à son poste de travail informatique",
-      text: "Intégrez les outils IA à vos méthodes de travail et devenez la personne ressource de votre équipe.",
+      text: "Intègre les outils IA à tes méthodes de travail et deviens la personne ressource de ton équipe.",
       icon: Briefcase01Icon,
     },
     {
       title: "Créateur de contenu",
       photo: "/profils/createur.jpg", // Pexels : Kyle Loftus
       alt: "Créateur de contenu avec sa caméra",
-      text: "Visuels, scripts, voix off, vidéos : produisez plus de contenus, sans tout sous-traiter.",
+      text: "Visuels, scripts, voix off, vidéos : produis plus de contenus, sans tout sous-traiter.",
       icon: Megaphone01Icon,
     },
     {
       title: "Grand débutant",
       photo: "/profils/debutant.jpg", // Pexels : Roberto Hund
       alt: "Personne pensive qui découvre un nouveau sujet",
-      text: "Aucun niveau avancé en IA n'est exigé. La formation vous fait découvrir les outils et progresser à travers des exercices pratiques.",
+      text: "Aucun niveau avancé en IA n'est exigé. La formation te fait découvrir les outils et progresser à travers des exercices pratiques.",
       icon: Plant01Icon,
     },
   ],
@@ -567,10 +567,10 @@ export const AUDIENCE = {
 
 /* ------------------------------------------------------------ SECTION 10 */
 export const PRICING = {
-  eyebrow: "Votre investissement",
+  eyebrow: "Ton investissement",
   title: "Toute cette formation pour seulement {{20 000 FCFA}}",
-  text: "Imaginez tout ce que vous allez découvrir, apprendre et réaliser pendant cette formation.",
-  includesTitle: "Ce qui est compris dans votre inscription",
+  text: "Imagine tout ce que tu vas découvrir, apprendre et réaliser pendant cette formation.",
+  includesTitle: "Ce qui est compris dans ton inscription",
   /**
    * Valeur affichée (barrée) pour chaque élément, en FCFA.
    * ATTENTION : valeurs proposées par défaut, à ajuster selon vos tarifs réels.
@@ -580,23 +580,23 @@ export const PRICING = {
     { label: "La spécialité IA professionnelle.", value: 25000 },
     { label: "La spécialité IA visuelle et cinématographique.", value: 25000 },
     { label: "Les supports pédagogiques.", value: 10000 },
-    { label: "Un mois de suivi après la formation : groupe WhatsApp privé, exercices, corrections et aide pour finaliser votre projet.", value: 15000 },
+    { label: "Un mois de suivi après la formation : groupe WhatsApp privé, exercices, corrections et aide pour finaliser ton projet.", value: 15000 },
     { label: "Un groupe privé WhatsApp.", value: 10000 },
     { label: "Des exercices pratiques et corrections.", value: 10000 },
     { label: "Des conseils et ressources complémentaires.", value: 5000 },
-    { label: "Un accompagnement sur votre projet personnel.", value: 15000 },
+    { label: "Un accompagnement sur ton projet personnel.", value: 15000 },
   ],
   totalValueLabel: "Valeur totale",
-  youPayLabel: "Vous payez seulement",
-  saveLabel: "Vous économisez",
-  offerHeading: "Si vous vous inscrivez aujourd'hui, vous recevrez :",
-  receiveTitle: "Ce que vous recevez",
+  youPayLabel: "Tu paies seulement",
+  saveLabel: "Tu économises",
+  offerHeading: "Si tu t'inscris aujourd'hui, tu recevras :",
+  receiveTitle: "Ce que tu reçois",
   receiveCol: "Valeur",
   includedTag: "Inclus",
   todayLabel: "Aujourd'hui, toute la formation pour",
   payNote: "Paiement en une fois, ou réservation avec 5 000 FCFA et le reste sur place le premier jour. Les deux spécialités et l'accompagnement sont compris.",
   trust: ["Formation en présentiel", "Petits groupes", "Suivi d'un mois", "Réservation dès 5 000 FCFA", "Supports inclus"],
-  totalLabel: "Votre investissement total",
+  totalLabel: "Ton investissement total",
   amount: "20 000",
   currency: "FCFA",
   allIncluded: "Tout compris.",
@@ -608,9 +608,9 @@ export const PRICING = {
 
 /* ------------------------------------------------------------ SECTION 11 */
 export const SCHEDULE = {
-  eyebrow: "Choisissez votre horaire",
-  title: "Quatre cohortes, selon votre [[disponibilité]]",
-  text: "Début de semaine ou fin de semaine, en journée ou en soirée : choisissez ce qui vous convient.",
+  eyebrow: "Choisis ton horaire",
+  title: "Quatre cohortes, selon ta [[disponibilité]]",
+  text: "Début de semaine ou fin de semaine, en journée ou en soirée : choisis ce qui te convient.",
   cohorts: [
     {
       name: "Cohorte Jour",
@@ -648,17 +648,17 @@ export const SCHEDULE = {
   alertLines: [
     "Chaque cohorte accueille seulement 20 participants maximum.",
     "Ce nombre limité permet de favoriser les ateliers pratiques et le suivi des apprenants.",
-    "Ne tardez pas à réserver votre place.",
+    "Ne tarde pas à réserver ta place.",
   ],
 };
 
 /* ------------------------------------------------------------ SECTION 12 */
 export const FAQ = {
   eyebrow: "FAQ",
-  title: "Vos questions, [[nos réponses]].",
+  title: "Tes questions, [[nos réponses]].",
   text: "Tout est transparent : programme, horaires, tarif et accompagnement.",
-  contactTitle: "Vous avez une question précise ?",
-  contactText: "Vous hésitez sur la cohorte ou sur votre niveau ? Écrivez-nous directement sur WhatsApp.",
+  contactTitle: "Tu as une question précise ?",
+  contactText: "Tu hésites sur la cohorte ou sur ton niveau ? Écris-nous directement sur WhatsApp.",
   contactLabel: "Nous écrire sur WhatsApp",
   contactBadge: "Doctor Computer Digital Academy",
   categories: [
@@ -682,7 +682,7 @@ export const FAQ = {
     {
       id: "ordinateur", category: "pratique",
       question: "Est-ce que je dois avoir mon propre ordinateur ?",
-      answer: "Les ordinateurs et la connexion Internet sont disponibles pour les ateliers pratiques, selon les équipements disponibles. Vous pouvez contacter l'académie pour connaître les modalités.",
+      answer: "Les ordinateurs et la connexion Internet sont disponibles pour les ateliers pratiques, selon les équipements disponibles. Tu peux contacter l'académie pour connaître les modalités.",
     },
     {
       id: "presentiel", category: "pratique",
@@ -702,7 +702,7 @@ export const FAQ = {
     {
       id: "accompagnement", category: "formation",
       question: "Que comprend l'accompagnement de 30 jours ?",
-      answer: "Un groupe privé WhatsApp, des exercices pratiques, des corrections de vos réalisations, des conseils, des ressources complémentaires et un accompagnement pour finaliser votre projet personnel.",
+      answer: "Un groupe privé WhatsApp, des exercices pratiques, des corrections de tes réalisations, des conseils, des ressources complémentaires et un accompagnement pour finaliser ton projet personnel.",
     },
     {
       id: "lieu", category: "pratique",
@@ -712,7 +712,7 @@ export const FAQ = {
     {
       id: "prix", category: "tarif",
       question: "Quel est le prix de la formation ?",
-      answer: "20 000 FCFA tout compris. Vous pouvez payer en une fois, ou réserver votre place avec 5 000 FCFA et régler les 15 000 FCFA restants sur place, le premier jour de formation. Ce montant couvre la formation, les supports pédagogiques et le mois de suivi.",
+      answer: "20 000 FCFA tout compris. Tu peux payer en une fois, ou réserver ta place avec 5 000 FCFA et régler les 15 000 FCFA restants sur place, le premier jour de formation. Ce montant couvre la formation, les supports pédagogiques et le mois de suivi.",
     },
   ],
 };
@@ -720,24 +720,24 @@ export const FAQ = {
 /* ------------------------------------------------------------ SECTION 13 */
 export const FINAL_CTA = {
   proof: "personnes déjà formées",
-  titleLine1: "Vous avez tout vu.",
-  titleLine2: "Maintenant, c'est à vous de choisir.",
+  titleLine1: "Tu as tout vu.",
+  titleLine2: "Maintenant, c'est à toi de choisir.",
   choices: [
     {
       tag: "Choix 1",
-      title: "Vous fermez la page.",
+      title: "Tu fermes la page.",
       points: [
-        "Vous vous dites que vous reviendrez plus tard.",
-        "Vous continuez à utiliser l'IA pour poser quelques questions.",
-        "Et vous regardez les autres prendre de l'avance.",
+        "Tu te dis que tu reviendras plus tard.",
+        "Tu continues à utiliser l'IA pour poser quelques questions.",
+        "Et tu regardes les autres prendre de l'avance.",
       ],
     },
     {
       tag: "Choix 2",
-      title: "Vous rejoignez la prochaine cohorte.",
+      title: "Tu rejoins la prochaine cohorte.",
       points: [
         "3 jours de formation pratique, en présentiel à Calavi.",
-        "Vous repartez avec vos propres réalisations.",
+        "Tu repars avec tes propres réalisations.",
         "Un mois de suivi pour continuer à avancer.",
       ],
     },

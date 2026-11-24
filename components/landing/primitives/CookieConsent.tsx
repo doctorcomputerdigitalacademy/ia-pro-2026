@@ -46,7 +46,7 @@ export function CookieConsent() {
         Cookies et mesure d&apos;audience
       </p>
       <p id="cookie-text" className="lp-cookie__text">
-        Nous utilisons le Pixel Meta (Facebook, Instagram) pour mesurer l&apos;efficacité de nos publicités. Vous pouvez l&apos;accepter ou le refuser. Les statistiques de visite du site, elles, sont anonymes et sans cookie.{" "}
+        Nous utilisons le Pixel Meta (Facebook, Instagram) pour mesurer l&apos;efficacité de nos publicités. Tu peux l&apos;accepter ou le refuser. Les statistiques de visite du site, elles, sont anonymes et sans cookie.{" "}
         <a href="/politique-de-confidentialite#cookies">En savoir plus</a>
       </p>
       <div className="lp-cookie__actions">

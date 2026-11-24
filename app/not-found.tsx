@@ -22,7 +22,7 @@ export default function NotFound() {
         </p>
         <h1 className="lp-404__title">Cette page n&apos;existe pas.</h1>
         <p className="lp-404__text">
-          Le lien est peut-être incomplet ou la page a été déplacée. La formation IA PRO 2026, elle, vous attend toujours à Calavi.
+          Le lien est peut-être incomplet ou la page a été déplacée. La formation IA PRO 2026, elle, t&apos;attend toujours à Calavi.
         </p>
         <div className="lp-404__actions">
           <Link href="/" className="lp-404__btn is-main">

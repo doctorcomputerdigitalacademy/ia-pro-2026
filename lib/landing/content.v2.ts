@@ -18,10 +18,10 @@ export const HERO2 = {
   /** Pastille au-dessus du titre */
   badge: "Formation en présentiel · Calavi",
   /** Accroche simple */
-  line1: "Apprenez l'IA en 3 jours.",
-  line2Before: "Et utilisez-la",
+  line1: "Apprends l'IA en 3 jours.",
+  line2Before: "Et utilise-la",
   highlight: "comme un pro.",
-  cursor: "Vous",
+  cursor: "Toi",
   sub: "Une formation pratique en présentiel, en salle à Calavi : ChatGPT, Claude, Gemini, images et vidéos IA.",
   /** Les cibles (avec leurs photos) */
   targetsLead: "Pour les",
@@ -38,13 +38,13 @@ export const HERO2 = {
 };
 
 export const ZOOM = {
-  line1: "Vous connaissez ChatGPT.",
-  line2: "Mais vous l'utilisez comme tout le monde.",
+  line1: "Tu connais ChatGPT.",
+  line2: "Mais tu l'utilises comme tout le monde.",
   text: "Des réponses génériques, des heures perdues, des visuels qui font « IA ». Le problème n'est pas l'outil : c'est la méthode.",
   cards: [
-    { label: "Votre rapport", value: "Encore à refaire." },
-    { label: "Vos visuels", value: "Ils font « IA »." },
-    { label: "Votre temps", value: "Perdu sur des tâches répétitives." },
+    { label: "Ton rapport", value: "Encore à refaire." },
+    { label: "Tes visuels", value: "Ils font « IA »." },
+    { label: "Ton temps", value: "Perdu sur des tâches répétitives." },
   ],
 };
 
@@ -54,16 +54,16 @@ export const BEFORE_AFTER = {
   beforeTag: "Avant",
   afterTag: "Après",
   before: [
-    "Vous posez des questions à ChatGPT, sans plus.",
-    "Vos documents vous prennent des heures.",
-    "Vous payez quelqu'un pour vos visuels.",
-    "Vous ne savez pas quel outil choisir.",
+    "Tu poses des questions à ChatGPT, sans plus.",
+    "Tes documents te prennent des heures.",
+    "Tu paies quelqu'un pour tes visuels.",
+    "Tu ne sais pas quel outil choisir.",
   ],
   after: [
-    "Vous donnez des instructions précises et structurées.",
-    "Vos rapports et présentations sortent plus vite.",
-    "Vous créez vous-même images, pubs et vidéos.",
-    "Vous avez votre propre assistant IA configuré.",
+    "Tu donnes des instructions précises et structurées.",
+    "Tes rapports et présentations sortent plus vite.",
+    "Tu crées toi-même images, pubs et vidéos.",
+    "Tu as ton propre assistant IA configuré.",
   ],
 };
 
@@ -71,11 +71,11 @@ export const METHOD = {
   line1: "Pas de théorie.",
   line2: "Une méthode pratiquée en salle, étape par étape.",
   steps: [
-    { title: "Le besoin", text: "Vous partez d'un vrai besoin : un rapport, une pub, une présentation." },
-    { title: "Le bon prompt", text: "Vous donnez à l'IA des instructions claires et structurées." },
-    { title: "Le premier jet", text: "L'IA produit une première version de votre travail." },
-    { title: "Les corrections", text: "Vous l'améliorez grâce à nos retours et nos exercices." },
-    { title: "Le résultat", text: "Vous repartez avec une réalisation prête à utiliser." },
+    { title: "Le besoin", text: "Tu pars d'un vrai besoin : un rapport, une pub, une présentation." },
+    { title: "Le bon prompt", text: "Tu donnes à l'IA des instructions claires et structurées." },
+    { title: "Le premier jet", text: "L'IA produit une première version de ton travail." },
+    { title: "Les corrections", text: "Tu l'améliores grâce à nos retours et nos exercices." },
+    { title: "Le résultat", text: "Tu repars avec une réalisation prête à utiliser." },
   ],
 };
 
@@ -85,18 +85,18 @@ export const SPECIALTIES = {
   pro: {
     tag: "Spécialité 1",
     title: "IA Professionnelle",
-    text: "Travaillez plus vite, exploitez vos documents et construisez vos propres assistants IA.",
+    text: "Travaille plus vite, exploite tes documents et construis tes propres assistants IA.",
     photo: "/preuves/salle-formation-ia.jpg",
   },
   visual: {
     tag: "Spécialité 2",
     title: "IA Visuelle et Cinématographique",
-    text: "Images, publicités, voix off, vidéos : passez de l'idée à la création.",
+    text: "Images, publicités, voix off, vidéos : passe de l'idée à la création.",
   },
   support: {
     tag: "Inclus",
     title: "30 jours de suivi",
-    text: "Groupe WhatsApp privé, exercices, corrections et aide pour finaliser votre projet.",
+    text: "Groupe WhatsApp privé, exercices, corrections et aide pour finaliser ton projet.",
   },
 };
 
@@ -140,7 +140,7 @@ const REAL_SHORT = ["Dossier pro", "Skill Claude", "Project IA", "3 visuels pub"
 const REAL_TONE = ["blue", "ink", "blue", "red", "ink", "red", "ink"] as const;
 
 export const REALISATIONS = {
-  line1: "Voilà ce que vous saurez faire.",
+  line1: "Voilà ce que tu sauras faire.",
   line2: "Des créations réalisées avec l'IA.",
   items: ACHIEVEMENTS.items.map((it, i) => ({
     kicker: `Réalisation ${String(i + 1).padStart(2, "0")}`,
@@ -161,7 +161,7 @@ export const PROOF = {
 /** NOS SÉANCES PRATIQUES — photos réelles des séances (public/preuves/) */
 export const SESSIONS = {
   line1: "Nos séances pratiques.",
-  line2: "En salle, à Calavi, sur vos propres projets.",
+  line2: "En salle, à Calavi, sur tes propres projets.",
   chips: ["Séances de 3 heures", "20 places maximum", "Un formateur présent en salle"],
   photos: [
     "/preuves/salle-formation-ia.jpg",
@@ -174,31 +174,31 @@ export const SESSIONS = {
 };
 
 export const FOR_WHO = {
-  yesTitle: "C'est pour vous si",
+  yesTitle: "C'est pour toi si",
   yes: [
-    "Vous êtes étudiant, salarié, entrepreneur ou commerçant.",
-    "Vous voulez gagner du temps sur vos documents.",
-    "Vous voulez créer vos propres visuels et vidéos.",
-    "Vous débutez : aucun niveau en IA n'est exigé.",
-    "Vous pouvez venir à Calavi pendant 3 jours.",
+    "Tu es étudiant, salarié, entrepreneur ou commerçant.",
+    "Tu veux gagner du temps sur tes documents.",
+    "Tu veux créer tes propres visuels et vidéos.",
+    "Tu débutes : aucun niveau en IA n'est exigé.",
+    "Tu peux venir à Calavi pendant 3 jours.",
   ],
-  noTitle: "Ce n'est pas pour vous si",
+  noTitle: "Ce n'est pas pour toi si",
   no: [
-    "Vous cherchez une formation en ligne, à distance.",
-    "Vous cherchez un bouton magique, sans pratiquer.",
-    "Vous n'êtes pas prêt à consacrer 3 jours à apprendre.",
+    "Tu cherches une formation en ligne, à distance.",
+    "Tu cherches un bouton magique, sans pratiquer.",
+    "Tu n'es pas prêt à consacrer 3 jours à apprendre.",
   ],
 };
 
 export const TOOLS = {
   line1: "Les outils",
-  line2: "que vous allez maîtriser.",
+  line2: "que tu vas maîtriser.",
   center: "IA PRO 2026",
   words: [
     { word: "ChatGPT.", tag: "Rédiger" },
     { word: "Claude.", tag: "Skills & Projects" },
     { word: "Gemini.", tag: "Analyser" },
-    { word: "NotebookLM.", tag: "Vos documents" },
+    { word: "NotebookLM.", tag: "Tes documents" },
     { word: "Google Flow.", tag: "Images & vidéos" },
     { word: "Kling AI.", tag: "Vidéo IA" },
     { word: "ElevenLabs.", tag: "Voix off" },
@@ -256,15 +256,15 @@ export const PRICE2 = {
 };
 
 export const FAQ2 = {
-  line1: "Vous avez",
+  line1: "Tu as",
   line2: "des questions ?",
-  contact: "Écrivez-nous sur WhatsApp",
+  contact: "Écris-nous sur WhatsApp",
   items: FAQ.items,
 };
 
 export const FINAL2 = {
-  line1: "Votre prochain projet mérite un niveau pro.",
-  line2: "Commencez aujourd'hui.",
+  line1: "Ton prochain projet mérite un niveau pro.",
+  line2: "Commence aujourd'hui.",
   note: "Formation en présentiel à Calavi · 20 places maximum par cohorte.",
 };
 
@@ -326,9 +326,9 @@ export const ACCESS = {
   area: "Bidossessi, après le carrefour de l'ORTB, Abomey-Calavi",
   steps: [
     "Direction Bidossessi, à Calavi.",
-    "Passez le carrefour de l'ORTB.",
-    "Repérez l'enseigne « Centre Baha'i de la Communauté de Calavi ».",
-    "Entrez : la salle de formation vous attend.",
+    "Passe le carrefour de l'ORTB.",
+    "Repère l'enseigne « Centre Baha'i de la Communauté de Calavi ».",
+    "Entre : la salle de formation t'attend.",
   ],
   video: "/videos/adresse.mp4",
   poster: "/videos/adresse-poster.webp",
