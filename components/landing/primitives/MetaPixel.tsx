@@ -19,8 +19,9 @@ export function track(event: string, params?: Record<string, unknown>) {
  * META PIXEL — événements suivis :
  * - PageView     : chaque visite de la page ;
  * - ViewContent  : la vidéo de présentation est regardée 45 s ou jusqu'au bout ;
- * - InitiateCheckout : ouverture du formulaire de réservation (ReservationForm) ;
- * - Lead         : formulaire de réservation envoyé (paiement complet ou acompte) ;
+ * - Lead         : ouverture du formulaire de réservation (ReservationForm), une fois par visite.
+ *                  C'est l'événement sur lequel la campagne optimise : ne pas le déplacer sans changer la campagne ;
+ * - CompleteRegistration : formulaire de réservation envoyé (nom + numéro WhatsApp) ;
  * - Contact      : clic sur « Écrivez-nous sur WhatsApp » (question).
  * Le Pixel est actif par défaut et s'arrête si le visiteur refuse (bandeau en bas de page).
  */

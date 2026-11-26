@@ -2,7 +2,7 @@
 
 import { Cancel01Icon, CheckmarkCircle02Icon, WhatsappIcon } from "@hugeicons/core-free-icons";
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
-import { DEPOSIT_VALUE, PRICE_VALUE, REGISTRATION_URL, SHEETS_WEBHOOK_URL, WHATSAPP_NUMBER } from "@/lib/landing/config";
+import { PRICE_VALUE, REGISTRATION_URL, SHEETS_WEBHOOK_URL, WHATSAPP_NUMBER } from "@/lib/landing/config";
 import { RESERVATION as R } from "@/lib/landing/content.fr";
 import { Icon } from "./Icon";
 import { track } from "./MetaPixel";
@@ -10,21 +10,16 @@ import { track } from "./MetaPixel";
 const REF_KEY = "iapro-ref";
 const ID_KEY = "iapro-form-id";
 
-type Answers = { name: string; phone: string; status: string; slot: string; days: string; start: string; pay: string };
-const EMPTY: Answers = { name: "", phone: "", status: "", slot: "", days: "", start: "", pay: "" };
+/* Deux champs seulement : le profil, l'horaire, les jours, la cohorte et le paiement se règlent ensuite sur WhatsApp. */
+type Answers = { name: string; phone: string };
+const EMPTY: Answers = { name: "", phone: "" };
 
 /* Étapes du formulaire, dans l'ordre. Les libellés « arret » sont ceux de l'onglet Résumé de la feuille Google. */
-const STEPS: { key: keyof Answers | "slotdays"; arret: string }[] = [
+const STEPS: { key: keyof Answers; arret: string }[] = [
   { key: "name", arret: "Nom et prénom" },
   { key: "phone", arret: "Numéro WhatsApp" },
-  { key: "status", arret: "Profil" },
-  { key: "slotdays", arret: "Disponibilité et jours" },
-  { key: "start", arret: "Cohorte" },
-  { key: "pay", arret: "Paiement" },
 ];
 const ALL_FILLED = "Tout rempli, mais pas envoyé";
-
-const find = (list: { value: string; label: string; detail?: string }[], v: string) => list.find((o) => o.value === v);
 
 /** Référence de la pub d'origine : ?ref=… ou ?utm_content=… (gardée pendant la visite). */
 function readRef(): string {
@@ -51,8 +46,8 @@ function formId(): string {
   }
 }
 
-/** Au moins deux mots de 2 lettres ou plus. */
-const validName = (v: string) => v.trim().split(/\s+/).filter((w) => /\p{L}{2,}/u.test(w)).length >= 2;
+/** Au moins un mot de 2 lettres ou plus (un prénom seul suffit). */
+const validName = (v: string) => /\p{L}{2,}/u.test(v.trim());
 /** Entre 8 et 15 chiffres (espaces, tirets et « + » acceptés). */
 const validPhone = (v: string) => /^[+\d\s().-]*$/.test(v.trim()) && (v.match(/\d/g)?.length ?? 0) >= 8 && (v.match(/\d/g)?.length ?? 0) <= 15;
 
@@ -60,11 +55,6 @@ function invalid(a: Answers) {
   return {
     name: !validName(a.name),
     phone: !validPhone(a.phone),
-    status: !a.status,
-    slot: !a.slot,
-    days: !a.days,
-    start: !a.start,
-    pay: !a.pay,
   };
 }
 
@@ -72,29 +62,19 @@ function invalid(a: Answers) {
 function stoppedAt(a: Answers) {
   const bad = invalid(a);
   for (const s of STEPS) {
-    if (s.key === "slotdays" ? bad.slot || bad.days : bad[s.key as keyof typeof bad]) return s.arret;
+    if (bad[s.key]) return s.arret;
   }
   return ALL_FILLED;
 }
 
 function buildMessage(a: Answers, ref: string) {
-  const slot = find(R.slots, a.slot);
-  const days = find(R.days, a.days);
-  const start = find(R.starts, a.start);
   const lines = [
     "Bonjour Doctor Computer Digital Academy,",
-    `Je m'appelle ${a.name.trim()} (${a.status}).`,
+    `Je m'appelle ${a.name.trim()}.`,
     "",
-    "Je souhaite rejoindre IA PRO 2026, en présentiel :",
-    `- Disponibilité : ${slot?.label} (${slot?.detail})`,
-    `- Jours : ${days?.detail}`,
-    `- Cohorte : ${start?.label}`,
+    "Je souhaite réserver ma place pour IA PRO 2026, en présentiel à Calavi.",
+    "Pouvez-vous m'indiquer les prochaines dates et les horaires disponibles ?",
   ];
-  if (a.pay === "total") {
-    lines.push("- Paiement : les 20 000 FCFA en une fois", "", "JE VEUX PAYER.");
-  } else {
-    lines.push("- Paiement : réservation avec 5 000 FCFA, les 15 000 FCFA restants sur place le premier jour", "", "JE VEUX M'INSCRIRE.");
-  }
   if (ref) lines.push("", `(réf. ${ref})`);
   return lines.join("\n");
 }
@@ -102,17 +82,16 @@ function buildMessage(a: Answers, ref: string) {
 /** Copie dans Google Sheets (sans effet si l'adresse n'est pas configurée). */
 function sendToSheets(a: Answers, etat: "Envoyé" | "Abandon") {
   if (!SHEETS_WEBHOOK_URL) return;
-  const slot = find(R.slots, a.slot);
   const payload = JSON.stringify({
     id: formId(),
     etat,
     nom: a.name.trim(),
     whatsapp: a.phone.trim(),
-    profil: a.status,
-    horaire: slot ? `${slot.label} (${slot.detail})` : "",
-    jours: find(R.days, a.days)?.detail ?? "",
-    demarrage: find(R.starts, a.start)?.label ?? "",
-    paiement: find(R.pays, a.pay)?.label ?? "",
+    profil: "",
+    horaire: "",
+    jours: "",
+    demarrage: "",
+    paiement: "",
     arret: etat === "Envoyé" ? "" : stoppedAt(a),
     ref: readRef(),
   });
@@ -126,38 +105,14 @@ function sendToSheets(a: Answers, etat: "Envoyé" | "Abandon") {
   }
 }
 
-function Choice({
-  name,
-  value,
-  checked,
-  onChange,
-  title,
-  detail,
-  wide,
-}: {
-  name: string;
-  value: string;
-  checked: boolean;
-  onChange: (v: string) => void;
-  title: string;
-  detail?: string;
-  wide?: boolean;
-}) {
-  return (
-    <label className={`rf-choice${wide ? " rf-choice--wide" : ""}${checked ? " is-on" : ""}`}>
-      <input type="radio" name={name} value={value} checked={checked} onChange={() => onChange(value)} />
-      <span className="rf-choice__t">{title}</span>
-      {detail ? <span className="rf-choice__d">{detail}</span> : null}
-    </label>
-  );
-}
-
 /**
  * FORMULAIRE DE RÉSERVATION — s'ouvre au clic sur tous les boutons « Réserver ma place »
  * (liens vers REGISTRATION_URL), ou directement avec l'adresse du site suivie de ?reserver.
  * Si le script ne se charge pas, le lien WhatsApp direct reste actif.
- * À l'envoi : Pixel Meta (Lead, avec la valeur du paiement ou de l'acompte),
- * copie dans Google Sheets, puis ouverture de WhatsApp avec le message pré-rempli.
+ * Deux champs : nom et numéro WhatsApp. Le reste (horaire, jours, cohorte, paiement) se règle sur WhatsApp.
+ * Pixel Meta : Lead à l'ouverture du formulaire (le signal sur lequel la campagne optimise,
+ * comme l'ancien clic vers WhatsApp), CompleteRegistration à l'envoi.
+ * À l'envoi : copie dans Google Sheets, puis ouverture de WhatsApp avec le message pré-rempli.
  * Formulaire commencé puis abandonné (fermé ou page quittée) : copie « Abandon » dans Google Sheets,
  * avec l'étape où la personne s'est arrêtée, dès qu'elle a donné son nom ou son numéro.
  */
@@ -166,6 +121,7 @@ export function ReservationForm() {
   const [a, setA] = useState<Answers>(EMPTY);
   const latest = useRef<Answers>(EMPTY);
   const sent = useRef(false);
+  const leadSent = useRef(false);
   const [tried, setTried] = useState(false);
   const set = (k: keyof Answers) => (v: string) =>
     setA((p) => {
@@ -187,7 +143,11 @@ export function ReservationForm() {
     setTried(false);
     d.showModal();
     document.documentElement.classList.add("rf-lock");
-    track("InitiateCheckout", { content_name: "Formulaire IA PRO 2026" });
+    /* Lead : une fois par visite, à l'ouverture du formulaire (même niveau d'intention que l'ancien clic vers WhatsApp). */
+    if (!leadSent.current) {
+      leadSent.current = true;
+      track("Lead", { value: PRICE_VALUE, currency: "XOF", content_name: "Réservation IA PRO 2026" });
+    }
   }, []);
 
   useEffect(() => {
@@ -232,7 +192,6 @@ export function ReservationForm() {
   const errors = invalid(a);
   const show = (k: keyof typeof errors) => tried && errors[k];
 
-  const submitLabel = a.pay === "total" ? R.submit.total : a.pay === "acompte" ? R.submit.acompte : R.submit.empty;
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -244,11 +203,7 @@ export function ReservationForm() {
     }
     sent.current = true;
     const ref = readRef();
-    track("Lead", {
-      value: a.pay === "total" ? PRICE_VALUE : DEPOSIT_VALUE,
-      currency: "XOF",
-      content_name: a.pay === "total" ? "Inscription IA PRO 2026 (paiement complet)" : "Inscription IA PRO 2026 (acompte)",
-    });
+    track("CompleteRegistration", { value: PRICE_VALUE, currency: "XOF", content_name: "Inscription IA PRO 2026" });
     sendToSheets(a, "Envoyé");
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildMessage(a, ref))}`;
     /* petit délai pour laisser partir le Pixel et la copie Sheets avant de quitter la page */
@@ -331,56 +286,6 @@ export function ReservationForm() {
             </p>
           </div>
 
-          <fieldset className="rf-field" data-field="status">
-            <legend className="rf-label">{R.statusLabel}</legend>
-            <div className="rf-chips">
-              {R.statuses.map((s) => (
-                <Choice key={s} name="rf-status" value={s} checked={a.status === s} onChange={set("status")} title={s} />
-              ))}
-            </div>
-            {show("status") ? <p className="rf-error">{R.requiredError}</p> : null}
-          </fieldset>
-
-          <fieldset className="rf-field" data-field="slot">
-            <legend className="rf-label">{R.slotLabel}</legend>
-            <div className="rf-grid">
-              {R.slots.map((o) => (
-                <Choice key={o.value} name="rf-slot" value={o.value} checked={a.slot === o.value} onChange={set("slot")} title={o.label} detail={o.detail} />
-              ))}
-            </div>
-            {show("slot") ? <p className="rf-error">{R.requiredError}</p> : null}
-          </fieldset>
-
-          <fieldset className="rf-field" data-field="days">
-            <legend className="rf-label">{R.daysLabel}</legend>
-            <div className="rf-grid">
-              {R.days.map((o) => (
-                <Choice key={o.value} name="rf-days" value={o.value} checked={a.days === o.value} onChange={set("days")} title={o.label} detail={o.detail} />
-              ))}
-            </div>
-            {show("days") ? <p className="rf-error">{R.requiredError}</p> : null}
-          </fieldset>
-
-          <fieldset className="rf-field" data-field="start">
-            <legend className="rf-label">{R.startLabel}</legend>
-            <div className="rf-stack">
-              {R.starts.map((o) => (
-                <Choice key={o.value} name="rf-start" value={o.value} checked={a.start === o.value} onChange={set("start")} title={o.label} wide />
-              ))}
-            </div>
-            {show("start") ? <p className="rf-error">{R.requiredError}</p> : null}
-          </fieldset>
-
-          <fieldset className="rf-field" data-field="pay">
-              <legend className="rf-label">{R.payLabel}</legend>
-              <div className="rf-stack">
-                {R.pays.map((o) => (
-                  <Choice key={o.value} name="rf-pay" value={o.value} checked={a.pay === o.value} onChange={set("pay")} title={o.label} detail={o.detail} wide />
-                ))}
-              </div>
-              {show("pay") ? <p className="rf-error">{R.requiredError}</p> : null}
-            </fieldset>
-
           <div className="rf-benefits">
             <p className="rf-benefits__t">{R.benefitsTitle}</p>
             <ul>
@@ -397,7 +302,7 @@ export function ReservationForm() {
         <div className="rf-foot">
           <button type="submit" className="rf-submit">
             <Icon icon={WhatsappIcon} size={22} strokeWidth={2} />
-            <span>{submitLabel}</span>
+            <span>{R.submit}</span>
           </button>
           <p className="rf-note">{R.note}</p>
         </div>

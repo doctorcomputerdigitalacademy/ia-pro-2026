@@ -750,46 +750,15 @@ export const FINAL_CTA = {
    Les réponses composent le message WhatsApp envoyé à l'académie. */
 export const RESERVATION = {
   eyebrow: "Réservation · IA PRO 2026",
-  title: "Réserve ta place en 30 secondes",
+  title: "Réserve ta place en 10 secondes",
   intro: "Formation en présentiel au Centre Baha'i de Calavi. 20 places par cohorte.",
-  nameLabel: "Ton nom et prénom",
+  nameLabel: "Ton nom",
   namePlaceholder: "Ex. : Koffi Adjovi",
-  nameError: "Indique ton nom et ton prénom.",
+  nameError: "Indique ton nom.",
   phoneLabel: "Ton numéro WhatsApp",
   phonePlaceholder: "Ex. : 01 97 00 00 00",
   phoneError: "Indique un numéro WhatsApp valide.",
-  phoneNote: "Pour te recontacter si le message n'arrive pas. Tes réponses sont enregistrées au fur et à mesure.",
-  statusLabel: "Tu es",
-  statuses: ["Salarié", "Entrepreneur", "Étudiant", "En recherche d'emploi", "Autre"],
-  slotLabel: "Ma disponibilité",
-  slots: [
-    { value: "matin", label: "Matin", detail: "10h – 13h" },
-    { value: "soir", label: "Soir", detail: "19h – 22h" },
-  ],
-  daysLabel: "Mes jours",
-  days: [
-    { value: "lun-mer", label: "Début de semaine", detail: "Lundi, mardi, mercredi" },
-    { value: "jeu-sam", label: "Fin de semaine", detail: "Jeudi, vendredi, samedi" },
-  ],
-  startLabel: "Quelle cohorte veux-tu rejoindre ?",
-  starts: [
-    { value: "en-cours", label: "La cohorte en cours" },
-    { value: "semaine-prochaine", label: "La cohorte de la semaine prochaine" },
-  ],
-  payLabel: "Comment veux-tu régler ?",
-  pays: [
-    {
-      value: "total",
-      label: "Je paie les 20 000 FCFA",
-      detail: "Ma place est confirmée tout de suite.",
-    },
-    {
-      value: "acompte",
-      label: "Je réserve avec 5 000 FCFA",
-      detail: "Je règle les 15 000 FCFA restants sur place, au centre, le premier jour de formation.",
-    },
-  ],
-  requiredError: "Fais un choix pour continuer.",
+  phoneNote: "Pour te recontacter si le message n'arrive pas.",
   benefitsTitle: "Ce que tu vas gagner",
   benefits: [
     "Tes rapports et tes présentations, de qualité professionnelle, en beaucoup moins de temps.",
@@ -797,11 +766,7 @@ export const RESERVATION = {
     "Tes affiches, photos produits et vidéos, créées par toi-même.",
     "3 jours en salle, puis 30 jours de suivi pour continuer à avancer.",
   ],
-  submit: {
-    total: "Je veux payer, sur WhatsApp",
-    acompte: "Je m'inscris, sur WhatsApp",
-    empty: "Continuer sur WhatsApp",
-  },
-  note: "Ton message WhatsApp est prêt : il ne reste qu'à appuyer sur « Envoyer ».",
+  submit: "Continuer sur WhatsApp",
+  note: "Ton message WhatsApp est prêt : il ne reste qu'à appuyer sur « Envoyer ». On choisit ensuite ensemble ton horaire, tes jours et ta cohorte.",
   close: "Fermer",
 };
