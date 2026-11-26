@@ -1,5 +1,4 @@
 import { MetaPixel } from "./primitives/MetaPixel";
-import { ReservationForm } from "./primitives/ReservationForm";
 import { RevealScript } from "./primitives/Reveal";
 import { MotionRoot } from "./primitives/ScrollEffects";
 import { StickyCTA } from "./primitives/StickyCTA";
@@ -66,7 +65,6 @@ export function LandingPage() {
         </Gated>
         <StickyCTA />
       </div>
-      <ReservationForm />
       <RevealScript />
       </VideoGateProvider>
     </MotionRoot>
